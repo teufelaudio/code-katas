@@ -2,11 +2,7 @@
     "description": "Fizz Buzz Kata",
     "type": "project",
     "license": "MIT",
-    "keywords": [
-        "php",
-        "katas",
-        "scaffolding"
-    ],
+    "keywords": ["php", "katas"],
     "require": {
         "php": ">=7.4"
     },
@@ -26,7 +22,7 @@
         }
     },
     "scripts": {
-        "test-all": [
+        "test": [
             "@psalm",
             "@test-unit"
         ],

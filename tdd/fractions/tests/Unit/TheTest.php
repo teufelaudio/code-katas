@@ -5,12 +5,12 @@ namespace KataTests\Unit;
 use Kata\TheClass;
 use PHPUnit\Framework\TestCase;
 
-final class PasswordValidatorTest extends TestCase
+final class TheTest extends TestCase
 {
     public function test_change_me(): void
     {
-        $validator = new TheClass();
+        $theClass = new TheClass();
 
-        self::assertTrue($validator->changeMe());
+        self::assertTrue($theClass->changeMe());
     }
 }

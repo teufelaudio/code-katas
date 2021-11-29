@@ -27,7 +27,7 @@
         }
     },
     "scripts": {
-        "test-all": [
+        "test": [
             "@psalm",
             "@test-unit"
         ],
