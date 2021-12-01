@@ -7,21 +7,21 @@ use PHPUnit\Framework\TestCase;
 
 final class PasswordValidatorTest extends TestCase
 {
-    public function test_return_false_on_length_less_than_8(): void
+    public function test_fail_on_length_less_than_8(): void
     {
         $validator = new PasswordValidator();
 
         self::assertFalse($validator->validatePassword('abc'));
     }
 
-    public function test_return_false_on_missing_uppercase_letter(): void
+    public function test_fail_on_missing_uppercase_letter(): void
     {
         $validator = new PasswordValidator();
 
         self::assertFalse($validator->validatePassword('abcdefgh'));
     }
 
-    public function test_return_false_on_missing_lowercase_letter(): void
+    public function test_fail_on_missing_lowercase_letter(): void
     {
         $validator = new PasswordValidator();
 
@@ -32,6 +32,13 @@ final class PasswordValidatorTest extends TestCase
     {
         $validator = new PasswordValidator();
 
-        self::assertTrue($validator->validatePassword('aBcdefgh'));
+        self::assertTrue($validator->validatePassword('aBcdefg1'));
+    }
+
+    public function test_fail_on_missing_digit(): void
+    {
+        $validator = new PasswordValidator();
+
+        self::assertFalse($validator->validatePassword('aBcdefgh'));
     }
 }
