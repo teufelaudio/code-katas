@@ -8,11 +8,23 @@ final class PasswordValidator
 
     public function isValid(string $password): bool
     {
-        return $this->checkAmountOfCharacters($password);
+        if (!$this->validateAmountOfCharacters($password)) {
+            return false;
+        }
+        if (!$this->validateUppercaseLetter($password)) {
+            return false;
+        }
+
+        return true;
     }
 
-    private function checkAmountOfCharacters(string $password): bool
+    public function validateAmountOfCharacters(string $password): bool
     {
         return strlen($password) > self::MIN_CHARACTERS;
+    }
+
+    public function validateUppercaseLetter(string $password): bool
+    {
+        return (bool)preg_match('/[A-Z]/', $password);
     }
 }
