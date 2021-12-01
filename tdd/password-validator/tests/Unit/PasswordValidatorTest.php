@@ -21,12 +21,12 @@ final class PasswordValidatorTest extends TestCase
 
     public function test_fail_on_missing_uppercase_letter(): void
     {
-        self::assertFalse($this->validator->validatePassword('abcdefgh'));
+        self::assertFalse($this->validator->validatePassword('a1_defgh'));
     }
 
     public function test_fail_on_missing_lowercase_letter(): void
     {
-        self::assertFalse($this->validator->validatePassword('AAAAAAAA'));
+        self::assertFalse($this->validator->validatePassword('A1_AAAAA'));
     }
 
     public function test_fail_on_missing_digit(): void

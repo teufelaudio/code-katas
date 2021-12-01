@@ -11,10 +11,10 @@ final class PasswordValidator
         if (strlen($password) < 8) {
             return false;
         }
-        if (preg_match('/[A-Z]/', $password) === 0) {
+        if (strtolower($password) === $password) {
             return false;
         }
-        if (preg_match('/[a-z]/', $password) === 0) {
+        if (strtoupper($password) === $password) {
             return false;
         }
         if (preg_match('/\d+/', $password) === 0) {
