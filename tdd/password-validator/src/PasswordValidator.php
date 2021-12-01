@@ -4,8 +4,11 @@ namespace Kata;
 
 final class PasswordValidator
 {
-    public function changeMe(): bool
+    public function validatePwd(string $pwd): bool
     {
-        return true;
+        if (strlen($pwd) > 8) {
+            return true;
+        }
+        return false;
     }
 }

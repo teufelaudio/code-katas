@@ -7,10 +7,18 @@ use PHPUnit\Framework\TestCase;
 
 final class PasswordValidatorTest extends TestCase
 {
-    public function test_change_me(): void
+    public function test_return_false_on_length_less_than_8(): void
     {
         $validator = new PasswordValidator();
 
-        self::assertTrue($validator->changeMe());
+        self::assertFalse($validator->validatePwd('abc'));
     }
+
+    public function test_return_true_on_length_greater_or_equal_8(): void
+    {
+        $validator = new PasswordValidator();
+
+        self::assertTrue($validator->validatePwd('abcdefgh'));
+    }
+
 }
