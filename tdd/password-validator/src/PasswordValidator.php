@@ -17,8 +17,10 @@ final class PasswordValidator
         if (preg_match('/[a-z]/', $password) === 0) {
             return false;
         }
-
         if (preg_match('/\d+/', $password) === 0) {
+            return false;
+        }
+        if (preg_match('/_/', $password) === 0) {
             return false;
         }
 
