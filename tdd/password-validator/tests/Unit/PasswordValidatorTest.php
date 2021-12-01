@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 final class PasswordValidatorTest extends TestCase
 {
+    // @todo move tests to single test classes for each passwordValidator
     public function test_password_character_amount(): void
     {
         $lengthValidator = new Length();
