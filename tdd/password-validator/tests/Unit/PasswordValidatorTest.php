@@ -16,27 +16,27 @@ final class PasswordValidatorTest extends TestCase
 
     public function test_reject_length_less_than_8(): void
     {
-        self::assertFalse($this->validator->validatePassword('abc'));
+        self::assertFalse($this->validator->validatePassword('aB3_'));
     }
 
     public function test_reject_missing_uppercase_letter(): void
     {
-        self::assertFalse($this->validator->validatePassword('a1_defgh'));
+        self::assertFalse($this->validator->validatePassword('ab3_defgh'));
     }
 
     public function test_reject_missing_lowercase_letter(): void
     {
-        self::assertFalse($this->validator->validatePassword('A1_AAAAA'));
+        self::assertFalse($this->validator->validatePassword('AB3_DEFGH'));
     }
 
     public function test_reject_missing_digit(): void
     {
-        self::assertFalse($this->validator->validatePassword('aBcdefgh'));
+        self::assertFalse($this->validator->validatePassword('aBc_efgh'));
     }
 
     public function test_reject_missing_underscore(): void
     {
-        self::assertFalse($this->validator->validatePassword('aBcdefg1'));
+        self::assertFalse($this->validator->validatePassword('aB3defgh'));
     }
 
     public function test_accept_valid_password(): void
