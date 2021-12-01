@@ -6,6 +6,7 @@ use Kata\PasswordValidator\Length;
 use Kata\PasswordValidator\Lowercase;
 use Kata\PasswordValidator\Numbers;
 use Kata\PasswordValidator\Uppercase;
+use Kata\PasswordValidatorFactory;
 use PHPUnit\Framework\TestCase;
 
 final class PasswordValidatorTest extends TestCase
@@ -47,5 +48,12 @@ final class PasswordValidatorTest extends TestCase
         self::assertFalse($numberValidator->validate('ABC'));
         self::assertTrue($numberValidator->validate('123'));
         self::assertTrue($numberValidator->validate('A1B'));
+    }
+
+    public function test_everything_together(): void
+    {
+        $passwordValidator = (new PasswordValidatorFactory())->createPasswordValidator();
+
+        self::assertTrue($passwordValidator->isValid('1231asdsadDFSKDFGJ'));
     }
 }
