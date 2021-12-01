@@ -2,9 +2,9 @@
 
 namespace Kata;
 
-final class Adder
+final class StringCalculator
 {
-    public function changeMe()
+    public function changeMe(): bool
     {
         return true;
     }
