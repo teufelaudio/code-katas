@@ -6,7 +6,7 @@ final class PasswordValidator
 {
     public function validatePwd(string $pwd): bool
     {
-        if (strlen($pwd) > 8) {
+        if (strlen($pwd) >= 8) {
             return true;
         }
         return false;
