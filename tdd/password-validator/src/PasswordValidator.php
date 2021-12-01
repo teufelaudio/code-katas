@@ -11,12 +11,10 @@ final class PasswordValidator
         if (strlen($password) < 8) {
             return false;
         }
-        // reject missing uppercase letter
-        if (strtolower($password) === $password) {
+        if (!$this->containsUppercaseLetter($password)) {
             return false;
         }
-        // reject missing lowercase letter
-        if (strtoupper($password) === $password) {
+        if (!$this->containsLowercaseLetter($password)) {
             return false;
         }
         if (preg_match('/\d+/', $password) === 0) {
@@ -27,5 +25,13 @@ final class PasswordValidator
         }
 
         return true;
+    }
+
+    private function containsUppercaseLetter($password) {
+        return strtolower($password) !== $password;
+    }
+
+    private function containsLowercaseLetter($password) {
+        return strtoupper($password) !== $password;
     }
 }
