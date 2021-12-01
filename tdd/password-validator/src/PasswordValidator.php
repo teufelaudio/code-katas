@@ -2,34 +2,29 @@
 
 namespace Kata;
 
+use Kata\PasswordValidator\ValidatorInterface;
+
 final class PasswordValidator
 {
-    const MIN_CHARACTERS = 8;
+
+    /**
+     * @var list<ValidatorInterface>
+     */
+    private array $passwordValidators;
+
+    public function __construct(array $passwordValidators)
+    {
+        $this->passwordValidators = $passwordValidators;
+    }
 
     public function isValid(string $password): bool
     {
-        if (!$this->validateAmountOfCharacters($password)) {
-            return false;
-        }
-        if (!$this->validateUppercaseLetter($password)) {
-            return false;
+        foreach($this->passwordValidators as $passwordValidator) {
+            if (!$passwordValidator->validate($password)) {
+                return false;
+            }
         }
 
         return true;
-    }
-
-    public function validateAmountOfCharacters(string $password): bool
-    {
-        return strlen($password) > self::MIN_CHARACTERS;
-    }
-
-    public function validateUppercaseLetter(string $password): bool
-    {
-        return (bool)preg_match('/[A-Z]/', $password);
-    }
-
-    public function validateLowercaseLetter(string $password): bool
-    {
-        return (bool)preg_match('/[a-z]/', $password);
     }
 }

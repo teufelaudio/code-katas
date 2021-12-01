@@ -2,40 +2,50 @@
 
 namespace KataTests\Unit;
 
-use Kata\PasswordValidator;
+use Kata\PasswordValidator\Length;
+use Kata\PasswordValidator\Lowercase;
+use Kata\PasswordValidator\Numbers;
+use Kata\PasswordValidator\Uppercase;
 use PHPUnit\Framework\TestCase;
 
 final class PasswordValidatorTest extends TestCase
 {
     public function test_password_character_amount(): void
     {
-        $validator = new PasswordValidator();
+        $lengthValidator = new Length();
 
-        self::assertTrue($validator->validateAmountOfCharacters('123456789'));
-        self::assertFalse($validator->validateAmountOfCharacters('1231'));
-        self::assertFalse($validator->validateAmountOfCharacters(''));
-        self::assertFalse($validator->validateAmountOfCharacters('12345678'));
+        self::assertTrue($lengthValidator->validate('123456789'));
+        self::assertFalse($lengthValidator->validate('1231'));
+        self::assertFalse($lengthValidator->validate(''));
+        self::assertFalse($lengthValidator->validate('12345678'));
     }
 
     public function test_uppercase_letter(): void
     {
-        $validator = new PasswordValidator();
+        $uppercaseValidator = new Uppercase();
 
-        self::assertFalse($validator->validateUppercaseLetter('abc'));
-        self::assertTrue($validator->validateUppercaseLetter('aBc'));
-        self::assertTrue($validator->validateUppercaseLetter('ABC'));
+        self::assertFalse($uppercaseValidator->validate('abc'));
+        self::assertTrue($uppercaseValidator->validate('aBc'));
+        self::assertTrue($uppercaseValidator->validate('ABC'));
     }
 
     public function test_lowercase_letter(): void
     {
-        $validator = new PasswordValidator();
+        $lowercaseValidator = new Lowercase();
 
-        self::assertTrue($validator->validateLowercaseLetter('abcdefghij'));
-        self::assertTrue($validator->validateLowercaseLetter('abcdeFghij'));
-        self::assertTrue($validator->validateLowercaseLetter('abcdeFGHIJ'));
-        self::assertFalse($validator->validateLowercaseLetter('ABC'));
-        self::assertFalse($validator->validateLowercaseLetter('123'));
+        self::assertTrue($lowercaseValidator->validate('abcdefghij'));
+        self::assertTrue($lowercaseValidator->validate('abcdeFghij'));
+        self::assertTrue($lowercaseValidator->validate('abcdeFGHIJ'));
+        self::assertFalse($lowercaseValidator->validate('ABC'));
+        self::assertFalse($lowercaseValidator->validate('123'));
     }
 
+    public function test_contains_number(): void
+    {
+        $numberValidator = new Numbers();
 
+        self::assertFalse($numberValidator->validate('ABC'));
+        self::assertTrue($numberValidator->validate('123'));
+        self::assertTrue($numberValidator->validate('A1B'));
+    }
 }
