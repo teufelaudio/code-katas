@@ -11,9 +11,11 @@ final class PasswordValidator
         if (strlen($password) < 8) {
             return false;
         }
+        // reject missing uppercase letter
         if (strtolower($password) === $password) {
             return false;
         }
+        // reject missing lowercase letter
         if (strtoupper($password) === $password) {
             return false;
         }
