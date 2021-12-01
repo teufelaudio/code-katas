@@ -27,4 +27,9 @@ final class PasswordValidator
     {
         return (bool)preg_match('/[A-Z]/', $password);
     }
+
+    public function validateLowercaseLetter(string $password): bool
+    {
+        return (bool)preg_match('/[a-z]/', $password);
+    }
 }
