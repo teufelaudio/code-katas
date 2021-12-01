@@ -4,8 +4,15 @@ namespace Kata;
 
 final class PasswordValidator
 {
-    public function changeMe(): bool
+    const MIN_CHARACTERS = 8;
+
+    public function isValid(string $password): bool
     {
-        return true;
+        return $this->checkAmountOfCharacters($password);
+    }
+
+    private function checkAmountOfCharacters(string $password): bool
+    {
+        return strlen($password) > self::MIN_CHARACTERS;
     }
 }
