@@ -4,7 +4,7 @@ namespace Kata;
 
 final class FizzBuzz
 {
-    public function changeMe()
+    public function changeMe(): bool
     {
         return true;
     }
