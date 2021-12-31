@@ -9,13 +9,13 @@ final class FizzBuzz
         $values = [];
 
         foreach (range(1, 100) as $number) {
-            if ($number % 3 === 0) {
+            if ($number % 5 === 0) {
+                $values[] = 'buzz';
+            } elseif ($number % 3 === 0) {
                 $values[] = 'fizz';
-
-                continue;
+            } else {
+                $values[] = $number;
             }
-
-            $values[] = $number;
         }
 
         return $values;
