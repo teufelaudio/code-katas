@@ -1,19 +1,14 @@
-# Problem Description
+# Yatzy Refactoring Kata
 
-The Romans were a clever bunch. They conquered most of Europe and ruled it for hundreds of years. They invented concrete and straight roads and even bikinis[1]. One thing they never discovered though was the number zero. This made writing and dating extensive histories of their exploits slightly more challenging, but the system of numbers they came up with is still in use today. For example the BBC uses Roman numerals to date their programmes.
+This Refactoring Kata was designed by Jon Jagger and is available in his Cyber-Dojo.
+See [his blog post](http://jonjagger.blogspot.co.uk/2012/05/yahtzee-cyber-dojo-refactoring-in-java.html)
 
-The Romans wrote numbers using letters - I, V, X, L, C, D, M. (notice these letters have lots of straight lines and are hence easy to hack into stone tablets)
+I have changed it a little, so that the rules more closely match the original game.
 
-The Kata says you should write a function to convert from normal numbers to Roman Numerals:
-``
-     1 --> I
-     10 --> X
-     7 --> VII
-```
-[More information about Roman numerals](http://www.novaroma.org/via_romana/numbers.html)
+If you like this Kata, you may be interested in [my books](https://leanpub.com/u/emilybache) and
+website [SammanCoaching.org](https://sammancoaching.org)
 
-There is no need to be able to convert numbers larger than about 3000. (The Romans themselves didn't tend to go any higher)
+## Kata Description
 
-# Acceptance test
-
-	1999 -> MCMXCIX
+The problem that this code is designed to solve is explained
+here: [Yatzy](https://sammancoaching.org/kata_descriptions/yatzy.html)

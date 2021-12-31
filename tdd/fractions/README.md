@@ -10,7 +10,8 @@ Our program will take as data input a text string with the following format:
 
 Given an input such as `{3/2} + {4/4} / {2/3}`, an output of `3` is expected.
 
-Our software should have resolved the operations between the fractions depending on the priority of the operation or the parentheses and return us the final result of the operation.
+Our software should have resolved the operations between the fractions depending on the priority of the operation or the
+parentheses and return us the final result of the operation.
 
 # Definition of requirements
 
@@ -55,15 +56,19 @@ This would be an example of how an input with multiple operations would be solve
 parentheses, first the parentheses have to be solved and then whatever there is.
 
 **Example of how it would be solved**
+
 ```
 {3/2}+{4/4}/{2/3}
 ```
+
 **First step**
+
 ```
 {4/4}/{2/3}
 ```
 
 **Second step**
+
 ```
 {3/2}+RESULT_FROM_FIRST_OPERATION
 ```
