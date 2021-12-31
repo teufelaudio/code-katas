@@ -6,6 +6,14 @@ final class FizzBuzz
 {
     public function fizzBuzz(): array
     {
-        return range(1, 100);
+        $values = range(1, 100);
+
+        foreach ($values as $key => $number) {
+            if ($number % 3 === 0) {
+                $values[$key] = 'fizz';
+            }
+        }
+
+        return $values;
     }
 }
