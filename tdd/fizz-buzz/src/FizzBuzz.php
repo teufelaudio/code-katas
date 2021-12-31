@@ -6,12 +6,16 @@ final class FizzBuzz
 {
     public function fizzBuzz(): array
     {
-        $values = range(1, 100);
+        $values = [];
 
-        foreach ($values as $key => $number) {
+        foreach (range(1, 100) as $number) {
             if ($number % 3 === 0) {
-                $values[$key] = 'fizz';
+                $values[] = 'fizz';
+
+                continue;
             }
+
+            $values[] = $number;
         }
 
         return $values;
