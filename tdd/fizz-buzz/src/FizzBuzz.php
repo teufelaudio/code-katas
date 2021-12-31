@@ -9,11 +9,11 @@ final class FizzBuzz
         $values = [];
 
         foreach (range(1, 100) as $number) {
-            if ($number % 15 === 0) {
+            if ($this->isNumberMultipleOf($number, 15)) {
                 $values[] = 'fizzbuzz';
-            } elseif ($number % 5 === 0) {
+            } elseif ($this->isNumberMultipleOf($number, 5)) {
                 $values[] = 'buzz';
-            } elseif ($number % 3 === 0) {
+            } elseif ($this->isNumberMultipleOf($number, 3)) {
                 $values[] = 'fizz';
             } else {
                 $values[] = $number;
@@ -21,5 +21,10 @@ final class FizzBuzz
         }
 
         return $values;
+    }
+
+    private function isNumberMultipleOf(int $number, int $modulo): bool
+    {
+        return $number % $modulo === 0;
     }
 }
