@@ -11,8 +11,8 @@ final class FizzBuzzTest extends TestCase
     {
         $fizzBuzz = new FizzBuzz();
 
-        $currentValue = $fizzBuzz->changeMe();
+        $returnValues = $fizzBuzz->fizzBuzz();
 
-        self::assertTrue($currentValue);
+        self::assertCount(100, $returnValues);
     }
 }

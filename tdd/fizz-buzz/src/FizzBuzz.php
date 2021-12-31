@@ -4,8 +4,8 @@ namespace Kata;
 
 final class FizzBuzz
 {
-    public function changeMe(): bool
+    public function fizzBuzz(): array
     {
-        return true;
+        return range(1, 100);
     }
 }
