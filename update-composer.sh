@@ -3,9 +3,9 @@
 set -e
 
 # Update composer to all directories/katas.
-PROJECT_EXAMPLES=$(ls -d */*)
+KATAS_DIR=$(ls -d */* | grep -v "\.")
 
-for i in $PROJECT_EXAMPLES
+for i in $KATAS_DIR
 do
   cd ${i%%/}
   echo "Updating composer in" ${i%%/}
