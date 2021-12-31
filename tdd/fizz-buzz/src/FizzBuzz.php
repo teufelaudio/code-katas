@@ -15,6 +15,10 @@ final class FizzBuzz
                 $values[] = 'buzz';
             } elseif ($this->isNumberMultipleOf($number, 3)) {
                 $values[] = 'fizz';
+            } elseif ($this->containsNumber($number, 3)) {
+                $values[] = 'fizz';
+            } elseif ($this->containsNumber($number, 5)) {
+                $values[] = 'buzz';
             } else {
                 $values[] = $number;
             }
@@ -26,5 +30,10 @@ final class FizzBuzz
     private function isNumberMultipleOf(int $number, int $modulo): bool
     {
         return $number % $modulo === 0;
+    }
+
+    private function containsNumber(int $number, int $needle): bool
+    {
+        return str_contains((string)$number, (string)$needle);
     }
 }

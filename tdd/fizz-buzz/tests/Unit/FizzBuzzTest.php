@@ -88,4 +88,38 @@ final class FizzBuzzTest extends TestCase
         yield 'number 45' => [45];
         yield 'number 90' => [90];
     }
+
+    /**
+     * @dataProvider provideNumbersContainingThree
+     */
+    public function test_ensure_return_fizz_numbers_containing_3(int $number): void
+    {
+        $returnValues = $this->fizzBuzz->fizzBuzz();
+
+        self::assertEquals('fizz', $returnValues[$number - 1]);
+    }
+
+    public function provideNumbersContainingThree(): iterable
+    {
+        yield 'number 13' => [13];
+        yield 'number 31' => [31];
+        yield 'number 93' => [93];
+        yield 'number 73' => [73];
+    }
+
+    /**
+     * @dataProvider provideNumbersContainingFive
+     */
+    public function test_ensure_return_fizz_numbers_containing_5(int $number): void
+    {
+        $returnValues = $this->fizzBuzz->fizzBuzz();
+
+        self::assertEquals('buzz', $returnValues[$number - 1]);
+    }
+
+    public function provideNumbersContainingFive(): iterable
+    {
+        yield 'number 52' => [52];
+        yield 'number 59' => [59];
+    }
 }
