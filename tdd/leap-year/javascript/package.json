@@ -1,0 +1,19 @@
+{
+  "name": "kata",
+  "version": "1.0.0",
+  "description": "Kata",
+  "main": " ",
+  "directories": {
+    "lib": "src",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^27.5",
+    "sinon": "^13.0"
+  }
+}
