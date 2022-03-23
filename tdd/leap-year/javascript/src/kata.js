@@ -15,4 +15,8 @@ const getNext10LeapYearsStartingFrom = (baseYear) => {
   return result;
 };
 
-module.exports = { isLeapYear, getNext10LeapYearsStartingFrom };
+const get10thNextLeapYear = (baseYear) => {
+  return getNext10LeapYearsStartingFrom(baseYear)[9];
+};
+
+module.exports = { isLeapYear, getNext10LeapYearsStartingFrom, get10thNextLeapYear };
