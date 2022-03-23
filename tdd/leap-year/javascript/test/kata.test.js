@@ -1,4 +1,4 @@
-const { isLeapYear } = require("../src/kata");
+const { isLeapYear ,getNext10LeapYearsStartingFrom} = require("../src/kata");
 
 describe("Leap Year Kata", function () {
   it("is a leap year if it's divisible by 400", function () {
@@ -29,5 +29,10 @@ describe("Leap Year Kata", function () {
     expect(isLeapYear(2017)).toBe(false);
     expect(isLeapYear(2018)).toBe(false);
     expect(isLeapYear(2019)).toBe(false);
+  });
+
+  it("gets next 10 leap years", function () {
+    expect(getNext10LeapYearsStartingFrom(2021))
+          .toEqual([2024, 2028, 2032, 2036, 2040, 2044, 2048, 2052, 2056, 2060]);
   });
 });
