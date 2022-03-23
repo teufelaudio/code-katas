@@ -3,7 +3,7 @@
 ## How to start?
 
 1. npm install
-2. npm test 
+2. npm run test:watch
 
 ### Acceptance Criteria
 
