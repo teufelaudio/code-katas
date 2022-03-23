@@ -16,4 +16,12 @@ describe("Leap Year Kata", function () {
         expect(isLeapYear(2000)).toBe(true);
         expect(isLeapYear(2100)).toBe(false);
     });
+
+    it("all years divisible by 4 but not by 100 are leap years ", function () {
+        expect(isLeapYear(4)).toBe(true);
+        expect(isLeapYear(8)).toBe(true);
+        expect(isLeapYear(2008)).toBe(true);
+        expect(isLeapYear(2012)).toBe(true);
+        expect(isLeapYear(2016)).toBe(true);
+    });
 });
