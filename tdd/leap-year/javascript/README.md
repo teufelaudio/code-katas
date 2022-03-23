@@ -1,4 +1,4 @@
-# Leap Years (JS)
+# Leap years (JS)
 
 ## How to start?
 
