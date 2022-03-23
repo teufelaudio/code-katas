@@ -45,6 +45,14 @@ final class LeapYearTest extends TestCase
     {
         self::assertSame(
             [2024, 2028, 2032, 2036, 2040, 2044, 2048, 2052, 2056, 2060],
+            $this->leapYear->getNextLeapYears(2020, 10)
+        );
+        self::assertSame(
+            [2024, 2028, 2032, 2036, 2040, 2044, 2048, 2052, 2056, 2060],
+            $this->leapYear->getNextLeapYears(2021, 10)
+        );
+        self::assertSame(
+            [2024, 2028, 2032, 2036, 2040, 2044, 2048, 2052, 2056, 2060],
             $this->leapYear->getNextLeapYears(2022, 10)
         );
     }

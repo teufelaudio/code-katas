@@ -20,16 +20,16 @@ final class LeapYear
         return $year % $divisor === 0;
     }
 
-    public function getNextLeapYears(int $startYear, int $count): array
+    public function getNextLeapYears(int $leapYear, int $count): array
     {
         $leapYears = [];
 
-        do {
-            if ($this->isLeapYear($startYear)) {
-                $leapYears[] = $startYear;
+        while (count($leapYears) < $count) {
+            $leapYear++;
+            if ($this->isLeapYear($leapYear)) {
+                $leapYears[] = $leapYear;
             }
-            $startYear++;
-        } while (count($leapYears) < $count);
+        }
 
         return $leapYears;
     }
