@@ -17,11 +17,17 @@ describe("Leap Year Kata", function () {
     expect(isLeapYear(2100)).toBe(false);
   });
 
-  it("all years divisible by 4 but not by 100 are leap years", function () {
+  it("is a leap year if it's divisible by 4 but not by 100", function () {
     expect(isLeapYear(4)).toBe(true);
     expect(isLeapYear(8)).toBe(true);
     expect(isLeapYear(2008)).toBe(true);
     expect(isLeapYear(2012)).toBe(true);
     expect(isLeapYear(2016)).toBe(true);
+  });
+
+  it("is not a leap year if it's not divisble by 4", function () {
+    expect(isLeapYear(2017)).toBe(false);
+    expect(isLeapYear(2018)).toBe(false);
+    expect(isLeapYear(2019)).toBe(false);
   });
 });
