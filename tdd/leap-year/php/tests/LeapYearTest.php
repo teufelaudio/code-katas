@@ -9,17 +9,35 @@ use PHPUnit\Framework\TestCase;
 
 final class LeapYearTest extends TestCase
 {
+    private LeapYear $leapYear;
+
+    protected function setUp(): void
+    {
+        $this->leapYear = new LeapYear();
+    }
+
     public function test_divisible_by_400_is_a_leap_year(): void
     {
-        $leapYear = new LeapYear();
-
-        self::assertTrue($leapYear->isLeapYear(2000));
+        self::assertTrue($this->leapYear->isLeapYear(2000));
     }
 
     public function test_divisible_by_100_but_not_by_400_are_not_leap_years(): void
     {
-        $leapYear = new LeapYear();
+        self::assertFalse($this->leapYear->isLeapYear(1700));
+        self::assertFalse($this->leapYear->isLeapYear(1800));
+    }
 
-        self::assertFalse($leapYear->isLeapYear(1000));
+    public function test_divisible_by_4_but_not_by_100_are_leap_years(): void
+    {
+        self::assertTrue($this->leapYear->isLeapYear(2008));
+        self::assertTrue($this->leapYear->isLeapYear(2012));
+        self::assertTrue($this->leapYear->isLeapYear(2016));
+    }
+
+    public function test_not_divisible_by_4_are_not_leap_years(): void
+    {
+        self::assertFalse($this->leapYear->isLeapYear(2017));
+        self::assertFalse($this->leapYear->isLeapYear(2018));
+        self::assertFalse($this->leapYear->isLeapYear(2019));
     }
 }

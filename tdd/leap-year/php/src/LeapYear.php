@@ -12,7 +12,7 @@ final class LeapYear
             return false;
         }
 
-        return true;
+        return $this->isDivisibleBy($year, 4);
     }
 
     private function isDivisibleBy(int $year, int $divisor): bool
