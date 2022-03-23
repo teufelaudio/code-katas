@@ -1,5 +1,5 @@
-const renameMe = () => {
-    return true;
+const isLeapYear = (year) => {
+    return year % 400 === 0;
 };
 
-module.exports = {renameMe};
+module.exports = {isLeapYear};
