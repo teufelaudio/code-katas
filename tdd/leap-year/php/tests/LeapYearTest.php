@@ -40,4 +40,12 @@ final class LeapYearTest extends TestCase
         self::assertFalse($this->leapYear->isLeapYear(2018));
         self::assertFalse($this->leapYear->isLeapYear(2019));
     }
+
+    public function test_next_10_leap_years_starting_from_leap_year_2022(): void
+    {
+        self::assertSame(
+            [2024, 2028, 2032, 2036, 2040, 2044, 2048, 2052, 2056, 2060],
+            $this->leapYear->getNextLeapYears(2022, 10)
+        );
+    }
 }
