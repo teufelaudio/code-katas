@@ -1,4 +1,8 @@
-const { isLeapYear, getNext10LeapYearsStartingFrom, get10thNextLeapYear } = require("../src/kata");
+const {
+  isLeapYear,
+  getNext10LeapYearsStartingFrom,
+  get10thNextLeapYear,
+} = require("../src/kata");
 
 describe("Leap Year Kata", function () {
   it("is a leap year if it's divisible by 400", function () {
