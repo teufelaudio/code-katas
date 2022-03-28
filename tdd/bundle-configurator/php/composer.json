@@ -1,5 +1,5 @@
 {
-    "description": "Bundle Configurator TDD kata",
+    "description": "Bundle Configurator TDD kata (PHP)",
     "type": "project",
     "license": "MIT",
     "keywords": ["php", "kata"],
