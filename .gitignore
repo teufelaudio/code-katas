@@ -1,2 +1,8 @@
 .idea/
+node_modules/
+coverage/
+vendor/
+
 *.cache
+*.env
+.DS_Store

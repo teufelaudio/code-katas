@@ -1,7 +1,6 @@
 # Web-IT Katas
 
-The goal of this repo is to collect the code result after the Kata sessions that we have 
-in the Web-IT department.
+The goal of this repo is to collect the code result after the Kata sessions that we have in the Web-IT department.
 
 ## What’s a Code Kata?
 
@@ -12,12 +11,13 @@ Other creative professions practice: artists carry a sketchpad, musicians play t
 rewrite works. In karate, where the aim is to learn to spar or fight, most of a student’s time is spent learning and
 refining basic moves. These are katas.
 
-Katas exists to help developers get the same benefits as practicing in any other profession. There are simple,
-artificial exercises that let you experiment and learn without the pressure of a production environment.
+Katas exist to help developers get the same benefits as practicing in any other profession. There are simple, artificial
+exercises that let you experiment and learn without the pressure of a production environment.
 
 There are no right or wrong answers in any software kata: the benefit comes from the process, not from the result.
 
-You can find a lot of katas-ideas here: https://github.com/gamontal/awesome-katas 
+- You can find a lot of ideas for katas here: [Awesome Katas](https://github.com/gamontal/awesome-katas).
+- Read more about creating learning opportunities: [Update your team to be more extreme](https://chemaclass.com/blog/update-your-team-to-be-more-extreme/).
 
 ## How to work with it?
 
