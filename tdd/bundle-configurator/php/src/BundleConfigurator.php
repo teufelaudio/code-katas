@@ -19,12 +19,6 @@ final class BundleConfigurator
         $productArray = explode(',', $productNames);
 
         foreach (self::BUNDLES as $bundleName => $bundle) {
-            sort($bundle);
-            sort($productArray);
-
-            if ($bundle === $productArray) {
-                return $bundleName;
-            }
 
             $intersection = array_intersect($productArray, $bundle);
             sort($intersection);
