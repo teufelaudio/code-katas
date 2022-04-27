@@ -26,7 +26,10 @@ final class BundleConfigurator
                 return $bundleName;
             }
 
-            if (array_intersect($productArray, $bundle) === $bundle) {
+            $intersection = array_intersect($productArray, $bundle);
+            sort($intersection);
+
+            if ($intersection === $bundle) {
                 $arrayDiff = array_diff($productArray, $bundle);
 
                 if (empty($arrayDiff)) {
