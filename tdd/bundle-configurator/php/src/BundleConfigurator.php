@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace Kata;
 
@@ -17,12 +18,13 @@ final class BundleConfigurator
     {
         $productArray = explode(',', $productNames);
 
-       foreach(self::BUNDLES as $bundleName => $bundle) {
-
-           if ($bundle === $productArray) {
-               return $bundleName;
-           }
-       }
+        foreach (self::BUNDLES as $bundleName => $bundle) {
+            sort($bundle);
+            sort($productArray);
+            if ($bundle === $productArray) {
+                return $bundleName;
+            }
+        }
 
         return $productNames;
     }
