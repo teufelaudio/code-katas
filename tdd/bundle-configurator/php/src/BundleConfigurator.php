@@ -21,8 +21,19 @@ final class BundleConfigurator
         foreach (self::BUNDLES as $bundleName => $bundle) {
             sort($bundle);
             sort($productArray);
+
             if ($bundle === $productArray) {
                 return $bundleName;
+            }
+
+            if (array_intersect($productArray, $bundle) === $bundle) {
+                $arrayDiff = array_diff($productArray, $bundle);
+
+                if (empty($arrayDiff)) {
+                    return $bundleName;
+                }
+
+                return $bundleName . ',' . implode(',', $arrayDiff);
             }
         }
 

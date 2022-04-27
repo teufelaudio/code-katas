@@ -35,4 +35,11 @@ final class BundleConfiguratorTest extends TestCase
 
         self::assertSame('B1', $bundleConfigurator->select('P2,P1'));
     }
+
+    public function test_three_products_p1_p2_p3_in_cart(): void
+    {
+        $bundleConfigurator = new BundleConfigurator();
+
+        self::assertSame('B1,P3', $bundleConfigurator->select('P1,P2,P3'));
+    }
 }
