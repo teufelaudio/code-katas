@@ -7,6 +7,6 @@ final class BundleConfigurator
 {
     public function select(string $productNames): string
     {
-        return 'P1';
+        return $productNames;
     }
 }
