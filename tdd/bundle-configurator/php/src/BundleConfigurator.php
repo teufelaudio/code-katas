@@ -19,13 +19,13 @@ final class BundleConfigurator
         sort($cart);
 
         $bundleFromCart = $this->getBundleFromCart($cart);
-        $optimzedCart = ($bundleFromCart === '')
+        $optimizedCart = ($bundleFromCart === '')
             ? $cart
             : [$bundleFromCart];
 
-        sort($optimzedCart);
+        sort($optimizedCart);
 
-        return implode(',', $optimzedCart);
+        return implode(',', $optimizedCart);
     }
 
     private function getBundleFromCart(array $cart): string
