@@ -7,6 +7,9 @@ final class BundleConfigurator
 {
     public function select(string $productNames): string
     {
-        return $productNames;
+        $cart = explode(',', $productNames);
+        sort($cart);
+
+        return implode(',', $cart);
     }
 }
