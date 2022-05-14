@@ -1,7 +1,0 @@
-.idea/
-coverage/
-vendor/
-
-*.env
-*.cache
-.DS_Store
