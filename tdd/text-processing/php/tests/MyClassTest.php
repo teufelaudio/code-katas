@@ -8,12 +8,25 @@ use PHPUnit\Framework\TestCase;
 class MyClassTest extends TestCase
 {
     /** @test */
-    public function give_me_a_good_name_please(): void
+    public function example_text_(): void
     {
         $xxx = new TheClass();
 
-        $result = $xxx->theMethod();
+        $result = $xxx->theMethod('Hello, this is an example for you to practice. You should grab this text and make it as your test case.');
 
-        self::assertEquals(true, $result);
+        $expected = [
+            'you',
+            'this',
+            'your',
+            'to',
+            'text',
+            'test',
+            'should',
+            'practice',
+            'make',
+            'it',
+        ];
+
+        self::assertSame($expected, $result);
     }
 }
