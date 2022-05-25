@@ -14,19 +14,11 @@ class TextProcessor
      */
     public function listTopWords(string $text): array
     {
-        $result = [];
-
         $text = $this->normalizeText($text);
 
         $explodedText = explode(' ', $text);
 
-        foreach($explodedText as $word) {
-            if (!isset($result[$word])) {
-                $result[$word] = 0;
-            }
-
-            $result[$word]++;
-        }
+        $result = array_count_values($explodedText);
 
         krsort($result);
         uasort($result,fn($a, $b) => $b <=> $a);
