@@ -2,18 +2,18 @@
 
 namespace KataTests;
 
-use Kata\TheClass;
+use Kata\TextAnalyser;
 use PHPUnit\Framework\TestCase;
 
 class MyClassTest extends TestCase
 {
     /** @test */
-    public function give_me_a_good_name_please(): void
+    public function test_text_has_zero_words(): void
     {
-        $xxx = new TheClass();
+        $textAnalyzer = new TextAnalyser();
 
-        $result = $xxx->theMethod();
+        $result = $textAnalyzer->analyzeWordCount('');
 
-        self::assertEquals(true, $result);
+        self::assertEquals(0, $result);
     }
 }
