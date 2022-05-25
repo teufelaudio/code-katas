@@ -6,6 +6,6 @@ class TextProcessor
 {
     public function countWords(string $text): int
     {
-        return 0;
+        return str_word_count($text);
     }
 }

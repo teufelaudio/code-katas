@@ -13,4 +13,13 @@ class TextProcessorTest extends TestCase
 
         self::assertEquals(0, $processor->countWords(''));
     }
+
+    public function test_text_string_has_21_word_count(): void
+    {
+        $processor = new TextProcessor();
+
+        $text = 'Hello, this is an example for you to practice. You should grab this text and make it as your test case.';
+
+        self::assertEquals(21, $processor->countWords($text));
+    }
 }
