@@ -31,4 +31,36 @@ class TextProcessorTest extends TestCase
 
         self::assertEquals(5, $processor->countWords($text));
     }
+
+    public function test_text_is_normalized(): void
+    {
+        $processor = new TextProcessor();
+
+        $text = 'Hello, there!';
+
+        self::assertEquals([
+            'hello' => 1,
+            'there' => 1
+        ], $processor->listTopWords($text));
+    }
+
+//    public function test_list_top_words_of_text(): void
+//    {
+//        $processor = new TextProcessor();
+//
+//        $text = 'Hello, this is an example for you to practice. You should grab this text and make it as your test case.';
+//
+//        self::assertEquals([
+//            'you',
+//            'this',
+//            'your',
+//            'to',
+//            'text',
+//            'test',
+//            'should',
+//            'practice',
+//            'make',
+//            'it',
+//        ], $processor->listTopWords($text));
+//    }
 }
