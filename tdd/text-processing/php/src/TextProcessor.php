@@ -28,11 +28,11 @@ class TextProcessor
             $result[$word]++;
         }
 
-        return $result;
+        return array_keys($result);
     }
 
     private function normalizeText(string $text): string
     {
-        return strtolower(str_replace([',','!'],'',$text));
+        return strtolower(str_replace([',','!'],'',$text)); // TODO: improve to catch all unwanted character
     }
 }
