@@ -28,11 +28,14 @@ class TextProcessor
             $result[$word]++;
         }
 
-        return array_keys($result);
+        krsort($result);
+        uasort($result,fn($a, $b) => $b <=> $a);
+
+        return array_keys(array_slice($result, 0, 10));
     }
 
     private function normalizeText(string $text): string
     {
-        return strtolower(str_replace([',','!'],'',$text)); // TODO: improve to catch all unwanted character
+        return strtolower(str_replace([',','!','.'],'',$text)); // TODO: improve to catch all unwanted character
     }
 }
