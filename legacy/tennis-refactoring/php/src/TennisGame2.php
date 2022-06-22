@@ -35,10 +35,6 @@ class TennisGame2 implements TennisGame
             $score .= "-All";
         }
 
-        if ($this->player1Points === $this->player2Points && $this->player1Points >= 3) {
-            $score = "Deuce";
-        }
-
         if ($this->player1Points > 0 && $this->player2Points === 0) {
             if ($this->player1Points === 1) {
                 $this->player1Result = "Fifteen";
@@ -68,20 +64,24 @@ class TennisGame2 implements TennisGame
             $score = "{$this->player1Result}-{$this->player2Result}";
         }
 
-        if ($this->player1Points > $this->player2Points && $this->player1Points < 4) {
-            if ($this->player1Points === 2) {
-                $this->player1Result = "Thirty";
-            }
-            if ($this->player1Points === 3) {
-                $this->player1Result = "Forty";
-            }
-            if ($this->player2Points === 1) {
-                $this->player2Result = "Fifteen";
-            }
-            if ($this->player2Points === 2) {
-                $this->player2Result = "Thirty";
-            }
-            $score = "{$this->player1Result}-{$this->player2Result}";
+        if ($this->player1Points >= 4 && $this->player2Points >= 0 && ($this->player1Points - $this->player2Points) >= 2) {
+            return "Win for " . $this->player1Name;
+        }
+
+        if ($this->player2Points >= 4 && $this->player1Points >= 0 && ($this->player2Points - $this->player1Points) >= 2) {
+            return "Win for " . $this->player2Name;
+        }
+
+        if ($this->player1Points > $this->player2Points && $this->player2Points >= 3) {
+            return "Advantage " . $this->player1Name;
+        }
+
+        if ($this->player2Points > $this->player1Points && $this->player1Points >= 3) {
+            return "Advantage " . $this->player2Name;
+        }
+
+        if ($this->player1Points === $this->player2Points && $this->player1Points >= 3) {
+            return "Deuce";
         }
 
         if ($this->player2Points > $this->player1Points && $this->player2Points < 4) {
@@ -97,23 +97,23 @@ class TennisGame2 implements TennisGame
             if ($this->player1Points === 2) {
                 $this->player1Result = "Thirty";
             }
-            $score = "{$this->player1Result}-{$this->player2Result}";
+            return "{$this->player1Result}-{$this->player2Result}";
         }
 
-        if ($this->player1Points > $this->player2Points && $this->player2Points >= 3) {
-            $score = "Advantage " . $this->player1Name;
-        }
-
-        if ($this->player2Points > $this->player1Points && $this->player1Points >= 3) {
-            $score = "Advantage " . $this->player2Name;
-        }
-
-        if ($this->player1Points >= 4 && $this->player2Points >= 0 && ($this->player1Points - $this->player2Points) >= 2) {
-            $score = "Win for " . $this->player1Name;
-        }
-
-        if ($this->player2Points >= 4 && $this->player1Points >= 0 && ($this->player2Points - $this->player1Points) >= 2) {
-            $score = "Win for " . $this->player2Name;
+        if ($this->player1Points > $this->player2Points && $this->player1Points < 4) {
+            if ($this->player1Points === 2) {
+                $this->player1Result = "Thirty";
+            }
+            if ($this->player1Points === 3) {
+                $this->player1Result = "Forty";
+            }
+            if ($this->player2Points === 1) {
+                $this->player2Result = "Fifteen";
+            }
+            if ($this->player2Points === 2) {
+                $this->player2Result = "Thirty";
+            }
+            return "{$this->player1Result}-{$this->player2Result}";
         }
 
         return $score;
