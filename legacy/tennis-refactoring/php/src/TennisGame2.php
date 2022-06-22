@@ -33,6 +33,14 @@ class TennisGame2 implements TennisGame
 
     public function getScore(): string
     {
+        if ($this->player1Points === $this->player2Points) {
+            if ($this->player1Points >= 3) {
+                return "Deuce";
+            }
+
+            return $this->getNumberName($this->player1Points) . "-All";
+        }
+
         if ($this->player1Points >= 4 && $this->player2Points >= 0 && ($this->player1Points - $this->player2Points) >= 2) {
             return "Win for " . $this->player1Name;
         }
@@ -47,14 +55,6 @@ class TennisGame2 implements TennisGame
 
         if ($this->player1Points >= 3 && $this->player2Points > $this->player1Points) {
             return "Advantage " . $this->player2Name;
-        }
-
-        if ($this->player1Points >= 3 && $this->player1Points === $this->player2Points) {
-            return "Deuce";
-        }
-
-        if ($this->player1Points < 4 && $this->player1Points === $this->player2Points) {
-            return $this->getNumberName($this->player1Points) . "-All";
         }
 
         $this->player1Result = $this->getNumberName($this->player1Points);
