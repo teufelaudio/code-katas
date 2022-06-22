@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace TennisGame;
 
 use RuntimeException;
@@ -25,28 +27,17 @@ class TennisGame2 implements TennisGame
         $this->player2Name = $player2Name;
     }
 
-    private function getNumberName(int $points): string
-    {
-        return self::NUMBER_NAME_MAP[$points];
-    }
-
     public function getScore(): string
     {
         if ($this->player1Points === $this->player2Points) {
-            if ($this->player1Points >= 3) {
-                return "Deuce";
-            }
-
-            return $this->getNumberName($this->player1Points) . "-All";
+            return $this->getDrawScore();
         }
 
-        if (max($this->player1Points, $this->player2Points) >= 4 && abs(
-                $this->player1Points - $this->player2Points
-            ) >= 2) {
+        if ($this->isThereAWinner()) {
             return "Win for " . $this->getLeaderName();
         }
 
-        if (min($this->player1Points, $this->player2Points) >= 3) {
+        if ($this->couldNextPointWin()) {
             return "Advantage " . $this->getLeaderName();
         }
 
@@ -67,8 +58,35 @@ class TennisGame2 implements TennisGame
         }
     }
 
+    private function getNumberName(int $points): string
+    {
+        return self::NUMBER_NAME_MAP[$points];
+    }
+
+    private function getDrawScore(): string
+    {
+        if ($this->player1Points >= 3) {
+            return "Deuce";
+        }
+
+        return $this->getNumberName($this->player1Points) . "-All";
+    }
+
+    private function isThereAWinner(): bool
+    {
+        return max($this->player1Points, $this->player2Points) >= 4
+            && abs($this->player1Points - $this->player2Points) >= 2;
+    }
+
+    private function couldNextPointWin(): bool
+    {
+        return min($this->player1Points, $this->player2Points) >= 3;
+    }
+
     private function getLeaderName(): string
     {
-        return $this->player1Points > $this->player2Points ? $this->player1Name : $this->player2Name;
+        return $this->player1Points > $this->player2Points
+            ? $this->player1Name
+            : $this->player2Name;
     }
 }
