@@ -33,17 +33,29 @@ class TennisGame2 implements TennisGame
 
     public function getScore(): string
     {
+        if ($this->player1Points >= 4 && $this->player2Points >= 0 && ($this->player1Points - $this->player2Points) >= 2) {
+            return "Win for " . $this->player1Name;
+        }
+
+        if ($this->player2Points >= 4 && $this->player1Points >= 0 && ($this->player2Points - $this->player1Points) >= 2) {
+            return "Win for " . $this->player2Name;
+        }
+
+        if ($this->player1Points > $this->player2Points && $this->player2Points >= 3) {
+            return "Advantage " . $this->player1Name;
+        }
+
+        if ($this->player2Points > $this->player1Points && $this->player1Points >= 3) {
+            return "Advantage " . $this->player2Name;
+        }
+
+        if ($this->player1Points === $this->player2Points && $this->player1Points >= 3) {
+            return "Deuce";
+        }
+
         $score = "";
         if ($this->player1Points === $this->player2Points && $this->player1Points < 4) {
-            if ($this->player1Points === 0) {
-                $score = $this->getNumberName(0);
-            }
-            if ($this->player1Points === 1) {
-                $score = $this->getNumberName(1);
-            }
-            if ($this->player1Points === 2) {
-                $score = $this->getNumberName(2);
-            }
+            $score = $this->getNumberName($this->player1Points);
             $score .= "-All";
         }
 
@@ -76,25 +88,6 @@ class TennisGame2 implements TennisGame
             $score = "{$this->player1Result}-{$this->player2Result}";
         }
 
-        if ($this->player1Points >= 4 && $this->player2Points >= 0 && ($this->player1Points - $this->player2Points) >= 2) {
-            return "Win for " . $this->player1Name;
-        }
-
-        if ($this->player2Points >= 4 && $this->player1Points >= 0 && ($this->player2Points - $this->player1Points) >= 2) {
-            return "Win for " . $this->player2Name;
-        }
-
-        if ($this->player1Points > $this->player2Points && $this->player2Points >= 3) {
-            return "Advantage " . $this->player1Name;
-        }
-
-        if ($this->player2Points > $this->player1Points && $this->player1Points >= 3) {
-            return "Advantage " . $this->player2Name;
-        }
-
-        if ($this->player1Points === $this->player2Points && $this->player1Points >= 3) {
-            return "Deuce";
-        }
 
         if ($this->player2Points > $this->player1Points && $this->player2Points < 4) {
             if ($this->player2Points === 2) {
