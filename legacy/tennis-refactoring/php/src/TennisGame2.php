@@ -49,7 +49,7 @@ class TennisGame2 implements TennisGame
         return "{$this->getNumberName($this->player1Points)}-{$this->getNumberName($this->player2Points)}";
     }
 
-    public function wonPoint(string $playerName): void
+    public function assignPointToPlayer(string $playerName): void
     {
         if ($playerName === $this->player1Name) {
             $this->player1Points++;
