@@ -28,4 +28,11 @@ class TennisGame2Test extends TestMaster
         $this->seedScores($score1, $score2);
         $this->assertSame($expectedResult, $this->game->getScore());
     }
+
+    public function test_exception_when_assigning_points_to_non_existing_player(): void
+    {
+        $this->expectExceptionMessage('not valid player');
+
+        $this->game->assignPointToPlayer('non existing player');
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace TennisGame;
 
+use RuntimeException;
+
 class TennisGame2 implements TennisGame
 {
     private const NUMBER_NAME_MAP = [
@@ -38,12 +40,14 @@ class TennisGame2 implements TennisGame
             return $this->getNumberName($this->player1Points) . "-All";
         }
 
-        if (max($this->player1Points, $this->player2Points) >= 4 && abs($this->player1Points - $this->player2Points) >= 2) {
+        if (max($this->player1Points, $this->player2Points) >= 4 && abs(
+                $this->player1Points - $this->player2Points
+            ) >= 2) {
             return "Win for " . $this->getLeaderName();
         }
 
         if (min($this->player1Points, $this->player2Points) >= 3) {
-            return "Advantage ".$this->getLeaderName();
+            return "Advantage " . $this->getLeaderName();
         }
 
         return "{$this->getNumberName($this->player1Points)}-{$this->getNumberName($this->player2Points)}";
@@ -51,6 +55,11 @@ class TennisGame2 implements TennisGame
 
     public function assignPointToPlayer(string $playerName): void
     {
+        if ($playerName !== $this->player1Name
+            && $playerName !== $this->player2Name
+        ) {
+            throw new RuntimeException('not valid player');
+        }
         if ($playerName === $this->player1Name) {
             $this->player1Points++;
         } else {
