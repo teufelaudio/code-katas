@@ -16,6 +16,10 @@ you to tidy up the code a little and perhaps make some notes so you can give you
 design. You should also prepare to talk to your boss about the value of this refactoring work, over and above the extra
 billable hours.
 
+There are three versions of this refactoring kata, each with their own design smells and challenges. I suggest you start
+with the first one, with the class "TennisGame1". The test suite provided is fairly comprehensive, and fast to run. You
+should not need to change the tests, only run them often as you refactor.
+
 ## Tennis Kata
 
 Tennis has a rather quirky scoring system, and to newcomers it can be a little difficult to keep track of. The tennis
@@ -38,6 +42,18 @@ You can read more about Tennis scores [here](http://en.wikipedia.org/wiki/Tennis
 
 You need only report the score for the current game. Sets and Matches are out of scope.
 
+## Questions to discuss afterwards
+- 
+
+- How did it feel to work with such fast, comprehensive tests?
+- Did you make mistakes while refactoring that were caught by the tests?
+- If you used a tool to record your test runs, review it. Could you have taken smaller steps? Made fewer refactoring
+  mistakes?
+- Did you ever make any refactoring mistakes and then back out your changes? How did it feel to throw away code?
+- What would you say to your colleague if they had written this code?
+- What would you say to your boss about the value of this refactoring work? Was there more reason to do it over and
+  above the extra billable hour or so?
+
 # Credits
 
-Thanks to [Emily Bache](https://github.com/emilybache) for crafting this kata.
+- https://github.com/emilybache/Tennis-Refactoring-Kata.

@@ -12,12 +12,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Kata\\": "src/"
+            "TennisGame\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "KataTests\\": "tests/"
+            "Tests\\": "tests/"
         }
     },
     "scripts": {
