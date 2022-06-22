@@ -14,9 +14,6 @@ class TennisGame2 implements TennisGame
     private int $player1Points = 0;
     private int $player2Points = 0;
 
-    private string $player1Result = "";
-    private string $player2Result = "";
-
     private string $player1Name;
     private string $player2Name;
 
@@ -41,34 +38,28 @@ class TennisGame2 implements TennisGame
             return $this->getNumberName($this->player1Points) . "-All";
         }
 
-        if ($this->player1Points >= 4 && $this->player2Points >= 0 && ($this->player1Points - $this->player2Points) >= 2) {
-            return "Win for " . $this->player1Name;
+        if (max($this->player1Points, $this->player2Points) >= 4 && abs($this->player1Points - $this->player2Points) >= 2) {
+            return "Win for " . $this->getLeaderName();
         }
 
-        if ($this->player2Points >= 4 && $this->player1Points >= 0 && ($this->player2Points - $this->player1Points) >= 2) {
-            return "Win for " . $this->player2Name;
+        if (min($this->player1Points, $this->player2Points) >= 3) {
+            return "Advantage ".$this->getLeaderName();
         }
 
-        if ($this->player2Points >= 3 && $this->player1Points > $this->player2Points) {
-            return "Advantage " . $this->player1Name;
-        }
-
-        if ($this->player1Points >= 3 && $this->player2Points > $this->player1Points) {
-            return "Advantage " . $this->player2Name;
-        }
-
-        $this->player1Result = $this->getNumberName($this->player1Points);
-        $this->player2Result = $this->getNumberName($this->player2Points);
-
-        return "{$this->player1Result}-{$this->player2Result}";
+        return "{$this->getNumberName($this->player1Points)}-{$this->getNumberName($this->player2Points)}";
     }
 
     public function wonPoint(string $playerName): void
     {
-        if ($playerName === "player1") {
+        if ($playerName === $this->player1Name) {
             $this->player1Points++;
         } else {
             $this->player2Points++;
         }
+    }
+
+    private function getLeaderName(): string
+    {
+        return $this->player1Points > $this->player2Points ? $this->player1Name : $this->player2Name;
     }
 }
