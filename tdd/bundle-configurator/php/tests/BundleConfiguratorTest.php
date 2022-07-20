@@ -34,5 +34,20 @@ final class BundleConfiguratorTest extends TestCase
         $bundleConfigurator = new BundleConfigurator();
 
         self::assertEquals(['B1'], $bundleConfigurator->select(['P1', 'P2']));
+        self::assertEquals(['B2'], $bundleConfigurator->select(['P1', 'P4']));
+    }
+
+    public function test_two_items_in_reverse_order_being_a_bundle_returns_the_bundle(): void
+    {
+        $bundleConfigurator = new BundleConfigurator();
+
+        self::assertEquals(['B1'], $bundleConfigurator->select(['P2', 'P1']));
+    }
+
+    public function test_multiple_items_with_some_being_a_bundle_returns_the_bundle_and_remaining_products(): void
+    {
+        $bundleConfigurator = new BundleConfigurator();
+
+        self::assertEquals(['B1', 'P3'], $bundleConfigurator->select(['P1', 'P2', 'P3']));
     }
 }
