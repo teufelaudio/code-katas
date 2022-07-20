@@ -50,4 +50,11 @@ final class BundleConfiguratorTest extends TestCase
 
         self::assertEquals(['B1', 'P3'], $bundleConfigurator->select(['P1', 'P2', 'P3']));
     }
+
+    public function test_multiple_items_having_two_bundles_returns_the_two_bundles(): void
+    {
+        $bundleConfigurator = new BundleConfigurator();
+
+        self::assertEquals(['B1', 'B3'], $bundleConfigurator->select(['P1', 'P2', 'P3', 'P4']));
+    }
 }

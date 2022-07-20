@@ -8,6 +8,8 @@ final class BundleConfigurator
     private const BUNDLES = [
         'B1' => ['P1', 'P2'],
         'B2' => ['P1', 'P4'],
+        'B3' => ['P3', 'P4'],
+        'B5' => ['P1', 'P5'],
     ];
 
     /**
@@ -18,16 +20,18 @@ final class BundleConfigurator
     {
         sort($productNames);
 
+        $bundleNames = [];
+
         foreach (self::BUNDLES as $bundleName => $bundleContent) {
             $intersection = array_intersect($productNames, $bundleContent);
 
-            if ($intersection === $bundleContent) {
-                $remainingProducts = array_diff($productNames, $bundleContent);
+            if (array_values($intersection) === array_values($bundleContent)) {
+                $productNames = array_diff($productNames, $bundleContent);
 
-                return array_merge([$bundleName], $remainingProducts);
+                $bundleNames[] = $bundleName;
             }
         }
 
-        return $productNames;
+        return array_merge($bundleNames, $productNames);
     }
 }
