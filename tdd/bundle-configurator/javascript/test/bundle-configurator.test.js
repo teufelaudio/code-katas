@@ -12,4 +12,10 @@ describe("Bundle configurator", function () {
 
         expect(result).toBe("B1");
     });
+
+    it("returns B1 if the cart contains P2 and P1", function () {
+        const result = selectProducts("P2", "P1");
+
+        expect(result).toBe("B1");
+    });
 });
