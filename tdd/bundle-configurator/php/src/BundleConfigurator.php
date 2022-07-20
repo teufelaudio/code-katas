@@ -5,8 +5,12 @@ namespace Kata;
 
 final class BundleConfigurator
 {
-    public function select(string $productNames): string
+    /**
+     * @param list<string> $productNames
+     * @return list<string>
+     */
+    public function select(array $productNames): array
     {
-        return 'P1';
+        return $productNames;
     }
 }
