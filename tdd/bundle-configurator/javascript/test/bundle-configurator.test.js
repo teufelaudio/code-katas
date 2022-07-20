@@ -1,6 +1,14 @@
 const {selectProducts} = require('../src/bundle-configurator');
 
 describe("Bundle configurator", function () {
+
+    it("returns an empty array if there's no product", function () {
+        const result = selectProducts();
+
+        expect(result).toStrictEqual([]);
+    });
+
+
     it("returns the product if there's only one", function () {
         const result = selectProducts("P1");
 
