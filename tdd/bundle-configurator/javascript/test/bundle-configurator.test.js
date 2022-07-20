@@ -18,4 +18,12 @@ describe("Bundle configurator", function () {
 
         expect(result).toStrictEqual(["B1"]);
     });
+
+    it("returns B1,P3 if the cart contains P1,P2,P3", function () {
+        const result = selectProducts("P1", "P2", "P3");
+
+        expect(result).toStrictEqual(["B1", "P3"]);
+    });
+
+
 });
