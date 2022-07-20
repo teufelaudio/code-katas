@@ -13,7 +13,7 @@ describe("Bundle configurator", function () {
         expect(result).toStrictEqual(["B1"]);
     });
 
-    it("returns B1 if the cart contains P2 and P1", function () {
+    it("detects B1 when selecting its products", function () {
         const result = selectProducts("P2", "P1");
 
         expect(result).toStrictEqual(["B1"]);
@@ -29,6 +29,12 @@ describe("Bundle configurator", function () {
         const result = selectProducts("P3", "P1", "P2");
 
         expect(result).toStrictEqual(["B1", "P3"]);
+    });
+
+    it("returns P1,B3 if the cart contains P1,P3,P4", function () {
+        const result = selectProducts("P1", "P3", "P4");
+
+        expect(result).toStrictEqual(["B2", "P3"]);
     });
 
 
