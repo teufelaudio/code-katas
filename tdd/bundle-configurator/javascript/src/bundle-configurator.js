@@ -1,29 +1,51 @@
 const bundles = {
-    B1: ["P1", "P2"],
-    B2: ["P1", "P4"],
-    B3: ["P3", "P4"],
-    B4: ["P1", "P2", "P3", "P4"],
-    B5: ["P1", "P5"],
+  B1: ["P1", "P2"],
+  B2: ["P1", "P4"],
+  B3: ["P3", "P4"],
+  B4: ["P1", "P2", "P3", "P4"],
+  B5: ["P1", "P5"],
 };
 
 const selectProducts = (...productNames) => {
-    let result = [];
+  const sortedProductNames = productNames.sort();
+  const possibleBundles = getPossibleBundleNames(sortedProductNames);
 
-    const possibleBundles = Object.values(bundles)
-        .filter((b) => listContainsBundleProducts(productNames, b))
+  if (possibleBundles.length === 0) return productNames;
 
-    console.log(possibleBundles);
+  return replaceProductsWithBundleName(productNames, possibleBundles[0]);
+};
 
-    return result;
+const getPossibleBundleNames = (productNames) => {
+  const possibleBundles = [];
+
+  for (let bundleKey in bundles) {
+    if (listContainsBundleProducts(productNames, bundles[bundleKey])) {
+      possibleBundles.push(bundleKey);
+    }
+  }
+
+  return possibleBundles;
 };
 
 const listContainsBundleProducts = (list, bundle) => {
-    for (let product of bundle) {
-        if (!list.includes(product)) {
-            return false;
-        }
+  for (let product of bundle) {
+    if (!list.includes(product)) {
+      return false;
     }
-    return true;
+  }
+  return true;
 };
 
-module.exports = {selectProducts};
+const replaceProductsWithBundleName = (productNames, bundleName) => {
+    const result = [bundleName];
+
+    for (let productName of productNames) {
+        if (!bundles[bundleName].includes(productName)) {
+            result.push(productName);
+        }
+    }
+
+    return result;
+}
+
+module.exports = { selectProducts };
