@@ -23,9 +23,7 @@ final class BundleConfigurator
         $bundleNames = [];
 
         foreach (self::BUNDLES as $bundleName => $bundleContent) {
-            $intersection = array_intersect($productNames, $bundleContent);
-
-            if (array_values($intersection) === array_values($bundleContent)) {
+            if ($this->checkBundlesContainsProducts($productNames, $bundleContent)) {
                 $productNames = array_diff($productNames, $bundleContent);
 
                 $bundleNames[] = $bundleName;
@@ -33,5 +31,12 @@ final class BundleConfigurator
         }
 
         return array_merge($bundleNames, $productNames);
+    }
+
+    private function checkBundlesContainsProducts(array $products, array $bundleContent): bool
+    {
+        $intersection = array_intersect($products, $bundleContent);
+
+        return array_values($intersection) === array_values($bundleContent);
     }
 }
