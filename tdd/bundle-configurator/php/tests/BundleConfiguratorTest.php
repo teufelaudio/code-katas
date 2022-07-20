@@ -64,10 +64,10 @@ final class BundleConfiguratorTest extends TestCase
         self::assertSame('B3,P2', $bundleConfigurator->select('P2,P3,P4'));
     }
 
-    public function test_select_product3_and_product4_and_get_back_bundle3(): void
+    public function test_select_product1_and_product2_and_product5_and_get_back_bundle5_and_product2(): void
     {
         $bundleConfigurator = new BundleConfigurator();
 
-        self::assertSame('B3', $bundleConfigurator->select('P3,P4'));
+        self::assertSame('B5,P2', $bundleConfigurator->select('P1,P2,P5'));
     }
 }
