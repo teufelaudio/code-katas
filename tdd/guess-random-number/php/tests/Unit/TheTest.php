@@ -16,4 +16,24 @@ final class TheTest extends TestCase
 
         self::assertEquals(Game::GUESS_IS_CORRECT, $answer);
     }
+
+    public function test_guess_a_number_too_low_at_first(): void
+    {
+        $randomNumber = 50;
+
+        $theClass = new Game($randomNumber);
+        $answer = $theClass->guess(10);
+
+        self::assertEquals(Game::GUESS_IS_TOO_LOW, $answer);
+    }
+
+    public function test_guess_a_number_too_high_at_first(): void
+    {
+        $randomNumber = 50;
+
+        $theClass = new Game($randomNumber);
+        $answer = $theClass->guess(90);
+
+        self::assertEquals(Game::GUESS_IS_TOO_HIGH, $answer);
+    }
 }
