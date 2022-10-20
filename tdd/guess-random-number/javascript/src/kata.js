@@ -1,5 +1,7 @@
-const changeMe = (arg1) => {
-    return true;
+let randomNumber = 5;
+
+const wasGuessCorrect = (guessedNumber) => {
+  return guessedNumber === randomNumber;
 };
 
-module.exports = {changeMe};
+module.exports = { changeMe: wasGuessCorrect };

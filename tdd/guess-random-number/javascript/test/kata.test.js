@@ -1,8 +1,8 @@
-const {changeMe} = require('../src/kata');
+const {changeMe: wasGuessCorrect} = require('../src/kata');
 
-describe("change me", function () {
-    it("does something", function () {
-        const result = changeMe("ok");
+describe("Guessing 5", function () {
+    it("leads to winning the game", function () {
+        const result = wasGuessCorrect(5);
 
         expect(result).toBe(true);
     });
