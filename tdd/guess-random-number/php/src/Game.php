@@ -2,6 +2,8 @@
 
 namespace Kata;
 
+use function PHPUnit\Framework\returnArgument;
+
 final class Game
 {
     public const GUESS_IS_TOO_LOW = -1;
@@ -22,18 +24,21 @@ final class Game
 
     public function guess(int $guessNumber): int
     {
-        $this->attempts++;
+        $guessResult = ($guessNumber <=> $this->number);
 
-        if ($this->attempts > self::MAX_ATTEMPTS) {
+        if ($this->isLastAttempt() &&
+            $guessResult !== self::GUESS_IS_CORRECT
+        ) {
             return self::GUESS_TOO_MANY_GUESSES;
         }
-        if ($this->attempts === self::MAX_ATTEMPTS) {
-            $correct = ($guessNumber <=> $this->number);
-            return ($correct === self::GUESS_IS_CORRECT)
-                ? self::GUESS_IS_CORRECT
-                : self::GUESS_TOO_MANY_GUESSES;
-        }
 
-        return ($guessNumber <=> $this->number);
+        return $guessResult;
+    }
+
+    private function isLastAttempt(): bool
+    {
+        $this->attempts++;
+
+        return ($this->attempts === self::MAX_ATTEMPTS);
     }
 }

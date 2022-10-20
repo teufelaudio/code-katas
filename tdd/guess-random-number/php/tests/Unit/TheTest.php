@@ -60,4 +60,6 @@ final class TheTest extends TestCase
 
         self::assertEquals(Game::GUESS_TOO_MANY_GUESSES, $answer);
     }
+
+    // ToDo: Create a symfony console app for the game itself
 }
