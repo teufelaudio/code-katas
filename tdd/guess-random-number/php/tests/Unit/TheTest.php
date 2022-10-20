@@ -9,27 +9,31 @@ use PHPUnit\Framework\TestCase;
 
 final class TheTest extends TestCase
 {
-    public function test_guess_number_5(): void
+    private NumberGeneratorInterface $numberGenerator;
+    private SlotMachine  $machine;
+    public function setUp():void
     {
         $numberGenerator = $this->createMock(NumberGeneratorInterface::class);
+        $this->numberGenerator = $numberGenerator;
         $numberGenerator
             ->method('generateRandomNumber')
             ->willReturn(5);
 
-        $slotMachine = new SlotMachine($numberGenerator);
+        $this->machine = new SlotMachine($numberGenerator);
+    }
+    public function test_guess_number_5(): void
+    {
 
-        self::assertTrue($slotMachine->iGuessItIsNumber(5));
+        self::assertTrue($this->machine->iGuessItIsNumber(5));
     }
 
-    public function test_guess_number_6(): void
+    public function test_guess_lower_number_notifies_user(): void
     {
-        $numberGenerator = $this->createMock(NumberGeneratorInterface::class);
-        $numberGenerator
-            ->method('generateRandomNumber')
-            ->willReturn(6);
+        self::assertSame(SlotMachine::LOWER_NUMBER,$this->machine->iGuessItIsNumber(4));
+    }
 
-        $slotMachine = new SlotMachine($numberGenerator);
-
-        self::assertTrue($slotMachine->iGuessItIsNumber(6));
+    public function test_guess_higher_number_notifies_user(): void
+    {
+        self::assertSame(SlotMachine::HIGHER_NUMBER,$this->machine->iGuessItIsNumber(6));
     }
 }
