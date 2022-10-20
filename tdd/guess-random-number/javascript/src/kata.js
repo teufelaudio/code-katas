@@ -4,6 +4,9 @@ const evaluateGuess = (guessedNumber) => {
   if (guessedNumber === randomNumber) {
     return "number is correct";
   }
+  if (guessedNumber > randomNumber) {
+    return "number too high";
+  }
 
   return "number too low";
 };

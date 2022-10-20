@@ -15,3 +15,11 @@ describe("Guessing lower than 5", function () {
         expect(result).toBe("number too low");
     });
 });
+
+describe("Guessing higher than 5", function () {
+    it("outputs number is too high", function () {
+        const result = evaluateGuess(6);
+
+        expect(result).toBe("number too high");
+    });
+});
