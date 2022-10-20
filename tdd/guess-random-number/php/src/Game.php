@@ -24,7 +24,7 @@ final class Game
 
     public function guess(int $guessNumber): int
     {
-        $guessResult = ($guessNumber <=> $this->number);
+        $guessResult = $this->compareGuess($guessNumber);
 
         if ($this->isLastAttempt() &&
             $guessResult !== self::GUESS_IS_CORRECT
@@ -40,5 +40,10 @@ final class Game
         $this->attempts++;
 
         return ($this->attempts === self::MAX_ATTEMPTS);
+    }
+
+    private function compareGuess(int $guessNumber)
+    {
+        return ($guessNumber <=> $this->number);
     }
 }
