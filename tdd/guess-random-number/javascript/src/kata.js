@@ -1,7 +1,11 @@
 let randomNumber = 5;
 
-const wasGuessCorrect = (guessedNumber) => {
-  return guessedNumber === randomNumber;
+const evaluateGuess = (guessedNumber) => {
+  if (guessedNumber === randomNumber) {
+    return "number is correct";
+  }
+
+  return "number too low";
 };
 
-module.exports = { changeMe: wasGuessCorrect };
+module.exports = { evaluateGuess };
