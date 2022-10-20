@@ -1,4 +1,4 @@
-const {Game } = require('../src/kata');
+const {Game} = require('../src/kata');
 
 describe("Guessing 5", function () {
     it("leads to winning the game", function () {

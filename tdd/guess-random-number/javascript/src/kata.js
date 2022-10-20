@@ -1,5 +1,3 @@
-let randomNumber = 5;
-
 class Game {
   #randomNumber;
 
@@ -8,11 +6,11 @@ class Game {
   }
 
   evaluateGuess(guessedNumber) {
-    if (guessedNumber > randomNumber) {
+    if (guessedNumber > this.#randomNumber) {
       return "number too high";
     }
 
-    if (guessedNumber < randomNumber) {
+    if (guessedNumber < this.#randomNumber) {
       return "number too low";
     }
 
