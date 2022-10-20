@@ -1,15 +1,23 @@
 let randomNumber = 5;
 
-const evaluateGuess = (guessedNumber) => {
-  if (guessedNumber > randomNumber) {
-    return "number too high";
+class Game {
+  #randomNumber;
+
+  constructor() {
+    this.#randomNumber = 5;
   }
 
-  if (guessedNumber < randomNumber) {
-    return "number too low";
-  }
-  
-  return "number is correct";
-};
+  evaluateGuess(guessedNumber) {
+    if (guessedNumber > randomNumber) {
+      return "number too high";
+    }
 
-module.exports = { evaluateGuess };
+    if (guessedNumber < randomNumber) {
+      return "number too low";
+    }
+
+    return "number is correct";
+  }
+}
+
+module.exports = { Game };
