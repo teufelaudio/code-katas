@@ -1,3 +1,5 @@
+const RandomNumberGenerator = require('./RandomNumberGenerator');
+
 class Game {
   #randomNumber;
 
