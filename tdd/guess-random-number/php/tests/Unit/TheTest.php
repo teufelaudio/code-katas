@@ -48,4 +48,16 @@ final class TheTest extends TestCase
 
         self::assertEquals(Game::GUESS_IS_CORRECT, $answer);
     }
+
+    public function test_guess_the_incorrect_number_at_third_attempt(): void
+    {
+        $randomNumber = 50;
+
+        $theClass = new Game($randomNumber);
+        $answer = $theClass->guess(90);
+        $answer = $theClass->guess(40);
+        $answer = $theClass->guess(1);
+
+        self::assertEquals(Game::GUESS_TOO_MANY_GUESSES, $answer);
+    }
 }
