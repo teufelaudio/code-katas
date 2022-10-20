@@ -7,10 +7,13 @@ use PHPUnit\Framework\TestCase;
 
 final class TheTest extends TestCase
 {
-    public function test_change_me(): void
+    public function test_guess_the_correct_number_at_first(): void
     {
-        $theClass = new TheClass();
+        $randomNumber = 50;
 
-        self::assertTrue($theClass->changeMe());
+        $theClass = new TheClass($randomNumber);
+        $answer = $theClass->guess(50);
+
+        self::assertEquals(0, $answer);
     }
 }

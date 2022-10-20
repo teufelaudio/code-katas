@@ -4,8 +4,15 @@ namespace Kata;
 
 final class TheClass
 {
-    public function changeMe(): bool
+    private int $number;
+
+    public function __construct(int $number)
     {
-        return true;
+        $this->number = $number;
+    }
+
+    public function guess(int $guessNumber): int
+    {
+        return ($guessNumber <=> $this->number);
     }
 }
