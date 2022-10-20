@@ -1,8 +1,8 @@
 class Game {
   #randomNumber;
 
-  constructor() {
-    this.#randomNumber = 5;
+  constructor(predefinedNumber) {
+    this.#randomNumber = predefinedNumber !== undefined ? predefinedNumber : 5;
   }
 
   evaluateGuess(guessedNumber) {
