@@ -4,8 +4,15 @@ namespace Kata;
 
 final class SlotMachine
 {
+    private int $randomNumber;
+
+    public function __construct(NumberGeneratorInterface $numberGenerator)
+    {
+        $this->randomNumber = $numberGenerator->generateRandomNumber();
+    }
+
     public function iGuessItIsNumber(int $number): bool
     {
-        return $number === 5;
+        return $number === $this->randomNumber;
     }
 }
