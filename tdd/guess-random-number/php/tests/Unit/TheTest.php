@@ -2,7 +2,7 @@
 
 namespace KataTests\Unit;
 
-use Kata\TheClass;
+use Kata\Game;
 use PHPUnit\Framework\TestCase;
 
 final class TheTest extends TestCase
@@ -11,9 +11,9 @@ final class TheTest extends TestCase
     {
         $randomNumber = 50;
 
-        $theClass = new TheClass($randomNumber);
+        $theClass = new Game($randomNumber);
         $answer = $theClass->guess(50);
 
-        self::assertEquals(0, $answer);
+        self::assertEquals(Game::GUESS_IS_CORRECT, $answer);
     }
 }
