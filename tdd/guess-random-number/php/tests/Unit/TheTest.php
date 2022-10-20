@@ -2,15 +2,15 @@
 
 namespace KataTests\Unit;
 
-use Kata\TheClass;
+use Kata\SlotMachine;
 use PHPUnit\Framework\TestCase;
 
 final class TheTest extends TestCase
 {
-    public function test_change_me(): void
+    public function test_guess_number_5(): void
     {
-        $theClass = new TheClass();
+        $slotMachine = new SlotMachine();
 
-        self::assertTrue($theClass->changeMe());
+        self::assertTrue($slotMachine->iGuessItIsNumber(5));
     }
 }
