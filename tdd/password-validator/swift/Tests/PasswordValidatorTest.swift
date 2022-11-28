@@ -83,4 +83,13 @@ final class PasswordValidatorTest: XCTestCase {
         // then
         XCTAssertTrue(sut.isValid())
     }
+
+    func testPasswordLengthOf10IsRequired() {
+        // given
+        let strategy = ValidationStrategy(characterCount: 10)
+        let sut = PasswordValidator(for: "AAAAAAA8_bABCD", validationStrategy: strategy)
+
+        // then
+        XCTAssertTrue(sut.isValid())
+    }
 }
