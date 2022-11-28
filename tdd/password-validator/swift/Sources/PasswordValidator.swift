@@ -8,26 +8,33 @@ public struct PasswordValidator {
     }
     
     public func isValid() -> Bool {
-        hasValidCount() && hasAtLeastOneUppercaseLetter() && hasAtLeastOneLowercaseLetter() && hasAtLeastOneNumber() && containsAnUnderscore()
+        hasValidCount &&
+        hasAtLeastOneUppercaseLetter &&
+        hasAtLeastOneLowercaseLetter &&
+        hasAtLeastOneNumber &&
+        containsAnUnderscore
     }
+}
 
-    private func hasValidCount() -> Bool {
+extension PasswordValidator {
+
+    private var hasValidCount: Bool {
         password.count > 8
     }
 
-    private func hasAtLeastOneUppercaseLetter() -> Bool {
+    private var hasAtLeastOneUppercaseLetter: Bool {
         password.rangeOfCharacter(from: .uppercaseLetters) != nil
     }
 
-    private func hasAtLeastOneLowercaseLetter() -> Bool {
+    private var hasAtLeastOneLowercaseLetter: Bool {
         password.rangeOfCharacter(from: .lowercaseLetters) != nil
     }
 
-    private func hasAtLeastOneNumber() -> Bool {
+    private var hasAtLeastOneNumber: Bool {
         password.rangeOfCharacter(from: .decimalDigits) != nil
     }
 
-    private func containsAnUnderscore() -> Bool {
+    private var containsAnUnderscore: Bool {
         password.contains("_")
     }
 }
