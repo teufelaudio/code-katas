@@ -1,69 +1,38 @@
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 
 internal class PasswordValidatorTest {
 
+    private val validator = PasswordValidator()
+
     @Test
     fun hasMinLength() {
-        val lengthValidator = LengthValidator(
-            MIN_PASSWORD_LENGTH,
-            TerminalValidator()
-        )
-
-        assertFalse(lengthValidator.validate("abc"))
+        val shortPassword = "abc"
+        assertFalse(validator.validate(shortPassword))
     }
 
     @Test
     fun doesNotContainCapitalLetter() {
-        val containsUpperCaseValidator =
-            ContainsUpperCaseValidator(
-                TerminalValidator()
-            )
-
-        assertFalse(containsUpperCaseValidator.validate("abcdefghijk"))
+        val passwordWithCapital = "abcdefghijk"
+        assertFalse(validator.validate(passwordWithCapital))
     }
 
     @Test
     fun doesNotContainLowercaseLetter() {
-        val containsLowerCaseValidator =
-            ContainsLowerCaseValidator(
-                TerminalValidator()
-            )
-
-        assertFalse(containsLowerCaseValidator.validate("AAAAAAAAAA"))
+        val example = "AAAAAAAAAA"
+        assertFalse(validator.validate(example))
     }
 
     @Test
     fun doesNotContainDigit() {
-        val containsDigitValidator =
-            ContainsDigitValidator(
-                TerminalValidator()
-            )
-
-        assertFalse(containsDigitValidator.validate("abcdeFGhijk"))
+        val passwordWithoutNumber = "abcdeFGhijk"
+        assertFalse(validator.validate(passwordWithoutNumber))
     }
 
     @Test
     fun doesNotContainUnderscore() {
-        val containsSpecialCharacterValidator =
-            ContainsSpecialCharacterValidator(
-                DEFAULT_SPECIAL_CHARACTERS,
-                TerminalValidator()
-            )
-        assertFalse(containsSpecialCharacterValidator.validate("abcdeFGhij9"))
-    }
-
-    @Test
-    fun acceptsValidPassword() {
-        val passwordValidator = PasswordValidator()
-        assertTrue(passwordValidator.validate(VALID_PASSWORD))
-    }
-
-    companion object {
-        const val VALID_PASSWORD = "Abd3fg_i"
-        const val MIN_PASSWORD_LENGTH = 8
-        val DEFAULT_SPECIAL_CHARACTERS = setOf('_')
+        val passwordWithoutUnderscore = "abcdeFGhij9"
+        assertFalse(validator.validate(passwordWithoutUnderscore))
     }
 
 }
