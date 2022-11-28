@@ -10,8 +10,10 @@ public struct PasswordValidator {
     public func isValid() -> Bool {
         let isCountValid = password.count > 8
         var isUppercased = false
+        var hasUnderscore = false
         password.forEach { char in
             if char.isUppercase { isUppercased = true }
+            if char == "_" { hasUnderscore = true }
         }
 
         var isLowercase = false
@@ -19,6 +21,6 @@ public struct PasswordValidator {
 
         let isNumber = password.rangeOfCharacter(from: .decimalDigits) != nil
 
-        return isCountValid && isUppercased && isLowercase && isNumber
+        return isCountValid && isUppercased && isLowercase && isNumber && hasUnderscore
     }
 }

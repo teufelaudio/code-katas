@@ -2,7 +2,8 @@ import XCTest
 @testable import PasswordValidator
 
 final class PasswordValidatorTest: XCTestCase {
-
+    private let validPassword = "AAAAAAA8_b"
+        
     func testAtLeastEightCharactersFails() {
         // given
         let sut = PasswordValidator(for: "1234567A")
@@ -13,7 +14,7 @@ final class PasswordValidatorTest: XCTestCase {
 
     func testAtLeastEightCharactersSuccess() {
         // given
-        let sut = PasswordValidator(for: "1234567bA")
+        let sut = PasswordValidator(for: validPassword)
 
         // then
         XCTAssertTrue(sut.isValid())
@@ -29,7 +30,7 @@ final class PasswordValidatorTest: XCTestCase {
     
     func testContainsACapitalLetterSuccess() {
         // given
-        let sut = PasswordValidator(for: "1234567bA")
+        let sut = PasswordValidator(for: validPassword)
 
         // then
         XCTAssertTrue(sut.isValid())
@@ -45,7 +46,7 @@ final class PasswordValidatorTest: XCTestCase {
 
     func testContainsALowercaseLetterSuccess() {
         // given
-        let sut = PasswordValidator(for: "12345678Ab")
+        let sut = PasswordValidator(for: validPassword)
 
         // then
         XCTAssertTrue(sut.isValid())
@@ -61,7 +62,23 @@ final class PasswordValidatorTest: XCTestCase {
 
     func testContainsANumberSuccess() {
         // given
-        let sut = PasswordValidator(for: "AAAAAAA8b")
+        let sut = PasswordValidator(for: validPassword)
+
+        // then
+        XCTAssertTrue(sut.isValid())
+    }
+    
+    func testContainsAUnderscoreFails() {
+        // given
+        let sut = PasswordValidator(for: "12345678Ab")
+
+        // then
+        XCTAssertFalse(sut.isValid())
+    }
+
+    func testContainsAUnderscoreSuccess() {
+        // given
+        let sut = PasswordValidator(for: validPassword)
 
         // then
         XCTAssertTrue(sut.isValid())
