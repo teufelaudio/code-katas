@@ -1,11 +1,13 @@
 import org.junit.jupiter.api.Test
+import kotlin.test.assertFalse
 
 internal class PasswordValidatorTest {
 
-    @Test
-    fun testChangeMe() {
-        val validator = PasswordValidator()
+    private val validator = PasswordValidator()
 
-        assert(validator.changeMe())
+    @Test
+    fun baseTest() {
+        assertFalse(validator.validate("test"))
     }
+
 }

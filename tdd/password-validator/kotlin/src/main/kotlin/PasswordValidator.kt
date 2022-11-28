@@ -1,5 +1,5 @@
 class PasswordValidator {
-    fun changeMe(): Boolean {
-        return true
-    }
+
+    fun validate(password: String) = false
+
 }
