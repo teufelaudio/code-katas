@@ -34,4 +34,20 @@ final class PasswordValidatorTest: XCTestCase {
         // then
         XCTAssertTrue(sut.isValid())
     }
+
+    func testContainsALowercaseLetterFails() {
+        // given
+        let sut = PasswordValidator(for: "12345678A")
+
+        // then
+        XCTAssertFalse(sut.isValid())
+    }
+
+    func testContainsALowercaseLetterSuccess() {
+        // given
+        let sut = PasswordValidator(for: "12345678Ab")
+
+        // then
+        XCTAssertTrue(sut.isValid())
+    }
 }

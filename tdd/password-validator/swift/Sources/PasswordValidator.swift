@@ -13,7 +13,10 @@ public struct PasswordValidator {
         password.forEach { char in
             if char.isUppercase { isUppercased = true }
         }
+
+        var isLowercase = false
+        isLowercase = password.rangeOfCharacter(from: .lowercaseLetters) != nil
         
-        return isCountValid && isUppercased
+        return isCountValid && isUppercased && isLowercase
     }
 }
