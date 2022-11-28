@@ -17,13 +17,11 @@ public struct PasswordValidator {
     internal init(for password: String,
                   validationStrategy: ValidationStrategy = ValidationStrategy(
                     characterCount: 8,
-                    characterSets: .uppercaseLetters,
-                    .lowercaseLetters,
-                    .decimalDigits,
-                    .init(arrayLiteral: "_"))) {
-                        self.password = password
-                        self.strategy = validationStrategy
-                    }
+                    characterSets: .uppercaseLetters, .lowercaseLetters, .decimalDigits, .init(arrayLiteral: "_")
+                  )) {
+                      self.password = password
+                      self.strategy = validationStrategy
+                  }
     
     public func isValid() -> Bool {
         hasValidCount &&
