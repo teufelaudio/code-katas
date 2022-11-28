@@ -3,7 +3,13 @@ import XCTest
 
 final class PasswordValidatorTest: XCTestCase {
     private let validPassword = "AAAAAAA8_b"
-        
+    private let validPasswordForStrategy2 = "AAAAAA8a"
+
+    let strategy2 = ValidationStrategy(characterCount: 6,
+                                      characterSets: .uppercaseLetters,
+                                      .lowercaseLetters,
+                                      .decimalDigits)
+
     func testAtLeastEightCharactersFails() {
         // given
         let sut = PasswordValidator(for: "1234567A")
@@ -91,5 +97,20 @@ final class PasswordValidatorTest: XCTestCase {
 
         // then
         XCTAssertTrue(sut.isValid())
+    }
+
+    func testValidationStragegy2Success() {
+        // given
+        let sut = PasswordValidator(for: validPasswordForStrategy2, validationStrategy: strategy2)
+
+        // then
+        XCTAssertTrue(sut.isValid())
+    }
+
+    func testValidationStragegy2Failure() {
+        XCTAssertFalse(PasswordValidator(for: "AAAA8a", validationStrategy: strategy2).isValid())
+        XCTAssertFalse(PasswordValidator(for: "AAAAAA8A", validationStrategy: strategy2).isValid())
+        XCTAssertFalse(PasswordValidator(for: "aaaaaa8a", validationStrategy: strategy2).isValid())
+        XCTAssertFalse(PasswordValidator(for: "aaaaaaAA", validationStrategy: strategy2).isValid())
     }
 }
