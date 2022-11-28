@@ -8,19 +8,26 @@ public struct PasswordValidator {
     }
     
     public func isValid() -> Bool {
-        let isCountValid = password.count > 8
-        var isUppercased = false
-        var hasUnderscore = false
-        password.forEach { char in
-            if char.isUppercase { isUppercased = true }
-            if char == "_" { hasUnderscore = true }
-        }
+        hasValidCount() && hasAtLeastOneUppercaseLetter() && hasAtLeastOneLowercaseLetter() && hasAtLeastOneNumber() && containsAnUnderscore()
+    }
 
-        var isLowercase = false
-        isLowercase = password.rangeOfCharacter(from: .lowercaseLetters) != nil
+    private func hasValidCount() -> Bool {
+        password.count > 8
+    }
 
-        let isNumber = password.rangeOfCharacter(from: .decimalDigits) != nil
+    private func hasAtLeastOneUppercaseLetter() -> Bool {
+        password.rangeOfCharacter(from: .uppercaseLetters) != nil
+    }
 
-        return isCountValid && isUppercased && isLowercase && isNumber && hasUnderscore
+    private func hasAtLeastOneLowercaseLetter() -> Bool {
+        password.rangeOfCharacter(from: .lowercaseLetters) != nil
+    }
+
+    private func hasAtLeastOneNumber() -> Bool {
+        password.rangeOfCharacter(from: .decimalDigits) != nil
+    }
+
+    private func containsAnUnderscore() -> Bool {
+        password.contains("_")
     }
 }
