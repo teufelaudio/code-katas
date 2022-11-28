@@ -9,20 +9,25 @@ public struct PasswordValidator {
     
     public func isValid() -> Bool {
         hasValidCount &&
-        hasACharacter(from: .uppercaseLetters) &&
-        hasACharacter(from: .lowercaseLetters) &&
-        hasACharacter(from: .decimalDigits) &&
-        hasACharacter(from: CharacterSet(arrayLiteral: "_"))
+        hasACharacter(from: .uppercaseLetters,
+                      .lowercaseLetters,
+                      .decimalDigits,
+                      .init(arrayLiteral: "_"))
     }
 }
 
 extension PasswordValidator {
-
+    
     private var hasValidCount: Bool {
         password.count > 8
     }
-
-    private func hasACharacter(from characterSet: CharacterSet) -> Bool {
-        password.rangeOfCharacter(from: characterSet) != nil
+    
+    private func hasACharacter(from characterSet: CharacterSet...) -> Bool {
+        for set in characterSet {
+            guard password.rangeOfCharacter(from: set) != nil else {
+                return false
+            }
+        }
+        return true
     }
 }
