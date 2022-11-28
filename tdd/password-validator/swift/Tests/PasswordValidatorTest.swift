@@ -13,7 +13,7 @@ final class PasswordValidatorTest: XCTestCase {
 
     func testAtLeastEightCharactersSuccess() {
         // given
-        let sut = PasswordValidator(for: "12345678A")
+        let sut = PasswordValidator(for: "1234567bA")
 
         // then
         XCTAssertTrue(sut.isValid())
@@ -29,7 +29,7 @@ final class PasswordValidatorTest: XCTestCase {
     
     func testContainsACapitalLetterSuccess() {
         // given
-        let sut = PasswordValidator(for: "12345678A")
+        let sut = PasswordValidator(for: "1234567bA")
 
         // then
         XCTAssertTrue(sut.isValid())
