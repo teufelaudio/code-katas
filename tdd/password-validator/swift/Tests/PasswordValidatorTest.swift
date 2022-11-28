@@ -50,4 +50,20 @@ final class PasswordValidatorTest: XCTestCase {
         // then
         XCTAssertTrue(sut.isValid())
     }
+
+    func testContainsANumberFails() {
+        // given
+        let sut = PasswordValidator(for: "AAAAAAAAAAa")
+
+        // then
+        XCTAssertFalse(sut.isValid())
+    }
+
+    func testContainsANumberSuccess() {
+        // given
+        let sut = PasswordValidator(for: "AAAAAAA8b")
+
+        // then
+        XCTAssertTrue(sut.isValid())
+    }
 }

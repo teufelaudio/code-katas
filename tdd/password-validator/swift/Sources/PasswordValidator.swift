@@ -16,7 +16,9 @@ public struct PasswordValidator {
 
         var isLowercase = false
         isLowercase = password.rangeOfCharacter(from: .lowercaseLetters) != nil
-        
-        return isCountValid && isUppercased && isLowercase
+
+        let isNumber = password.rangeOfCharacter(from: .decimalDigits) != nil
+
+        return isCountValid && isUppercased && isLowercase && isNumber
     }
 }
