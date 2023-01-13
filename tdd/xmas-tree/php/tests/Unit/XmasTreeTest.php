@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace KataTests\Unit;
 
@@ -42,16 +44,18 @@ final class XmasTreeTest extends TestCase
         NOWDOC;
         self::assertSame($expected, $a->getTreeWithHeight(3));
     }
+
     public function test_tree_with_height_4(): void
     {
         $a = new XmasTree();
 
         $expected = <<< 'NOWDOC'
-          x
-         xxx
-        xxxxx
-          |
+           x
+          xxx
+         xxxxx
+        xxxxxxx
+           |
         NOWDOC;
-        self::assertSame($expected, $a->getTreeWithHeight(3));
+        self::assertSame($expected, $a->getTreeWithHeight(4));
     }
 }
