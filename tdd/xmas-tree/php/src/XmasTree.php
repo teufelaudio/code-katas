@@ -4,8 +4,10 @@ namespace Kata;
 
 final class XmasTree
 {
-    public function changeMe(): bool
+    public function generate(int $height): array
     {
-        return true;
+        $tree = ['|'];
+
+        return $tree;
     }
 }

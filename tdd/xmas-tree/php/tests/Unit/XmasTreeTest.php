@@ -7,10 +7,16 @@ use PHPUnit\Framework\TestCase;
 
 final class XmasTreeTest extends TestCase
 {
-    public function test_change(): void
+    /**
+     * @exp
+     *   X  -> 1
+     *   |  -> 0
+     */
+    public function test_height_zero(): void
     {
-        $a = new XmasTree();
+        $xmasTree = new XmasTree();
+        $tree = $xmasTree->generate(0);
 
-        self::assertTrue($a->changeMe());
+        self::assertEquals(['|'], $tree);
     }
 }
