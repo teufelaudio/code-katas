@@ -36,4 +36,21 @@ final class XmasTreeTest extends TestCase
 
         self::assertEquals([' X ', 'XXX',' | '], $tree);
     }
+
+    public function test_height_four_returns_tree_with_4_rows_of_X(): void
+    {
+        $xmasTree = new XmasTree();
+        $tree = $xmasTree->generate(4);
+
+        self::assertEquals([
+            '   X   ',
+            '  XXX  ',
+            ' XXXXX ',
+            'XXXXXXX',
+            '   |   '
+            ]
+            ,
+            $tree
+        );
+    }
 }
