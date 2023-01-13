@@ -4,8 +4,11 @@ namespace Kata;
 
 final class XmasTree
 {
-    public function changeMe(): bool
+    public function getTreeWithHeight(): string
     {
-        return true;
+        return <<< 'NOWDOC'
+         x
+         | 
+        NOWDOC;
     }
 }
