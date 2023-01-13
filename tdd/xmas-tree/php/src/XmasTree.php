@@ -28,6 +28,16 @@ final class XmasTree
             $outputLines[] = '  |';
         }
 
+        $tree = [];
+        $this->getTreeLine($tree, 1);
+
         return implode(PHP_EOL, $outputLines);
+    }
+
+    private function getTreeLine(array $currentTree, int $heightLevel) {
+        $currentTree[] = str_repeat(' ', $heightLevel-1) . str_repeat('|', $heightLevel);
+        $currentTree[] = str_repeat(' ', $heightLevel-1) . str_repeat('x', $heightLevel);
+
+        return $currentTree;
     }
 }

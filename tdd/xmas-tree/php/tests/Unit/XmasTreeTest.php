@@ -42,4 +42,16 @@ final class XmasTreeTest extends TestCase
         NOWDOC;
         self::assertSame($expected, $a->getTreeWithHeight(3));
     }
+    public function test_tree_with_height_4(): void
+    {
+        $a = new XmasTree();
+
+        $expected = <<< 'NOWDOC'
+          x
+         xxx
+        xxxxx
+          |
+        NOWDOC;
+        self::assertSame($expected, $a->getTreeWithHeight(3));
+    }
 }
