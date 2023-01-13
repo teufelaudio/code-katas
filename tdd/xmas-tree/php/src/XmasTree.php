@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kata;
 
@@ -6,38 +8,33 @@ final class XmasTree
 {
     public function getTreeWithHeight(int $height): string
     {
-        $outputLines = [];
+        $babyTree = [
+            'x',
+            '|'
+        ];
 
-        if ($height === 1) {
-            $outputLines[] = 'x';
-            $outputLines[] = '|';
-        }
-
-        if ($height === 2) {
-
-            $outputLines[] = ' x';
-            $outputLines[] = 'xxx';
-            $outputLines[] = ' |';
-        }
-
-        if ($height === 3) {
-
-            $outputLines[] = '  x';
-            $outputLines[] = ' xxx';
-            $outputLines[] = 'xxxxx';
-            $outputLines[] = '  |';
-        }
-
-        $tree = [];
-        $this->getTreeLine($tree, 1);
+        $outputLines = $this->growTree($babyTree, $height);
 
         return implode(PHP_EOL, $outputLines);
     }
 
-    private function getTreeLine(array $currentTree, int $heightLevel) {
-        $currentTree[] = str_repeat(' ', $heightLevel-1) . str_repeat('|', $heightLevel);
-        $currentTree[] = str_repeat(' ', $heightLevel-1) . str_repeat('x', $heightLevel);
+    private function growTree(array $currentTree, int $targetHeight)
+    {
+        $currentHeight = count($currentTree) - 1;
 
-        return $currentTree;
+        if ($currentHeight === $targetHeight) return $currentTree;
+
+        $currentBiggestBranch = $currentTree[$currentHeight - 1];
+
+        $currentTree = array_map(function ($currentLine) {
+            return ' ' . $currentLine;
+        }, $currentTree);
+
+        $currentTrunk = $currentTree[$currentHeight];
+
+        $currentTree[$currentHeight] = $currentBiggestBranch . 'xx';
+        $currentTree[] = $currentTrunk;
+
+        return $this->growTree($currentTree, $targetHeight);
     }
 }
