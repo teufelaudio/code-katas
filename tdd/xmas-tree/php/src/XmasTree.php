@@ -9,10 +9,10 @@ use function PHPUnit\Framework\assertSame;
 final class XmasTree
 {
     public function __construct(
-        private string $treeLeaveSymbol
+        private string $leaveSymbol
     )
     {
-        assertSame(1, strlen($this->treeLeaveSymbol));
+        assertSame(1, strlen($this->leaveSymbol));
     }
 
     public function getTreeWithHeight(int $height): string
@@ -45,7 +45,7 @@ final class XmasTree
     private function getLeaves($treeHeight): string
     {
         // height*2 -1
-        return str_repeat($this->treeLeaveSymbol, ($treeHeight*2)-1);
+        return str_repeat($this->leaveSymbol, ($treeHeight*2)-1);
     }
 
     private function getWhitespaces(array $currentTree): string
