@@ -9,7 +9,8 @@ final class XmasTreeTest extends TestCase
 {
     /**
      * @exp
-     *   X  -> 1
+     *   X  -> 2
+     *  XXX -> 1
      *   |  -> 0
      */
     public function test_height_zero_returns_trunk(): void
@@ -20,11 +21,19 @@ final class XmasTreeTest extends TestCase
         self::assertEquals(['|'], $tree);
     }
 
-    public function test_height_one_returns_trunk_with_one_x(): void
+    public function test_height_one_returns_tree_with_1_rows_of_X(): void
     {
         $xmasTree = new XmasTree();
         $tree = $xmasTree->generate(1);
 
         self::assertEquals(['X','|'], $tree);
+    }
+
+    public function test_height_two_returns_tree_with_2_rows_of_X(): void
+    {
+        $xmasTree = new XmasTree();
+        $tree = $xmasTree->generate(2);
+
+        self::assertEquals([' X ', 'XXX',' | '], $tree);
     }
 }
