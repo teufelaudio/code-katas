@@ -4,6 +4,12 @@ namespace Kata;
 
 final class XmasTree
 {
+    public function __construct(
+        private string $treeElementCharacter,
+        private string $treeTrunkCharacter,
+    ) {
+    }
+
     public function generate(int $height): array
     {
         $tree = [];
@@ -17,7 +23,7 @@ final class XmasTree
             $spaces = $this->createSpacesByHeight($height + 1 - $level);
             $x = $this->createXByLevel($level);
 
-            $tree[] = $spaces . $x . $spaces;
+            $tree[] = $spaces . $x;
         }
 
         $tree[] = $this->createTrunkWithSpacesByHeight($height);
@@ -40,17 +46,17 @@ final class XmasTree
     {
         $xAmount = 2 * $currentTreeLevel - 1;
 
-        return str_repeat('X', $xAmount);
+        return str_repeat($this->treeElementCharacter, $xAmount);
     }
 
     private function createTrunkWithSpacesByHeight(int $height): string
     {
         if ($height < 1) {
-            return '|';
+            return $this->treeTrunkCharacter;
         }
 
         $spaces = str_repeat(' ', $height - 1);
 
-        return $spaces . '|' . $spaces;
+        return $spaces . $this->treeTrunkCharacter;
     }
 }
