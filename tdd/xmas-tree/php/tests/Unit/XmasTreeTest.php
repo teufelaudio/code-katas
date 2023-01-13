@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 final class XmasTreeTest extends TestCase
 {
-    public function test_change_me(): void
+    public function test_change(): void
     {
         $a = new XmasTree();
 
