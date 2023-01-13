@@ -4,37 +4,57 @@ declare(strict_types=1);
 
 namespace Kata;
 
+use function PHPUnit\Framework\assertSame;
+
 final class XmasTree
 {
-    public function getTreeWithHeight(int $height): string
+    public function __construct(
+        private string $treeLeaveSymbol
+    )
     {
-        $babyTree = [
-            'x',
-            '|'
-        ];
-
-        $outputLines = $this->growTree($babyTree, $height);
-
-        return implode(PHP_EOL, $outputLines);
+        assertSame(1, strlen($this->treeLeaveSymbol));
     }
 
-    private function growTree(array $currentTree, int $targetHeight)
+    public function getTreeWithHeight(int $height): string
     {
-        $currentHeight = count($currentTree) - 1;
+        $tree = [];
+        $this->getTrunk($tree, $height);
+        $this->getTreeLines($tree, $height);
+        $tree = array_reverse($tree);
 
-        if ($currentHeight === $targetHeight) return $currentTree;
+        print_r($tree);
 
-        $currentBiggestBranch = $currentTree[$currentHeight - 1];
+        return implode(PHP_EOL, $tree);
+    }
 
-        $currentTree = array_map(function ($currentLine) {
-            return ' ' . $currentLine;
-        }, $currentTree);
+    private function getTrunk(array &$currentTree, int $treeHeight)
+    {
+        $currentTree[] = str_repeat(' ', $treeHeight-1) . '|';
 
-        $currentTrunk = $currentTree[$currentHeight];
+        return $currentTree;
+    }
 
-        $currentTree[$currentHeight] = $currentBiggestBranch . 'xx';
-        $currentTree[] = $currentTrunk;
+    private function getTreeLines(array &$currentTree, int $treeHeight)
+    {
+        // height*2 -1
+        $currentTree[] = $this->getWhitespaces($currentTree) . $this->getLeaves($treeHeight);
+        $treeHeight--;
 
-        return $this->growTree($currentTree, $targetHeight);
+        if ($treeHeight > 0) {
+            return $this->getTreeLines($currentTree, $treeHeight);
+        }
+
+        return $currentTree;
+    }
+
+    private function getLeaves($treeHeight): string
+    {
+        // height*2 -1
+        return str_repeat($this->treeLeaveSymbol, ($treeHeight*2)-1);
+    }
+
+    private function getWhitespaces(array $currentTree): string
+    {
+        return str_repeat(' ', count($currentTree) - 1);
     }
 }

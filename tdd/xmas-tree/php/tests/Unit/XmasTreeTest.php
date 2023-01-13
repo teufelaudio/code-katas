@@ -11,7 +11,7 @@ final class XmasTreeTest extends TestCase
 {
     public function test_tree_with_height_1(): void
     {
-        $a = new XmasTree();
+        $a = new XmasTree('x');
 
         $expected = <<< 'NOWDOC'
         x
@@ -22,7 +22,7 @@ final class XmasTreeTest extends TestCase
 
     public function test_tree_with_height_2(): void
     {
-        $a = new XmasTree();
+        $a = new XmasTree('x');
 
         $expected = <<< 'NOWDOC'
          x
@@ -34,12 +34,12 @@ final class XmasTreeTest extends TestCase
 
     public function test_tree_with_height_3(): void
     {
-        $a = new XmasTree();
+        $a = new XmasTree('o');
 
         $expected = <<< 'NOWDOC'
-          x
-         xxx
-        xxxxx
+          o
+         ooo
+        ooooo
           |
         NOWDOC;
         self::assertSame($expected, $a->getTreeWithHeight(3));
@@ -47,13 +47,13 @@ final class XmasTreeTest extends TestCase
 
     public function test_tree_with_height_4(): void
     {
-        $a = new XmasTree();
+        $a = new XmasTree('W');
 
         $expected = <<< 'NOWDOC'
-           x
-          xxx
-         xxxxx
-        xxxxxxx
+           W
+          WWW
+         WWWWW
+        WWWWWWW
            |
         NOWDOC;
         self::assertSame($expected, $a->getTreeWithHeight(4));
