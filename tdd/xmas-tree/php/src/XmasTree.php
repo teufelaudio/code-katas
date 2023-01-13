@@ -4,11 +4,19 @@ namespace Kata;
 
 final class XmasTree
 {
-    public function getTreeWithHeight(): string
+    public function getTreeWithHeight(int $height): string
     {
-        return <<< 'NOWDOC'
-         x
-         | 
-        NOWDOC;
+        if ($height === 1) {
+            return <<< 'NOWDOC'
+            x
+            |
+            NOWDOC;
+        } else {
+            return <<< 'NOWDOC'
+             x
+            xxx
+             |
+            NOWDOC;
+        }
     }
 }
