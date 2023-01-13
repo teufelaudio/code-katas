@@ -6,17 +6,28 @@ final class XmasTree
 {
     public function getTreeWithHeight(int $height): string
     {
+        $outputLines = [];
+
         if ($height === 1) {
-            return <<< 'NOWDOC'
-            x
-            |
-            NOWDOC;
-        } else {
-            return <<< 'NOWDOC'
-             x
-            xxx
-             |
-            NOWDOC;
+            $outputLines[] = 'x';
+            $outputLines[] = '|';
         }
+
+        if ($height === 2) {
+
+            $outputLines[] = ' x';
+            $outputLines[] = 'xxx';
+            $outputLines[] = ' |';
+        }
+
+        if ($height === 3) {
+
+            $outputLines[] = '  x';
+            $outputLines[] = ' xxx';
+            $outputLines[] = 'xxxxx';
+            $outputLines[] = '  |';
+        }
+
+        return implode(PHP_EOL, $outputLines);
     }
 }
