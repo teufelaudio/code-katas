@@ -36,7 +36,6 @@ final class XmasTree
 
     private function getTreeLines(array &$currentTree, int $treeHeight)
     {
-        // height*2 -1
         $currentTree[] = $this->getWhitespaces($currentTree) . $this->getLeaves($treeHeight);
         $treeHeight--;
 
