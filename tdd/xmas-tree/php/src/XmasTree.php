@@ -8,6 +8,10 @@ final class XmasTree
     {
         $tree = [];
 
+        if ($height < 0) {
+            return $tree;
+        }
+
         for ($level = 1; $level <= $height; $level++) {
 
             $spaces = $this->createSpacesByHeight($height + 1 - $level);
@@ -34,7 +38,7 @@ final class XmasTree
 
     private function createXByLevel(int $currentTreeLevel): string
     {
-        $xAmount = 2 *$currentTreeLevel - 1;
+        $xAmount = 2 * $currentTreeLevel - 1;
 
         return str_repeat('X', $xAmount);
     }

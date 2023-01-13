@@ -53,4 +53,12 @@ final class XmasTreeTest extends TestCase
             $tree
         );
     }
+
+    public function test_height_too_small(): void
+    {
+        $xmasTree = new XmasTree();
+        $tree = $xmasTree->generate(-5);
+
+        self::assertEquals([], $tree);
+    }
 }
