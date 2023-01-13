@@ -6,7 +6,13 @@ final class XmasTree
 {
     public function generate(int $height): array
     {
-        $tree = ['|'];
+        $tree = [];
+
+        for ($i = 1; $i <= $height; $i++) {
+            $tree[] = 'X';
+        }
+
+        $tree[] = '|';
 
         return $tree;
     }
