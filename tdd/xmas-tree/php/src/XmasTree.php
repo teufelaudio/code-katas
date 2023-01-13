@@ -27,11 +27,9 @@ final class XmasTree
         return implode(PHP_EOL, $tree);
     }
 
-    private function getTrunk(array &$currentTree, int $treeHeight)
+    private function getTrunk(array &$currentTree, int $treeHeight): void
     {
         $currentTree[] = str_repeat(' ', $treeHeight-1) . '|';
-
-        return $currentTree;
     }
 
     private function getTreeLines(array &$currentTree, int $treeHeight): void
