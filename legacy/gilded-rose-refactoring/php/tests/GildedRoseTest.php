@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 final class GildedRoseTest extends TestCase
 {
-    public function testFixtures(): void
+    public function test_fixtures(): void
     {
         $items = [
             new Item('+5 Dexterity Vest', 10, 20),
