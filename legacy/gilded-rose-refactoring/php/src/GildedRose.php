@@ -8,6 +8,10 @@ final class GildedRose
 {
     private const MAX_QUALITY = 50;
     private const MIN_QUALITY = 0;
+    private const MIN_SELL_IN = 0;
+    private const NAME_SULFURAS = 'Sulfuras, Hand of Ragnaros';
+    private const NAME_BACKSTAGE_PASS = 'Backstage passes to a TAFKAL80ETC concert';
+    private const NAME_AGED_BRIE = 'Aged Brie';
 
     /**
      * @param Item[] $items
@@ -30,31 +34,37 @@ final class GildedRose
 
     private function processSellIn(Item $item): void
     {
-        if ($item->name !== 'Sulfuras, Hand of Ragnaros') {
+        if ($item->name !== self::NAME_SULFURAS) {
             --$item->sellIn;
         }
     }
 
     private function isBackstagePass(Item $item): bool
     {
-        return $item->name === 'Backstage passes to a TAFKAL80ETC concert';
+        return $item->name === self::NAME_BACKSTAGE_PASS;
     }
 
     private function isAgedBrie(Item $item): bool
     {
-        return $item->name === 'Aged Brie';
+        return $item->name === self::NAME_AGED_BRIE;
     }
 
     private function isSulfuras(Item $item): bool
     {
-        return $item->name === 'Sulfuras, Hand of Ragnaros';
+        return $item->name === self::NAME_SULFURAS;
     }
 
     private function increaseQuality(Item $item): void
     {
-        if($item->quality < self::MAX_QUALITY) {
+        if ($item->quality < self::MAX_QUALITY) {
             $item->quality++;
         }
+    }
+
+    private function increaseQualityTwice(Item $item): void
+    {
+        $this->increaseQuality($item);
+        $this->increaseQuality($item);
     }
 
     private function decreaseQuality(Item $item): void
@@ -70,14 +80,15 @@ final class GildedRose
 
     private function processBackstagePass(Item $item): void
     {
-        if ($this->isBackstagePass($item)) {
-            if ($item->sellIn < 6) {
-                $this->increaseQuality($item);
-                $this->increaseQuality($item);
-            } elseif ($item->sellIn < 11) {
-                $this->increaseQuality($item);
-            }
+        if (!$this->isBackstagePass($item)) {
+            return;
         }
+
+        match (true) {
+            $item->sellIn < 6 => $this->increaseQualityTwice($item),
+            $item->sellIn < 11 => $this->increaseQuality($item),
+            default => false,
+        };
     }
 
     private function isQualityDecreasable(Item $item): bool
@@ -96,7 +107,7 @@ final class GildedRose
 
     private function processNotSellable(Item $item): void
     {
-        if ($item->sellIn >= 0) {
+        if ($item->sellIn >= self::MIN_SELL_IN) {
             return;
         }
 
