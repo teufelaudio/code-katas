@@ -62,21 +62,6 @@ final class GildedRose
         }
     }
 
-    private function isAgedBrie(Item $item): bool
-    {
-        return $item->name === self::ITEM_NAME_AGED_BRIE;
-    }
-
-    private function isBackstagePass(Item $item): bool
-    {
-        return $item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT;
-    }
-
-    public function isRagnaros(Item $item): bool
-    {
-        return $item->name === self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS;
-    }
-
     private function handlePassedSellByDate(Item $item): void
     {
         if (!$this->isPassedSellByDate($item)) {
@@ -109,12 +94,6 @@ final class GildedRose
         }
     }
 
-    public function isPassedSellByDate(Item $item): bool
-    {
-        return $item->sellIn < 0;
-    }
-
-
     private function calculateItemSellIn(Item $item): void
     {
         if ($this->isRagnaros($item)) {
@@ -122,5 +101,25 @@ final class GildedRose
         }
 
         --$item->sellIn;
+    }
+
+    private function isAgedBrie(Item $item): bool
+    {
+        return $item->name === self::ITEM_NAME_AGED_BRIE;
+    }
+
+    private function isBackstagePass(Item $item): bool
+    {
+        return $item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT;
+    }
+
+    public function isRagnaros(Item $item): bool
+    {
+        return $item->name === self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS;
+    }
+
+    public function isPassedSellByDate(Item $item): bool
+    {
+        return $item->sellIn < 0;
     }
 }
