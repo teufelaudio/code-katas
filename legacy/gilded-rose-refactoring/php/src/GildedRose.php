@@ -12,11 +12,6 @@ final class GildedRose
     private const BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = 'Backstage passes to a TAFKAL80ETC concert';
     private const MAX_ITEM_QUALITY = 50;
 
-    private const VIP_ITEMS = [
-        self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS,
-        self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT,
-    ];
-
     /**
      * @param Item[] $items
      */
@@ -77,15 +72,10 @@ final class GildedRose
             return;
         }
 
-        if ($this->isVip($item)) {
+        if ($item->name === self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS) {
             return;
         }
 
         --$item->quality;
-    }
-
-    public function isVip(Item $item): bool
-    {
-        return in_array($item->name, self::VIP_ITEMS, true);
     }
 }
