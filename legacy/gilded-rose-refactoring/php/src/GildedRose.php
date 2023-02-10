@@ -96,9 +96,14 @@ final class GildedRose
 
         if ($this->isAgedBrie($item)) {
             $this->increaseQuality($item);
-        } else if ($this->isBackstagePass($item)) {
+            return;
+        }
+
+        if ($this->isBackstagePass($item)) {
             $item->quality = self::MIN_ITEM_QUALITY;
-        }else if (!$this->isRagnaros($item)) {
+        }
+
+        if (!$this->isRagnaros($item)) {
             $this->decreaseQuality($item);
         }
     }
