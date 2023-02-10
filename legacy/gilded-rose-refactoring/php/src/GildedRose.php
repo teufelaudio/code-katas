@@ -22,28 +22,9 @@ final class GildedRose
         foreach ($this->items as $item) {
 
             $this->processBackstagePass($item);
-
-            if (!$this->isAgedBrie($item) && !$this->isBackstagePass($item)) {
-                $this->decreaseQuality($item);
-            } else {
-                $this->increaseQuality($item);
-            }
-
             $this->processSellIn($item);
-
-            if ($item->sellIn < 0) {
-                if (!$this->isAgedBrie($item) && $this->isBackstagePass($item)) {
-                    $item->quality = self::MIN_QUALITY;
-                }
-
-                if ($this->isAgedBrie($item)) {
-                    $this->increaseQuality($item);
-                }
-
-                if (!$this->isAgedBrie($item) && !$this->isBackstagePass($item)) {
-                    $this->decreaseQuality($item);
-                }
-            }
+            $this->processQuality($item);
+            $this->processNotSellable($item);
         }
     }
 
@@ -96,6 +77,39 @@ final class GildedRose
             } elseif ($item->sellIn < 11) {
                 $this->increaseQuality($item);
             }
+        }
+    }
+
+    private function isQualityDecreasable(Item $item): bool
+    {
+        return !$this->isAgedBrie($item) && !$this->isBackstagePass($item);
+    }
+
+    private function processQuality(Item $item): void
+    {
+        if ($this->isQualityDecreasable($item)) {
+            $this->decreaseQuality($item);
+        } else {
+            $this->increaseQuality($item);
+        }
+    }
+
+    private function processNotSellable(Item $item): void
+    {
+        if ($item->sellIn >= 0) {
+            return;
+        }
+
+        if (!$this->isAgedBrie($item) && $this->isBackstagePass($item)) {
+            $item->quality = self::MIN_QUALITY;
+        }
+
+        if ($this->isAgedBrie($item)) {
+            $this->increaseQuality($item);
+        }
+
+        if ($this->isQualityDecreasable($item)) {
+            $this->decreaseQuality($item);
         }
     }
 }
