@@ -7,6 +7,7 @@ namespace GildedRose;
 final class GildedRose
 {
     private const MAX_QUALITY = 50;
+    private const MIN_QUALITY = 0;
 
     /**
      * @param Item[] $items
@@ -20,8 +21,8 @@ final class GildedRose
     {
         foreach ($this->items as $item) {
             if (!$this->isAgedBrie($item) && !$this->isBackstagePass($item)) {
-                if (($item->quality > 0) && !$this->isSulfuras($item)) {
-                    --$item->quality;
+                if (!$this->isSulfuras($item)) {
+                    $this->decreaseQuality($item);
                 }
             } else {
 
@@ -42,11 +43,11 @@ final class GildedRose
             if ($item->sellIn < 0) {
                 if (!$this->isAgedBrie($item)) {
                     if (!$this->isBackstagePass($item)) {
-                        if (($item->quality > 0) && !$this->isSulfuras($item)) {
-                            --$item->quality;
+                        if (!$this->isSulfuras($item)) {
+                            $this->decreaseQuality($item);
                         }
                     } else {
-                        $item->quality -= $item->quality;
+                        $item->quality = self::MIN_QUALITY;
                     }
                 } else {
                     $this->increaseQuality($item);
@@ -81,6 +82,13 @@ final class GildedRose
     {
         if($item->quality < self::MAX_QUALITY) {
             $item->quality++;
+        }
+    }
+
+    private function decreaseQuality(Item $item): void
+    {
+        if($item->quality > self::MIN_QUALITY) {
+            $item->quality--;
         }
     }
 }
