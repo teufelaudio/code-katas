@@ -12,6 +12,11 @@ final class GildedRose
     const BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = 'Backstage passes to a TAFKAL80ETC concert';
     const MAX_ITEM_QUALITY = 50;
 
+    private $vipItems = [
+        self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS,
+        self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS
+    ];
+
     /**
      * @param Item[] $items
      */
@@ -30,9 +35,7 @@ final class GildedRose
     public function updateItemQuality(Item $item): void
     {
         if (!in_array($item->name, [self::ITEM_NAME_AGED_BRIE, self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT])) {
-            if ($item->name !== self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS) {
-                $this->decreaseQuality($item);
-            }
+            $this->decreaseQuality($item);
         } else {
             if ($item->quality < self::MAX_ITEM_QUALITY) {
                 ++$item->quality;
@@ -54,9 +57,7 @@ final class GildedRose
         if ($item->sellIn < 0) {
             if ($item->name !== self::ITEM_NAME_AGED_BRIE) {
                 if ($item->name !== self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
-                    if ($item->name !== self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS) {
-                        $this->decreaseQuality($item);
-                    }
+                    $this->decreaseQuality($item);
                 } else {
                     $item->quality = 0;
                 }
@@ -75,8 +76,19 @@ final class GildedRose
 
     public function decreaseQuality(Item $item): void
     {
-        if ($item->quality > 0) {
-            --$item->quality;
+        if ($item->quality <= 0) {
+            return;
         }
+
+        if ($this->isVip($item)) {
+            return;
+        }
+
+        --$item->quality;
+    }
+
+    public function isVip(Item $item): bool
+    {
+        return in_array($item->name, $this->vipItems);
     }
 }
