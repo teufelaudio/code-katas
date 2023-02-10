@@ -20,37 +20,28 @@ final class GildedRose
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
+
+            $this->processBackstagePass($item);
+
             if (!$this->isAgedBrie($item) && !$this->isBackstagePass($item)) {
-                if (!$this->isSulfuras($item)) {
-                    $this->decreaseQuality($item);
-                }
+                $this->decreaseQuality($item);
             } else {
-
                 $this->increaseQuality($item);
-
-                if ($this->isBackstagePass($item)) {
-                    if ($item->sellIn < 11) {
-                        $this->increaseQuality($item);
-                    }
-                    if ($item->sellIn < 6) {
-                        $this->increaseQuality($item);
-                    }
-                }
             }
 
             $this->processSellIn($item);
 
             if ($item->sellIn < 0) {
-                if (!$this->isAgedBrie($item)) {
-                    if (!$this->isBackstagePass($item)) {
-                        if (!$this->isSulfuras($item)) {
-                            $this->decreaseQuality($item);
-                        }
-                    } else {
-                        $item->quality = self::MIN_QUALITY;
-                    }
-                } else {
+                if (!$this->isAgedBrie($item) && $this->isBackstagePass($item)) {
+                    $item->quality = self::MIN_QUALITY;
+                }
+
+                if ($this->isAgedBrie($item)) {
                     $this->increaseQuality($item);
+                }
+
+                if (!$this->isAgedBrie($item) && !$this->isBackstagePass($item)) {
+                    $this->decreaseQuality($item);
                 }
             }
         }
@@ -87,8 +78,24 @@ final class GildedRose
 
     private function decreaseQuality(Item $item): void
     {
-        if($item->quality > self::MIN_QUALITY) {
+        if ($this->isSulfuras($item)) {
+            return;
+        }
+
+        if ($item->quality > self::MIN_QUALITY) {
             $item->quality--;
+        }
+    }
+
+    private function processBackstagePass(Item $item): void
+    {
+        if ($this->isBackstagePass($item)) {
+            if ($item->sellIn < 6) {
+                $this->increaseQuality($item);
+                $this->increaseQuality($item);
+            } elseif ($item->sellIn < 11) {
+                $this->increaseQuality($item);
+            }
         }
     }
 }
