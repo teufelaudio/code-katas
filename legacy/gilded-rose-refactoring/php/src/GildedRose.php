@@ -30,14 +30,9 @@ final class GildedRose
 
     private function updateItemQuality(Item $item): void
     {
-        if ($this->isAgedBrie($item) || $this->isBackstagePass($item)) {
-            $this->increaseQuality($item);
-        } else if (!$this->isRagnaros($item)) {
-            $this->decreaseQuality($item);
-        }
-
+        $this->handleQualityRules($item);
         $this->updateItemQualityForBackstagePasses($item);
-        $this->caclculateSellIn($item);
+        $this->calculateSellIn($item);
         $this->handlePassedSellByDate($item);
     }
 
@@ -89,7 +84,7 @@ final class GildedRose
 
     private function handlePassedSellByDate(Item $item): void
     {
-        if ($this->hasValidSellByDate($item)) {
+        if (!$this->isPassedSellByDate($item)) {
             return;
         }
 
@@ -107,23 +102,30 @@ final class GildedRose
         }
     }
 
-    public function hasValidSellByDate(Item $item): bool
+    private function handleQualityRules(Item $item): void
     {
-        return $item->sellIn >= 0;
+        if ($this->isAgedBrie($item) || $this->isBackstagePass($item)) {
+            $this->increaseQuality($item);
+            return;
+        }
+
+        if (!$this->isRagnaros($item)) {
+            $this->decreaseQuality($item);
+        }
+    }
+
+    public function isPassedSellByDate(Item $item): bool
+    {
+        return $item->sellIn < 0;
     }
 
 
-    private function caclculateSellIn(Item $item): void
+    private function calculateSellIn(Item $item): void
     {
         if ($this->isRagnaros($item)) {
             return;
         }
 
-        $this->decreaseSellIn($item);
-    }
-
-    private function decreaseSellIn(Item $item): void
-    {
-       --$item->sellIn;
+        --$item->sellIn;
     }
 }
