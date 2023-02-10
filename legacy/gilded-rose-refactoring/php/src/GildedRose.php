@@ -24,16 +24,11 @@ final class GildedRose
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
-            $this->updateItemQuality($item);
+            $this->handleSpecialQualityRules($item);
+            $this->updateItemQualityForBackstagePasses($item);
+            $this->calculateItemSellIn($item);
+            $this->handlePassedSellByDate($item);
         }
-    }
-
-    private function updateItemQuality(Item $item): void
-    {
-        $this->handleQualityRules($item);
-        $this->updateItemQualityForBackstagePasses($item);
-        $this->calculateSellIn($item);
-        $this->handlePassedSellByDate($item);
     }
 
     private function increaseQuality(Item $item): void
@@ -102,7 +97,7 @@ final class GildedRose
         }
     }
 
-    private function handleQualityRules(Item $item): void
+    private function handleSpecialQualityRules(Item $item): void
     {
         if ($this->isAgedBrie($item) || $this->isBackstagePass($item)) {
             $this->increaseQuality($item);
@@ -120,7 +115,7 @@ final class GildedRose
     }
 
 
-    private function calculateSellIn(Item $item): void
+    private function calculateItemSellIn(Item $item): void
     {
         if ($this->isRagnaros($item)) {
             return;
