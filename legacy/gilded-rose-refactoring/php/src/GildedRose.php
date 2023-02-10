@@ -11,6 +11,7 @@ final class GildedRose
     private const ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS = 'Sulfuras, Hand of Ragnaros';
     private const BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = 'Backstage passes to a TAFKAL80ETC concert';
     private const MAX_ITEM_QUALITY = 50;
+    const MIN_ITEM_QUALITY = 0;
 
     /**
      * @param Item[] $items
@@ -41,11 +42,11 @@ final class GildedRose
             --$item->sellIn;
         }
 
-        if ($item->sellIn < 0) {
+        if ($item->sellIn < self::MIN_ITEM_QUALITY) {
             if ($item->name === self::ITEM_NAME_AGED_BRIE) {
                 $this->increaseQuality($item);
             } else if ($item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
-                $item->quality = 0;
+                $item->quality = self::MIN_ITEM_QUALITY;
             } else {
                 $this->decreaseQuality($item);
             }
@@ -61,7 +62,7 @@ final class GildedRose
 
     public function decreaseQuality(Item $item): void
     {
-        if ($item->quality <= 0) {
+        if ($item->quality <= self::MIN_ITEM_QUALITY) {
             return;
         }
 
