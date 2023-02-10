@@ -8,7 +8,7 @@ final class GildedRose
 {
 
     const ITEM_NAME_AGED_BRIE = 'Aged Brie';
-    const SULFURAS_HAND_OF_RAGNAROS = 'Sulfuras, Hand of Ragnaros';
+    const ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS = 'Sulfuras, Hand of Ragnaros';
     const BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = 'Backstage passes to a TAFKAL80ETC concert';
     const MAX_ITEM_QUALITY = 50;
 
@@ -30,7 +30,7 @@ final class GildedRose
     public function updateItemQuality(Item $item): void
     {
         if (!in_array($item->name, [self::ITEM_NAME_AGED_BRIE, self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT])) {
-            if ($item->name !== self::SULFURAS_HAND_OF_RAGNAROS) {
+            if ($item->name !== self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS) {
                 $this->decreaseQuality($item);
             }
         } else {
@@ -47,18 +47,18 @@ final class GildedRose
             }
         }
 
-        if ($item->name !== self::SULFURAS_HAND_OF_RAGNAROS) {
+        if ($item->name !== self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS) {
             --$item->sellIn;
         }
 
         if ($item->sellIn < 0) {
             if ($item->name !== self::ITEM_NAME_AGED_BRIE) {
                 if ($item->name !== self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
-                    if ($item->name !== self::SULFURAS_HAND_OF_RAGNAROS) {
+                    if ($item->name !== self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS) {
                         $this->decreaseQuality($item);
                     }
                 } else {
-                    $item->quality -= $item->quality;
+                    $item->quality = 0;
                 }
             } else {
                 $this->increaseQuality($item);
