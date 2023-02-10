@@ -26,7 +26,7 @@ final class GildedRose
         foreach ($this->items as $item) {
             $this->handleSpecialQualityRules($item);
             $this->updateItemQualityForBackstagePasses($item);
-            $this->calculateItemSellIn($item);
+            $this->recalculateItemSellIn($item);
             $this->handlePassedSellByDate($item);
         }
     }
@@ -94,7 +94,7 @@ final class GildedRose
         }
     }
 
-    private function calculateItemSellIn(Item $item): void
+    private function recalculateItemSellIn(Item $item): void
     {
         if ($this->isRagnaros($item)) {
             return;
