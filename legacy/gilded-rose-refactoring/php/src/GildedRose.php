@@ -30,50 +30,46 @@ final class GildedRose
 
     private function updateItemQuality(Item $item): void
     {
-        if (in_array($item->name, [self::ITEM_NAME_AGED_BRIE, self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT])) {
+        if ($this->isAgedBrie($item) || $this->isBackstagePass($item)) {
             $this->increaseQuality($item);
-        } else if ($item->name !== self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS) {
+        } else if ($this->isRagnaros($item)) {
             $this->decreaseQuality($item);
         }
 
         $this->updateItemQualityForBackstagePasses($item);
 
-        if ($item->name !== self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS) {
+        if ($this->isRagnaros($item)) {
             --$item->sellIn;
         }
 
         if ($item->sellIn < 0) {
-            if ($item->name === self::ITEM_NAME_AGED_BRIE) {
+            if ($this->isAgedBrie($item)) {
                 $this->increaseQuality($item);
-            } else if ($item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
+            } else if ($this->isBackstagePass($item)) {
                 $item->quality = self::MIN_ITEM_QUALITY;
-            } else if ($item->name !== self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS) {
+            } else if ($this->isRagnaros($item)) {
                 $this->decreaseQuality($item);
             }
         }
     }
 
-    public function increaseQuality(Item $item): void
+    private function increaseQuality(Item $item): void
     {
         if ($item->quality < self::MAX_ITEM_QUALITY) {
             ++$item->quality;
         }
     }
 
-    public function decreaseQuality(Item $item): void
+    private function decreaseQuality(Item $item): void
     {
         if ($item->quality <= self::MIN_ITEM_QUALITY) {
             return;
         }
 
-//        if ($item->name === self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS) {
-//            return;
-//        }
-
         --$item->quality;
     }
 
-    public function updateItemQualityForBackstagePasses(Item $item): void
+    private function updateItemQualityForBackstagePasses(Item $item): void
     {
         if ($item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
             if ($item->sellIn < 6) {
@@ -83,5 +79,20 @@ final class GildedRose
                 $this->increaseQuality($item);
             }
         }
+    }
+
+    private function isAgedBrie(Item $item): bool
+    {
+        return $item->name === self::ITEM_NAME_AGED_BRIE;
+    }
+
+    private function isBackstagePass(Item $item): bool
+    {
+        return $item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT;
+    }
+
+    public function isRagnaros(Item $item): bool
+    {
+        return $item->name !== self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS;
     }
 }
