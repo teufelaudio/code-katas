@@ -37,11 +37,7 @@ final class GildedRose
         }
 
         $this->updateItemQualityForBackstagePasses($item);
-
-        if (!$this->isRagnaros($item)) {
-            --$item->sellIn;
-        }
-
+        $this->caclculateSellIn($item);
         $this->handlePassedSellByDate($item);
     }
 
@@ -63,13 +59,16 @@ final class GildedRose
 
     private function updateItemQualityForBackstagePasses(Item $item): void
     {
-        if ($item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
-            if ($item->sellIn < 6) {
-                $this->increaseQuality($item);
-            }
-            if ($item->sellIn < 11) {
-                $this->increaseQuality($item);
-            }
+        if (!$this->isBackstagePass($item)) {
+            return;
+        }
+
+        if ($item->sellIn <= 5) {
+            $this->increaseQuality($item);
+        }
+
+        if ($item->sellIn <= 10) {
+            $this->increaseQuality($item);
         }
     }
 
@@ -111,5 +110,20 @@ final class GildedRose
     public function hasValidSellByDate(Item $item): bool
     {
         return $item->sellIn >= 0;
+    }
+
+
+    private function caclculateSellIn(Item $item): void
+    {
+        if ($this->isRagnaros($item)) {
+            return;
+        }
+
+        $this->decreaseSellIn($item);
+    }
+
+    private function decreaseSellIn(Item $item): void
+    {
+       --$item->sellIn;
     }
 }
