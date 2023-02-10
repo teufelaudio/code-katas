@@ -35,14 +35,7 @@ final class GildedRose
             $this->decreaseQuality($item);
         }
 
-        if ($item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
-            if ($item->sellIn < 11) {
-                $this->increaseQuality($item);
-            }
-            if ($item->sellIn < 6) {
-                $this->increaseQuality($item);
-            }
-        }
+        $this->updateItemQualityForBackstagePasses($item);
 
         if ($item->name !== self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS) {
             --$item->sellIn;
@@ -77,5 +70,17 @@ final class GildedRose
         }
 
         --$item->quality;
+    }
+
+    public function updateItemQualityForBackstagePasses(Item $item): void
+    {
+        if ($item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
+            if ($item->sellIn < 6) {
+                $this->increaseQuality($item);
+            }
+            if ($item->sellIn < 11) {
+                $this->increaseQuality($item);
+            }
+        }
     }
 }
