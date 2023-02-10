@@ -34,17 +34,18 @@ final class GildedRose
 
     public function updateItemQuality(Item $item): void
     {
-        if (!in_array($item->name, [self::ITEM_NAME_AGED_BRIE, self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT])) {
-            $this->decreaseQuality($item);
-        } else if ($item->quality < self::MAX_ITEM_QUALITY) {
+        if (in_array($item->name, [self::ITEM_NAME_AGED_BRIE, self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT])) {
             $this->increaseQuality($item);
-            if ($item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
-                if ($item->sellIn < 11) {
-                    $this->increaseQuality($item);
-                }
-                if ($item->sellIn < 6) {
-                    $this->increaseQuality($item);
-                }
+        } else {
+            $this->decreaseQuality($item);
+        }
+
+        if ($item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
+            if ($item->sellIn < 11) {
+                $this->increaseQuality($item);
+            }
+            if ($item->sellIn < 6) {
+                $this->increaseQuality($item);
             }
         }
 
