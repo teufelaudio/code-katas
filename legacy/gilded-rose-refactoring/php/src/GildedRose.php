@@ -6,6 +6,8 @@ namespace GildedRose;
 
 final class GildedRose
 {
+    private const MAX_QUALITY = 50;
+
     /**
      * @param Item[] $items
      */
@@ -21,14 +23,16 @@ final class GildedRose
                 if (($item->quality > 0) && !$this->isSulfuras($item)) {
                     --$item->quality;
                 }
-            } elseif ($item->quality < 50) {
-                ++$item->quality;
+            } else {
+
+                $this->increaseQuality($item);
+
                 if ($this->isBackstagePass($item)) {
-                    if (($item->sellIn < 11) && $item->quality < 50) {
-                        ++$item->quality;
+                    if ($item->sellIn < 11) {
+                        $this->increaseQuality($item);
                     }
-                    if (($item->sellIn < 6) && $item->quality < 50) {
-                        ++$item->quality;
+                    if ($item->sellIn < 6) {
+                        $this->increaseQuality($item);
                     }
                 }
             }
@@ -44,8 +48,8 @@ final class GildedRose
                     } else {
                         $item->quality -= $item->quality;
                     }
-                } elseif ($item->quality < 50) {
-                    ++$item->quality;
+                } else {
+                    $this->increaseQuality($item);
                 }
             }
         }
@@ -71,5 +75,12 @@ final class GildedRose
     private function isSulfuras(Item $item): bool
     {
         return $item->name === 'Sulfuras, Hand of Ragnaros';
+    }
+
+    private function increaseQuality(Item $item): void
+    {
+        if($item->quality < self::MAX_QUALITY) {
+            $item->quality++;
+        }
     }
 }
