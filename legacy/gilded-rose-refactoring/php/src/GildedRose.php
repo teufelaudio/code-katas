@@ -28,7 +28,7 @@ final class GildedRose
         }
     }
 
-    public function updateItemQuality(Item $item): void
+    private function updateItemQuality(Item $item): void
     {
         if (in_array($item->name, [self::ITEM_NAME_AGED_BRIE, self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT])) {
             $this->increaseQuality($item);
