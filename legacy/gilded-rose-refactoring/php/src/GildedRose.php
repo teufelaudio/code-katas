@@ -7,14 +7,14 @@ namespace GildedRose;
 final class GildedRose
 {
 
-    const ITEM_NAME_AGED_BRIE = 'Aged Brie';
-    const ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS = 'Sulfuras, Hand of Ragnaros';
-    const BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = 'Backstage passes to a TAFKAL80ETC concert';
-    const MAX_ITEM_QUALITY = 50;
+    private const ITEM_NAME_AGED_BRIE = 'Aged Brie';
+    private const ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS = 'Sulfuras, Hand of Ragnaros';
+    private const BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = 'Backstage passes to a TAFKAL80ETC concert';
+    private const MAX_ITEM_QUALITY = 50;
 
-    private $vipItems = [
+    private const VIP_ITEMS = [
         self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS,
-        self::ITEM_NAME_SULFURAS_HAND_OF_RAGNAROS
+        self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT,
     ];
 
     /**
@@ -36,16 +36,14 @@ final class GildedRose
     {
         if (!in_array($item->name, [self::ITEM_NAME_AGED_BRIE, self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT])) {
             $this->decreaseQuality($item);
-        } else {
-            if ($item->quality < self::MAX_ITEM_QUALITY) {
-                ++$item->quality;
-                if ($item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
-                    if ($item->sellIn < 11) {
-                        $this->increaseQuality($item);
-                    }
-                    if ($item->sellIn < 6) {
-                        $this->increaseQuality($item);
-                    }
+        } else if ($item->quality < self::MAX_ITEM_QUALITY) {
+            $this->increaseQuality($item);
+            if ($item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
+                if ($item->sellIn < 11) {
+                    $this->increaseQuality($item);
+                }
+                if ($item->sellIn < 6) {
+                    $this->increaseQuality($item);
                 }
             }
         }
@@ -55,14 +53,12 @@ final class GildedRose
         }
 
         if ($item->sellIn < 0) {
-            if ($item->name !== self::ITEM_NAME_AGED_BRIE) {
-                if ($item->name !== self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
-                    $this->decreaseQuality($item);
-                } else {
-                    $item->quality = 0;
-                }
-            } else {
+            if ($item->name === self::ITEM_NAME_AGED_BRIE) {
                 $this->increaseQuality($item);
+            } else if ($item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
+                $item->quality = 0;
+            } else {
+                $this->decreaseQuality($item);
             }
         }
     }
@@ -89,6 +85,6 @@ final class GildedRose
 
     public function isVip(Item $item): bool
     {
-        return in_array($item->name, $this->vipItems);
+        return in_array($item->name, self::VIP_ITEMS, true);
     }
 }
