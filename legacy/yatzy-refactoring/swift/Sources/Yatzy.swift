@@ -63,17 +63,8 @@ public struct Yatzy {
         sum(all: 3, d1: d1, d2: d2, d3: d3, d4: d4, d5: d5)
     }
 
-    public func fours() -> Int {
-        var sum: Int
-        sum = 0
-        var at = 0
-        while at != 5 {
-            if dice[at] == 4 {
-                sum += 4
-            }
-            at += 1
-        }
-        return sum
+    public static func fours(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
+        sum(all: 4, d1: d1, d2: d2, d3: d3, d4: d4, d5: d5)
     }
 
     public func fives() -> Int {

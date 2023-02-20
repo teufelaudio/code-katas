@@ -36,9 +36,9 @@ class YatzyTests: XCTestCase {
     }
     
     func test4s() {
-        XCTAssertEqual(12, Yatzy(d1: 4, d2: 4, d3: 4, d4: 5, _5: 5).fours())
-        XCTAssertEqual(8, Yatzy(d1: 4, d2: 4, d3: 5, d4: 5, _5: 5).fours())
-        XCTAssertEqual(4, Yatzy(d1: 4, d2: 5, d3: 5, d4: 5, _5: 5).fours())
+        XCTAssertEqual(12, Yatzy.fours(d1: 4, d2: 4, d3: 4, d4: 5, d5: 5))
+        XCTAssertEqual(8, Yatzy.fours(d1: 4, d2: 4, d3: 5, d4: 5, d5: 5))
+        XCTAssertEqual(4, Yatzy.fours(d1: 4, d2: 5, d3: 5, d4: 5, d5: 5))
     }
 
     func test5s() {
