@@ -12,7 +12,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, _5: Int) {
     }
 
     fun fours(): Int {
-        var sum: Int = 0
+        var sum = 0
         for (at in 0..4) {
             if (dice[at] == 4) {
                 sum += 4
@@ -23,7 +23,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, _5: Int) {
 
     fun fives(): Int {
         var s = 0
-        var i: Int = 0
+        var i = 0
         while (i < dice.size) {
             if (dice[i] == 5)
                 s = s + 5
@@ -85,7 +85,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, _5: Int) {
         }
 
         fun threes(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            var s: Int = 0
+            var s = 0
             if (d1 == 3) s += 3
             if (d2 == 3) s += 3
             if (d3 == 3) s += 3
@@ -135,7 +135,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, _5: Int) {
         }
 
         fun four_of_a_kind(_1: Int, _2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val tallies: IntArray = IntArray(6)
+            val tallies = IntArray(6)
             tallies[_1 - 1]++
             tallies[_2 - 1]++
             tallies[d3 - 1]++
@@ -148,7 +148,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, _5: Int) {
         }
 
         fun three_of_a_kind(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val t: IntArray = IntArray(6)
+            val t = IntArray(6)
             t[d1 - 1]++
             t[d2 - 1]++
             t[d3 - 1]++
@@ -161,7 +161,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, _5: Int) {
         }
 
         fun smallStraight(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val tallies: IntArray = IntArray(6)
+            val tallies = IntArray(6)
             tallies[d1 - 1] += 1
             tallies[d2 - 1] += 1
             tallies[d3 - 1] += 1
@@ -176,7 +176,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, _5: Int) {
         }
 
         fun largeStraight(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val tallies: IntArray = IntArray(6)
+            val tallies = IntArray(6)
             tallies[d1 - 1] += 1
             tallies[d2 - 1] += 1
             tallies[d3 - 1] += 1
