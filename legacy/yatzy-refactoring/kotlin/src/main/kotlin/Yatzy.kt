@@ -1,4 +1,3 @@
-
 class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
 
     private var dice = IntArray(5)
@@ -11,38 +10,25 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
         dice[4] = d5
     }
 
-    fun fours(): Int {
+    private fun evaluate(diceNumber: Int): Int {
         var sum = 0
-        for (at in 0..4) {
-            if (dice[at] == 4) {
-                sum += 4
+        for (element in dice) {
+            if (element == diceNumber) {
+                sum += diceNumber
             }
         }
         return sum
     }
 
-    fun fives(): Int {
-        var sum = 0
-        var i = 0
-        while (i < dice.size) {
-            if (dice[i] == 5)
-                sum += 5
-            i++
-        }
-        return sum
-    }
+    fun fours() = evaluate(4)
 
-    fun sixes(): Int {
-        var sum = 0
-        for (at in dice.indices)
-            if (dice[at] == 6)
-                sum += 6
-        return sum
-    }
+    fun fives() = evaluate(5)
+
+    fun sixes() = evaluate(6)
 
     companion object {
 
-        fun chance(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int = d1 + d2 + d3 + d4 + d5
+        fun chance(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) = d1 + d2 + d3 + d4 + d5
 
         fun yatzy(vararg dice: Int): Int {
             val counts = IntArray(6)
