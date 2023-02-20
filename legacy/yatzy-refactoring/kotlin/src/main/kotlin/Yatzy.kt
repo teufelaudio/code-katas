@@ -48,13 +48,18 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
 
         fun threes(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) = intArrayOf(d1, d2, d3, d4, d5).evaluate(3)
 
-        fun score_pair(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
+        private fun accumulateCounts(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): IntArray {
             val counts = IntArray(FACES_OF_A_DIE)
             counts[d1 - 1]++
             counts[d2 - 1]++
             counts[d3 - 1]++
             counts[d4 - 1]++
             counts[d5 - 1]++
+            return counts
+        }
+
+        fun score_pair(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
+            val counts = accumulateCounts(d1, d2, d3, d4, d5)
             var at: Int
             at = 0
             while (at != 6) {
@@ -66,12 +71,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
         }
 
         fun two_pair(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val counts = IntArray(FACES_OF_A_DIE)
-            counts[d1 - 1]++
-            counts[d2 - 1]++
-            counts[d3 - 1]++
-            counts[d4 - 1]++
-            counts[d5 - 1]++
+            val counts = accumulateCounts(d1, d2, d3, d4, d5)
             var n = 0
             var score = 0
             var i = 0
@@ -88,13 +88,8 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
                 0
         }
 
-        fun four_of_a_kind(_1: Int, _2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val tallies = IntArray(FACES_OF_A_DIE)
-            tallies[_1 - 1]++
-            tallies[_2 - 1]++
-            tallies[d3 - 1]++
-            tallies[d4 - 1]++
-            tallies[d5 - 1]++
+        fun four_of_a_kind(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
+            val tallies = accumulateCounts(d1, d2, d3, d4, d5)
             for (i in 0..5)
                 if (tallies[i] >= 4)
                     return (i + 1) * 4
@@ -102,12 +97,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
         }
 
         fun three_of_a_kind(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val t = IntArray(FACES_OF_A_DIE)
-            t[d1 - 1]++
-            t[d2 - 1]++
-            t[d3 - 1]++
-            t[d4 - 1]++
-            t[d5 - 1]++
+            val t = accumulateCounts(d1, d2, d3, d4, d5)
             for (i in 0..5)
                 if (t[i] >= 3)
                     return (i + 1) * 3
