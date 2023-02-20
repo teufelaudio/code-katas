@@ -42,6 +42,17 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
 
         fun threes(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) = intArrayOf(d1, d2, d3, d4, d5).evaluate(3)
 
+        // 2, 2, 4 , 5, 1
+
+        // face counts: 1, 2, 0, 1, 1
+
+        // 2, 1, 4 , 5, 3 small straight
+
+        // face counts: 1, 1, 1, 1, 1, 0
+
+        // 2, 6, 4 , 5, 3 large straight
+
+        // face counts: 0, 1, 1, 1, 1, 1
         private fun accumulateCounts(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): IntArray {
             val counts = IntArray(FACES_OF_A_DIE)
             counts[d1 - 1]++
@@ -88,35 +99,18 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
             return 0
         }
 
-        fun smallStraight(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val tallies = IntArray(FACES_OF_A_DIE)
-            tallies[d1 - 1] += 1
-            tallies[d2 - 1] += 1
-            tallies[d3 - 1] += 1
-            tallies[d4 - 1] += 1
-            tallies[d5 - 1] += 1
-            return if (tallies[0] == 1 &&
-                tallies[1] == 1 &&
-                tallies[2] == 1 &&
-                tallies[3] == 1 &&
-                tallies[4] == 1
-            ) 15 else 0
+        private fun evaluateStraight(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
+            val faceCounts = accumulateCounts(d1, d2, d3, d4, d5)
+            val isStraight = faceCounts.filter { it == 1 }.size == 5
+
+            return if (isStraight) {
+                chance(d1, d2, d3, d4, d5)
+            } else 0
         }
 
-        fun largeStraight(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val tallies = IntArray(FACES_OF_A_DIE)
-            tallies[d1 - 1] += 1
-            tallies[d2 - 1] += 1
-            tallies[d3 - 1] += 1
-            tallies[d4 - 1] += 1
-            tallies[d5 - 1] += 1
-            return if (tallies[1] == 1 &&
-                tallies[2] == 1 &&
-                tallies[3] == 1 &&
-                tallies[4] == 1
-                && tallies[5] == 1
-            ) 20 else 0
-        }
+        fun smallStraight(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) = evaluateStraight(d1, d2, d3, d4, d5)
+
+        fun largeStraight(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) = evaluateStraight(d1, d2, d3, d4, d5)
 
         fun fullHouse(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
             val tallies: IntArray
