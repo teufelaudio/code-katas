@@ -3,6 +3,7 @@ node_modules/
 coverage/
 vendor/
 out/
+build/
 
 *.cache
 *.env
