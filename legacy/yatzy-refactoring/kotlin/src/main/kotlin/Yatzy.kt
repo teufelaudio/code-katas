@@ -10,23 +10,23 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
         dice[4] = d5
     }
 
-    private fun evaluate(diceNumber: Int): Int {
-        var sum = 0
-        for (element in dice) {
-            if (element == diceNumber) {
-                sum += diceNumber
-            }
-        }
-        return sum
-    }
+    fun fours() = dice.evaluate(4)
 
-    fun fours() = evaluate(4)
+    fun fives() = dice.evaluate(5)
 
-    fun fives() = evaluate(5)
-
-    fun sixes() = evaluate(6)
+    fun sixes() = dice.evaluate(6)
 
     companion object {
+
+        private fun IntArray.evaluate(diceNumber: Int): Int {
+            var sum = 0
+            for (element in this) {
+                if (element == diceNumber) {
+                    sum += diceNumber
+                }
+            }
+            return sum
+        }
 
         fun chance(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) = d1 + d2 + d3 + d4 + d5
 
@@ -40,37 +40,11 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
             return 0
         }
 
-        fun ones(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            var sum = 0
-            if (d1 == 1) sum++
-            if (d2 == 1) sum++
-            if (d3 == 1) sum++
-            if (d4 == 1) sum++
-            if (d5 == 1)
-                sum++
+        fun ones(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) = intArrayOf(d1, d2, d3, d4, d5).evaluate(1)
 
-            return sum
-        }
+        fun twos(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) = intArrayOf(d1, d2, d3, d4, d5).evaluate(2)
 
-        fun twos(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            var sum = 0
-            if (d1 == 2) sum += 2
-            if (d2 == 2) sum += 2
-            if (d3 == 2) sum += 2
-            if (d4 == 2) sum += 2
-            if (d5 == 2) sum += 2
-            return sum
-        }
-
-        fun threes(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            var s = 0
-            if (d1 == 3) s += 3
-            if (d2 == 3) s += 3
-            if (d3 == 3) s += 3
-            if (d4 == 3) s += 3
-            if (d5 == 3) s += 3
-            return s
-        }
+        fun threes(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) = intArrayOf(d1, d2, d3, d4, d5).evaluate(3)
 
         fun score_pair(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
             val counts = IntArray(6)
