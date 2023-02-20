@@ -87,25 +87,13 @@ public struct Yatzy {
     }
 
     public static func twoPairs(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
-        var counts = [Int](repeating: 0, count: 6)
-        counts[d1-1] += 1;
-        counts[d2-1] += 1;
-        counts[d3-1] += 1;
-        counts[d4-1] += 1;
-        counts[d5-1] += 1;
-        var n = 0
-        var score = 0
-        for i in 0..<6 {
-            if counts[6-i-1] >= 2 {
-                n += 1
-                score += (6-i)
-            }
+        var numberSet: Set<Int> = []
+        var pairSet: Set<Int> = []
+        [d1, d2, d3, d4, d5].forEach { value in
+            guard numberSet.contains(value) else { numberSet.insert(value); return }
+            pairSet.insert(value)
         }
-        if n == 2 {
-            return score * 2
-        } else {
-            return 0
-        }
+        return pairSet.count == 2 ? pairSet.reduce(0, +) * 2 : 0
     }
 
     public static func fourOfAKind(_1: Int, _2: Int, d3: Int, d4: Int, d5: Int) -> Int {
