@@ -18,6 +18,8 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
 
     companion object {
 
+        private const val FACES_OF_A_DIE = 6
+
         private fun IntArray.evaluate(diceNumber: Int): Int {
             var sum = 0
             for (element in this) {
@@ -31,7 +33,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
         fun chance(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) = d1 + d2 + d3 + d4 + d5
 
         fun yatzy(vararg dice: Int): Int {
-            val counts = IntArray(6)
+            val counts = IntArray(FACES_OF_A_DIE)
             for (die in dice)
                 counts[die - 1]++
             for (i in 0..5)
@@ -47,7 +49,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
         fun threes(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) = intArrayOf(d1, d2, d3, d4, d5).evaluate(3)
 
         fun score_pair(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val counts = IntArray(6)
+            val counts = IntArray(FACES_OF_A_DIE)
             counts[d1 - 1]++
             counts[d2 - 1]++
             counts[d3 - 1]++
@@ -64,7 +66,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
         }
 
         fun two_pair(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val counts = IntArray(6)
+            val counts = IntArray(FACES_OF_A_DIE)
             counts[d1 - 1]++
             counts[d2 - 1]++
             counts[d3 - 1]++
@@ -87,7 +89,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
         }
 
         fun four_of_a_kind(_1: Int, _2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val tallies = IntArray(6)
+            val tallies = IntArray(FACES_OF_A_DIE)
             tallies[_1 - 1]++
             tallies[_2 - 1]++
             tallies[d3 - 1]++
@@ -100,7 +102,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
         }
 
         fun three_of_a_kind(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val t = IntArray(6)
+            val t = IntArray(FACES_OF_A_DIE)
             t[d1 - 1]++
             t[d2 - 1]++
             t[d3 - 1]++
@@ -113,7 +115,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
         }
 
         fun smallStraight(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val tallies = IntArray(6)
+            val tallies = IntArray(FACES_OF_A_DIE)
             tallies[d1 - 1] += 1
             tallies[d2 - 1] += 1
             tallies[d3 - 1] += 1
@@ -128,7 +130,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
         }
 
         fun largeStraight(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val tallies = IntArray(6)
+            val tallies = IntArray(FACES_OF_A_DIE)
             tallies[d1 - 1] += 1
             tallies[d2 - 1] += 1
             tallies[d3 - 1] += 1
@@ -150,7 +152,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
             var _3 = false
             var _3_at = 0
 
-            tallies = IntArray(6)
+            tallies = IntArray(FACES_OF_A_DIE)
             tallies[d1 - 1] += 1
             tallies[d2 - 1] += 1
             tallies[d3 - 1] += 1
