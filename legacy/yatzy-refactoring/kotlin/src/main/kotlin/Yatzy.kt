@@ -120,12 +120,11 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
             var _3 = false
             var _3_at = 0
 
-            tallies = IntArray(FACES_OF_A_DIE)
-            tallies[d1 - 1] += 1
-            tallies[d2 - 1] += 1
-            tallies[d3 - 1] += 1
-            tallies[d4 - 1] += 1
-            tallies[d5 - 1] += 1
+            tallies = accumulateCounts(d1, d2, d3, d4, d5)
+//            val fullHouse = tallies.contains(2) && tallies.contains(3)
+//            if (fullHouse) {
+//                tallies.filter { it == 2 }
+//            }
 
             i = 0
             while (i != 6) {
