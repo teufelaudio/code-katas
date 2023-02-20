@@ -3,6 +3,15 @@ import Foundation
 public struct Yatzy {
     private var dice: [Int]
 
+    public init(d1: Int, d2: Int, d3: Int, d4: Int, _5: Int) {
+        dice = [Int](repeating:0, count:5)
+        dice[0] = d1
+        dice[1] = d2
+        dice[2] = d3
+        dice[3] = d4
+        dice[4] = _5
+    }
+
     public static func chance(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
         d1 + d2 + d3 + d4 + d5
     }
@@ -22,74 +31,36 @@ public struct Yatzy {
         return 0
     }
     
+    public static func sum(all value: Int, d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
+        var sum = 0
+        if d1 == value {
+            sum += value
+        }
+        if d2 == value {
+            sum += value
+        }
+        if d3 == value {
+            sum += value
+        }
+        if d4 == value {
+            sum += value
+        }
+        if d5 == value {
+            sum += value
+        }
+        return sum
+    }
+    
     public static func ones(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
-        var sum = 0
-        if d1 == 1 {
-            sum += 1
-        }
-        if d2 == 1 {
-            sum += 1
-        }
-        if d3 == 1 {
-            sum += 1
-        }
-        if d4 == 1 {
-            sum += 1
-        }
-        if d5 == 1 {
-            sum += 1
-        }
-        return sum
-    }
-    
-    public static func twos(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
-        var sum = 0
-        if d1 == 2 {
-            sum += 2
-        }
-        if d2 == 2 {
-            sum += 2
-        }
-        if d3 == 2 {
-            sum += 2
-        }
-        if d4 == 2 {
-            sum += 2
-        }
-        if d5 == 2 {
-            sum += 2
-        }
-        return sum
-    }
-    
-    public static func threes(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
-        var s: Int
-        s = 0
-        if d1 == 3 {
-            s += 3
-        }
-        if d2 == 3 {
-            s += 3
-        }
-        if d3 == 3 {
-            s += 3
-        }
-        if d4 == 3 {
-            s += 3
-        }
-        if d5 == 3 {
-            s += 3
-        }
-        return s
+        sum(all: 1, d1: d1, d2: d2, d3: d3, d4: d4, d5: d5)
     }
 
-    public init(d1: Int, d2: Int, d3: Int, d4: Int, _5: Int) {
-        dice = [Int](repeating:0, count:5)
-        dice[0] = d1
-        dice[1] = d2
-        dice[2] = d3
-        dice[3] = d4
-        dice[4] = _5
+    public static func twos(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
+        sum(all: 2, d1: d1, d2: d2, d3: d3, d4: d4, d5: d5)
+    }
+
+    public static func threes(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
+        sum(all: 3, d1: d1, d2: d2, d3: d3, d4: d4, d5: d5)
     }
 
     public func fours() -> Int {
@@ -116,7 +87,7 @@ public struct Yatzy {
         }
         return s
     }
-    
+
     public func sixes() -> Int {
         var sum = 0
         var at = 0
