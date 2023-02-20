@@ -76,21 +76,14 @@ public struct Yatzy {
     }
 
     public static func scorePair(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
-
-        var counts = [Int](repeating: 0, count: 6)
-        counts[d1-1] += 1;
-        counts[d2-1] += 1;
-        counts[d3-1] += 1;
-        counts[d4-1] += 1;
-        counts[d5-1] += 1;
-        var at = 0
-        while at != 6 {
-            if counts[6-at-1] >= 2 {
-                return (6-at) * 2
-            }
-            at += 1
+        var numberSet: Set<Int> = []
+        var highestPair: Int = 0
+        [d1, d2, d3, d4, d5].forEach { value in
+            guard numberSet.contains(value) else { numberSet.insert(value); return }
+            guard highestPair < value else { return }
+            highestPair = value
         }
-        return 0
+        return highestPair * 2
     }
 
     public static func twoPairs(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
