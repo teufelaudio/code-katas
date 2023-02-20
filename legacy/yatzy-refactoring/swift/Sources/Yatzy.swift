@@ -1,14 +1,10 @@
 import Foundation
 
-public class Yatzy {
+public struct Yatzy {
+    private var dice: [Int]
+
     public static func chance(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
-        var total = 0
-        total += d1
-        total += d2
-        total += d3
-        total += d4
-        total += d5
-        return total
+        d1 + d2 + d3 + d4 + d5
     }
     
     public static func yatzy(dice: Int...) -> Int {
@@ -86,9 +82,7 @@ public class Yatzy {
         }
         return s
     }
-    
-    private var dice: [Int]
-    
+
     public init(d1: Int, d2: Int, d3: Int, d4: Int, _5: Int) {
         dice = [Int](repeating:0, count:5)
         dice[0] = d1
@@ -224,7 +218,7 @@ public class Yatzy {
             tallies[2] == 1 &&
             tallies[3] == 1 &&
             tallies[4] == 1 {
-                return 15
+            return 15
         }
         return 0
     }
