@@ -76,6 +76,7 @@ public struct Yatzy {
     }
 
     public static func scorePair(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
+
         var counts = [Int](repeating: 0, count: 6)
         counts[d1-1] += 1;
         counts[d2-1] += 1;
@@ -152,40 +153,22 @@ public struct Yatzy {
     }
 
     public static func smallStraight(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
-        var tallies: [Int]
-        tallies = [Int](repeating: 0, count: 6)
-        tallies[d1-1] += 1;
-        tallies[d2-1] += 1;
-        tallies[d3-1] += 1;
-        tallies[d4-1] += 1;
-        tallies[d5-1] += 1;
-        if tallies[0] == 1 &&
-            tallies[1] == 1 &&
-            tallies[2] == 1 &&
-            tallies[3] == 1 &&
-            tallies[4] == 1 {
+        let dices = [d1, d2, d3, d4, d5].sorted()
+        if Set([1,2,3,4]).isSubset(of: dices) ||
+           Set([2,3,4,5]).isSubset(of: dices) ||
+            Set([3,4,5,6]).isSubset(of: dices) {
             return 15
         }
         return 0
     }
     
     public static func largeStraight(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
-        var tallies: [Int]
-        tallies = [Int](repeating: 0, count: 6)
-        tallies[d1-1] += 1;
-        tallies[d2-1] += 1;
-        tallies[d3-1] += 1;
-        tallies[d4-1] += 1;
-        tallies[d5-1] += 1;
-        if tallies[1] == 1 &&
-            tallies[2] == 1 &&
-            tallies[3] == 1 &&
-            tallies[4] == 1 &&
-            tallies[5] == 1 {
+        let dices = [d1, d2, d3, d4, d5].sorted()
+        if Set([1,2,3,4,5]).isSubset(of: dices) ||
+           Set([2,3,4,5,6]).isSubset(of: dices) {
             return 20
         }
-        return 0
-
+        return 0        
     }
 
     public static func fullHouse(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {

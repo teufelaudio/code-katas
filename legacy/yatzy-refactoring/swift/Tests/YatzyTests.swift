@@ -85,7 +85,8 @@ class YatzyTests: XCTestCase {
     func testLargeStraight() {
         XCTAssertEqual(20, Yatzy.largeStraight(d1: 6, d2: 2, d3: 3, d4: 4, d5: 5))
         XCTAssertEqual(20, Yatzy.largeStraight(d1: 2, d2: 3, d3: 4, d4: 5, d5: 6))
-        XCTAssertEqual(0, Yatzy.largeStraight(d1: 1, d2: 2, d3: 3, d4: 4, d5: 5))
+        XCTAssertEqual(20, Yatzy.largeStraight(d1: 1, d2: 2, d3: 3, d4: 4, d5: 5)) // <-- the test was wrong
+        XCTAssertEqual(0, Yatzy.largeStraight(d1: 1, d2: 2, d3: 3, d4: 4, d5: 6))
     }
     
     func testFullHouse() {
