@@ -1,5 +1,5 @@
 import XCTest
-@testable import Yatzy_Refactoring_Kata
+@testable import YatzyRefactoring
 
 class YatzyTests: XCTestCase {
     
