@@ -67,28 +67,12 @@ public struct Yatzy {
         sum(all: 4, d1: d1, d2: d2, d3: d3, d4: d4, d5: d5)
     }
 
-    public func fives() -> Int {
-        var s = 0
-        var i = 0
-        while i < dice.count {
-            if dice[i] == 5 {
-                s = s + 5
-            }
-            i += 1
-        }
-        return s
+    public static func fives(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
+        sum(all: 5, d1: d1, d2: d2, d3: d3, d4: d4, d5: d5)
     }
 
-    public func sixes() -> Int {
-        var sum = 0
-        var at = 0
-        while at < dice.count {
-            if dice[at] == 6 {
-                sum = sum + 6
-            }
-            at += 1
-        }
-        return sum
+    public static func sixes(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {
+        sum(all: 6, d1: d1, d2: d2, d3: d3, d4: d4, d5: d5)
     }
 
     public static func scorePair(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) -> Int {

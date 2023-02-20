@@ -42,15 +42,15 @@ class YatzyTests: XCTestCase {
     }
 
     func test5s() {
-        XCTAssertEqual(10, Yatzy(d1: 4, d2: 4, d3: 4, d4: 5, _5: 5).fives())
-        XCTAssertEqual(15, Yatzy(d1: 4, d2: 4, d3: 5, d4: 5, _5: 5).fives())
-        XCTAssertEqual(20, Yatzy(d1: 4, d2: 5, d3: 5, d4: 5, _5: 5).fives())
+        XCTAssertEqual(10, Yatzy.fives(d1: 4, d2: 4, d3: 4, d4: 5, d5: 5))
+        XCTAssertEqual(15, Yatzy.fives(d1: 4, d2: 4, d3: 5, d4: 5, d5: 5))
+        XCTAssertEqual(20, Yatzy.fives(d1: 4, d2: 5, d3: 5, d4: 5, d5: 5))
     }
     
     func test6s() {
-        XCTAssertEqual(0, Yatzy(d1: 4, d2: 4, d3: 4, d4: 5, _5: 5).sixes())
-        XCTAssertEqual(6, Yatzy(d1: 4, d2: 4, d3: 6, d4: 5, _5: 5).sixes())
-        XCTAssertEqual(18, Yatzy(d1: 6, d2: 5, d3: 6, d4: 6, _5: 5).sixes())
+        XCTAssertEqual(0, Yatzy.sixes(d1: 4, d2: 4, d3: 4, d4: 5, d5: 5))
+        XCTAssertEqual(6, Yatzy.sixes(d1: 4, d2: 4, d3: 6, d4: 5, d5: 5))
+        XCTAssertEqual(18, Yatzy.sixes(d1: 6, d2: 5, d3: 6, d4: 6, d5: 5))
     }
     
     func testOnePair() {
