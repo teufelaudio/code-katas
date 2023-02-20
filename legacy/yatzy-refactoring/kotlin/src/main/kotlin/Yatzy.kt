@@ -19,6 +19,7 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
     companion object {
 
         private const val FACES_OF_A_DIE = 6
+        private const val YATZY_JACKPOT = 50
 
         private fun IntArray.evaluate(diceNumber: Int): Int {
             var sum = 0
@@ -32,15 +33,8 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
 
         fun chance(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) = d1 + d2 + d3 + d4 + d5
 
-        fun yatzy(vararg dice: Int): Int {
-            val counts = IntArray(FACES_OF_A_DIE)
-            for (die in dice)
-                counts[die - 1]++
-            for (i in 0..5)
-                if (counts[i] == 5)
-                    return 50
-            return 0
-        }
+        fun yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) =
+            evaluateMultipleFaceCounts(5, d1, d2, d3, d4, d5)
 
         fun ones(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) = intArrayOf(d1, d2, d3, d4, d5).evaluate(1)
 
@@ -58,17 +52,8 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
             return counts
         }
 
-        fun score_pair(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val counts = accumulateCounts(d1, d2, d3, d4, d5)
-            var at: Int
-            at = 0
-            while (at != 6) {
-                if (counts[6 - at - 1] >= 2)
-                    return (6 - at) * 2
-                at++
-            }
-            return 0
-        }
+        fun score_pair(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) =
+            evaluateMultipleFaceCounts(2, d1, d2, d3, d4, d5)
 
         fun two_pair(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
             val counts = accumulateCounts(d1, d2, d3, d4, d5)
@@ -88,19 +73,18 @@ class Yatzy(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) {
                 0
         }
 
-        fun four_of_a_kind(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val tallies = accumulateCounts(d1, d2, d3, d4, d5)
-            for (i in 0..5)
-                if (tallies[i] >= 4)
-                    return (i + 1) * 4
-            return 0
-        }
+        fun three_of_a_kind(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) =
+            evaluateMultipleFaceCounts(3, d1, d2, d3, d4, d5)
 
-        fun three_of_a_kind(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
-            val t = accumulateCounts(d1, d2, d3, d4, d5)
-            for (i in 0..5)
-                if (t[i] >= 3)
-                    return (i + 1) * 3
+        fun four_of_a_kind(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int) =
+            evaluateMultipleFaceCounts(4, d1, d2, d3, d4, d5)
+
+        private fun evaluateMultipleFaceCounts(occurrences: Int, d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int {
+            val faceCounts = accumulateCounts(d1, d2, d3, d4, d5)
+            for (i in 5 downTo 0)
+                if (faceCounts[i] >= occurrences)
+                    return if (occurrences == 5) YATZY_JACKPOT
+                    else (i + 1) * occurrences
             return 0
         }
 
