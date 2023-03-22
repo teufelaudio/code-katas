@@ -4,6 +4,7 @@ coverage/
 vendor/
 out/
 build/
+cmake-build-debug/
 
 *.cache
 *.env
