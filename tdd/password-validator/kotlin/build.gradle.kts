@@ -1,11 +1,9 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    kotlin("jvm") version "1.7.21"
+    kotlin("jvm") version "1.8.0"
     application
 }
 
-group = "me.admin"
+group = "org.example"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -20,10 +18,10 @@ tasks.test {
     useJUnitPlatform()
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+kotlin {
+    jvmToolchain(8)
 }
 
 application {
-    mainClass.set("PasswordValidatorKt")
+    mainClass.set("MainKt")
 }
