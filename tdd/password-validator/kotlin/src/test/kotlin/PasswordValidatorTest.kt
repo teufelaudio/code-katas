@@ -25,4 +25,9 @@ internal class PasswordValidatorTest {
     fun missingLowerLetter() {
         assertFalse(validator.validate("1BC_EFGHI"))
     }
+
+    @Test
+    fun missingNumber() {
+        assertFalse(validator.validate("abc_eFghi"))
+    }
 }
