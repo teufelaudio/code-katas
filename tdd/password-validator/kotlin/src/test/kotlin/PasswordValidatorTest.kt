@@ -15,4 +15,9 @@ internal class PasswordValidatorTest {
     fun invalidLength() {
         assertFalse(validator.validate("1bc_eFgh"))
     }
+
+    @Test
+    fun missingCapitalLetter() {
+        assertFalse(validator.validate("1bc_efghi"))
+    }
 }
