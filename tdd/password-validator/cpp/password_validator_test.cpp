@@ -1,10 +1,12 @@
 #include <string>
 #include <gtest/gtest.h>
 
-bool kata_main(std::string input);
+bool validator(std::string input);
 
-TEST(VALIDATEFRAMEWORK, DOESTHEKATAWORK) {
-    bool ret = kata_main("THIS IS A STRING");
-    // Yay it compiles and runs
-    EXPECT_EQ(0, ret);
+TEST(LENGTHTEST, TEST8CHARS) {
+    EXPECT_EQ(validator("12345678"), false);
+}
+
+TEST(LENGTHTEST, TEST9CHARS) {
+    EXPECT_EQ(validator("123456789"), true);
 }
