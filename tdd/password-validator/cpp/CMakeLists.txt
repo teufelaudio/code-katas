@@ -24,5 +24,5 @@ target_compile_options(gtest PRIVATE "-w")
 
 add_executable(password_validator_test password_validator_test.cpp password_validator.cpp)
 target_link_libraries(password_validator_test gtest gmock gtest_main)
-target_compile_features(password_validator_test PUBLIC cxx_std_17)
+target_compile_features(password_validator_test PUBLIC cxx_std_20)
 gtest_discover_tests(password_validator_test)
