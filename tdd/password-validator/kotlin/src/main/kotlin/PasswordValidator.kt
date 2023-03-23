@@ -1,4 +1,4 @@
 class PasswordValidator {
 
-    fun validate(password: String) = true
+    fun validate(password: String) = password.length >= 9
 }
