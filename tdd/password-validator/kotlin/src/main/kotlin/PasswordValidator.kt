@@ -1,5 +1,4 @@
 class PasswordValidator {
 
-    fun validate(password: String) = false
-
+    fun validate(password: String) = true
 }
