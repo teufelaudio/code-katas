@@ -30,4 +30,9 @@ internal class PasswordValidatorTest {
     fun missingNumber() {
         assertFalse(validator.validate("abc_eFghi"))
     }
+
+    @Test
+    fun missingUnderscore() {
+        assertFalse(validator.validate("1bc+eFghi"))
+    }
 }
