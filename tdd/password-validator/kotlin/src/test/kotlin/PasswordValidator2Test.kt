@@ -17,6 +17,11 @@ internal class PasswordValidator2Test {
     }
 
     @Test
+    fun missingUpperCaseLetter() {
+        assertFalse(validator.validate("a2cdef"))
+    }
+
+    @Test
     fun missingLowerCaseLetter() {
         assertFalse(validator.validate("A2CDEF"))
     }

@@ -22,7 +22,7 @@ internal class PasswordValidator1Test {
     }
 
     @Test
-    fun missingLowerLetter() {
+    fun missingLowerCaseLetter() {
         assertFalse(validator.validate("1BC_EFGHI"))
     }
 
