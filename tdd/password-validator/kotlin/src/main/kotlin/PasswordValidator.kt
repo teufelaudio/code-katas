@@ -4,5 +4,6 @@ class PasswordValidator {
         return password.length >= 9
             && password.any { it.isUpperCase() }
             && password.any { it.isLowerCase() }
+            && password.any { it.isDigit() }
     }
 }
