@@ -1,36 +1,28 @@
-cmake_minimum_required(VERSION 3.13)
-project(cpp)
 
-# Load FetchContent module.
+cmake_minimum_required(VERSION 3.11)
+project(Teufel-Kata)
+
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 include(FetchContent)
 
-# Declare GoogleTest as the content to fetch
 FetchContent_Declare(
         googletest
         GIT_REPOSITORY https://github.com/google/googletest.git
-        GIT_TAG release-1.8.1
+        GIT_TAG        release-1.10.0
+        GIT_SHALLOW    1
 )
 
-# Fetch GoogleTest amd make build scripts available
-if (NOT googletest_POPULATED)
+FetchContent_GetProperties(googletest)
+if(NOT googletest_POPULATED)
     FetchContent_Populate(googletest)
+    add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
 endif()
 
-#set(gtest_force_shared_crt OFF CACHE BOOL "" FORCE)
-# Force Google Test to link the C/C++ runtimes dynamically when
-# building on Visual Studio
-# Link:
-# * https://github.com/google/googletest/tree/release-1.8.1/googletest#visual-studio-dynamic-vs-static-runtimes
-if (MSVC)
-    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-endif()
-
-# Bring the populated content into the build
-add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
-
-# uncomment this line to enable coverage measurements using gcov
-# set(CMAKE_CXX_FLAGS "--coverage")
-
+include(GoogleTest)
 enable_testing()
-add_subdirectory(src)
-add_subdirectory(test)
+target_compile_options(gtest PRIVATE "-w")
+
+add_executable(password_validator_test password_validator_test.cpp password_validator.cpp)
+target_link_libraries(password_validator_test gtest gmock gtest_main)
+target_compile_features(password_validator_test PUBLIC cxx_std_17)
+gtest_discover_tests(password_validator_test)
