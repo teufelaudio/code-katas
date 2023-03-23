@@ -1,4 +1,5 @@
 ## How to build and run:
+
 Normal CMAKE workflow
   1. mkdir build && cmake -B build
   2. cd build
