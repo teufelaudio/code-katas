@@ -5,5 +5,6 @@ class PasswordValidator {
             && password.any { it.isUpperCase() }
             && password.any { it.isLowerCase() }
             && password.any { it.isDigit() }
+            && password.any { it == '_' }
     }
 }
