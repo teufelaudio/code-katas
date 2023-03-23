@@ -28,8 +28,8 @@ A valid password should meet the following requirements:
 
 Design and implement software that can adapt to different password validation rules TDD and focus on the OOP principles.
 
-Let's pretend that now we want to create another type of password validations because on our app we need different type
-of passwords, such as:
+Let's pretend that now we want to create another type of password validations 
+because on our app we need different type of passwords, such as:
 
 #### Validation 2
 
@@ -47,8 +47,8 @@ of passwords, such as:
 
 ### Things to practice
 
-In this iteration, we should try to identify a good abstraction and try to work on OOP principles as well as on design
-patterns like Builder and Factory
+In this iteration, we should try to identify a good abstraction and try to work on 
+OOP principles as well as on design patterns like Builder and Factory
 
 ## Iteration 3 - Multiple errors
 

@@ -1,6 +1,6 @@
-class PasswordValidator {
+class PasswordValidator1 : PasswordValidatorInterface {
 
-    fun validate(password: String): Boolean {
+    override fun validate(password: String): Boolean {
         return password.length >= 9
             && password.any { it.isUpperCase() }
             && password.any { it.isLowerCase() }

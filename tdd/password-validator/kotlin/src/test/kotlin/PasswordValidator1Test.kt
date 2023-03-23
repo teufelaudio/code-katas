@@ -2,9 +2,9 @@ import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-internal class PasswordValidatorTest {
+internal class PasswordValidator1Test {
 
-    private val validator = PasswordValidator()
+    private val validator = PasswordValidator1()
 
     @Test
     fun validPassword() {
