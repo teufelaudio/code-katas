@@ -26,4 +26,11 @@ internal class XmasTreeTest {
              |
         """.trimIndent())
     }
+
+    @Test
+    fun `should return the widest part of the tree`() {
+        val width = xmas.widestPartWidth(3)
+        assertThat(width).isEqualTo(5)
+    }
+
 }

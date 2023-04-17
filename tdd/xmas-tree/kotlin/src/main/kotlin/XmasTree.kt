@@ -15,4 +15,7 @@ class XmasTree {
              """.trimIndent()
     }
 
+    // TODO Integrate in main function, make private
+    fun widestPartWidth(height: Int) = height * 2 -1
+
 }
