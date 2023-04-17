@@ -1,6 +1,5 @@
+import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 
 internal class XmasTreeTest {
 
@@ -10,7 +9,7 @@ internal class XmasTreeTest {
 
         val output : String = xmas.tree()
 
-        assertEquals('|', output.last())
+        assertThat(output.last()).isEqualTo('|')
     }
 
 }
