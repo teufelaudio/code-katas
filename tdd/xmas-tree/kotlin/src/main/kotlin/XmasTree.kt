@@ -1,8 +1,18 @@
 class XmasTree {
 
-    fun tree() = """
-        x
-        |
-        """.trimIndent()
+    fun tree(height: Int) = when (height) {
+        2 ->
+            """
+             x
+            xxx
+             |
+             """.trimIndent()
+
+        else ->
+            """
+             x
+             |
+             """.trimIndent()
+    }
 
 }
