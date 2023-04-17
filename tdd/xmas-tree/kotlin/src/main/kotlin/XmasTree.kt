@@ -1,3 +1,5 @@
 class XmasTree {
 
+    fun tree() = "|"
+
 }
