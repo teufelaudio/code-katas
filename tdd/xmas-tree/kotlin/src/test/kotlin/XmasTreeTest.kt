@@ -38,9 +38,21 @@ internal class XmasTreeTest {
     }
 
     @Test
-    fun `should return the widest part of the tree`() {
-        val width = xmas.levelWidth(3)
-        assertThat(width).isEqualTo(5)
+    fun `should output tree with height 10`() {
+        assertThat(xmas.tree(10)).isEqualTo(
+            """
+                 x
+                xxx
+               xxxxx
+              xxxxxxx
+             xxxxxxxxx
+            xxxxxxxxxxx
+           xxxxxxxxxxxxx
+          xxxxxxxxxxxxxxx
+         xxxxxxxxxxxxxxxxx
+        xxxxxxxxxxxxxxxxxxx
+                 |
+        """.trimIndent())
     }
 
 }
