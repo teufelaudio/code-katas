@@ -1,5 +1,8 @@
 class XmasTree {
 
-    fun tree() = "|"
+    fun tree() = """
+        x
+        |
+        """.trimIndent()
 
 }

@@ -3,13 +3,20 @@ import org.junit.jupiter.api.Test
 
 internal class XmasTreeTest {
 
+    private val xmas = XmasTree()
+
     @Test
-    fun treeShouldHaveTrunk() {
-        val xmas = XmasTree()
-
-        val output : String = xmas.tree()
-
+    fun `tree should have trunk`() {
+        val output = xmas.tree()
         assertThat(output.last()).isEqualTo('|')
     }
 
+    @Test
+    fun `should output tree with height 1`() {
+        val output = xmas.tree()
+        assertThat(output).isEqualTo("""
+            x
+            |
+        """.trimIndent())
+    }
 }
