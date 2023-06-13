@@ -52,4 +52,20 @@ final class PopularityAnalyzerTest extends TestCase
             $result
         );
     }
+
+    public function test_ignore_special_characters(): void
+    {
+        $popularityAnalyzer = new PopularityAnalyzer();
+
+        $result = $popularityAnalyzer->mostPopularWords('one. One, ONE "Two" TWO three');
+
+        self::assertEquals(
+            [
+                'one' => 3,
+                'two' => 2,
+                'three' => 1,
+            ],
+            $result
+        );
+    }
 }

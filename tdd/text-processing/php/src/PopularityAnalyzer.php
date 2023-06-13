@@ -12,6 +12,8 @@ final class PopularityAnalyzer implements PopularityAnalyzerInterface
             return [];
         }
 
+        $text = preg_replace('/[^A-Za-z0-9\s]/', '', $text);
+
         return array_count_values(explode(' ', strtolower($text)));
     }
 }
