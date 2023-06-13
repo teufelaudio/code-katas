@@ -27,4 +27,13 @@ final class PopularityAnalyzerTest extends TestCase
 
         self::assertCount(3, $result);
     }
+
+    public function test_three_identical_words_with_different_case(): void
+    {
+        $popularityAnalyzer = new PopularityAnalyzer();
+
+        $result = $popularityAnalyzer->mostPopularWords('one One oNe');
+
+        self::assertEquals(['one' => 3], $result);
+    }
 }

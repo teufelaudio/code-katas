@@ -11,6 +11,7 @@ final class PopularityAnalyzer implements PopularityAnalyzerInterface
         if (empty($text)) {
             return [];
         }
-        return explode(' ', $text);
+
+        return array_count_values(explode(' ', strtolower($text)));
     }
 }
