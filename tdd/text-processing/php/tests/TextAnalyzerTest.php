@@ -49,4 +49,11 @@ class TextAnalyzerTest extends TestCase
 
         self::assertEquals(['foo' => 1], $result);
     }
+
+    public function test_word_map_contains_one_entry_for_two_same_words_string(): void
+    {
+        $result = $this->analyzer->getWordCountMap('foo foo');
+
+        self::assertEquals(['foo' => 2], $result);
+    }
 }
