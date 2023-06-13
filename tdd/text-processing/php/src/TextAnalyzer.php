@@ -2,9 +2,9 @@
 
 namespace Kata;
 
-class TheClass
+class TextAnalyzer
 {
-    public function theMethod(): bool
+    public function analyze(): bool
     {
         return true;
     }
