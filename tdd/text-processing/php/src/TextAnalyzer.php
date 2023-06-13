@@ -15,6 +15,8 @@ class TextAnalyzer
             return [];
         }
 
+        $string = $this->sanitizeString($string);
+
         $wordList = explode(' ', $string);
 
         $wordList = array_count_values($wordList);
@@ -22,5 +24,14 @@ class TextAnalyzer
         arsort($wordList, SORT_NUMERIC);
 
         return $wordList;
+    }
+
+    private function sanitizeString(string $string): string
+    {
+        $string = strtolower($string);
+
+        $string = str_replace([',','.'], '', $string);
+
+        return $string;
     }
 }

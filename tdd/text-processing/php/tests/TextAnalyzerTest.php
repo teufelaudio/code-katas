@@ -87,4 +87,15 @@ class TextAnalyzerTest extends TestCase
             'bar' => 1,
         ], $result);
     }
+
+    public function test_word_map_contains_correct_entries_for_different_words_string_containing_other_characters(): void
+    {
+        $result = $this->analyzer->getWordCountMap('Baz, bar baz foo baz foo.');
+
+        self::assertSame([
+            'baz' => 3,
+            'foo' => 2,
+            'bar' => 1,
+        ], $result);
+    }
 }
