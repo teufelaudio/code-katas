@@ -42,4 +42,11 @@ class TextAnalyzerTest extends TestCase
 
         self::assertEquals([], $result);
     }
+
+    public function test_word_map_contains_one_entry_for_one_word_string(): void
+    {
+        $result = $this->analyzer->getWordCountMap('foo');
+
+        self::assertEquals(['foo' => 1], $result);
+    }
 }

@@ -17,6 +17,6 @@ class TextAnalyzer
 
         $wordList = explode(' ', $string);
 
-        return $wordList;
+        return array_count_values($wordList);
     }
 }
