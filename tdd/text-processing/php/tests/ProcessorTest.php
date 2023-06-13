@@ -6,7 +6,7 @@ use Kata\PopularityAnalyzerInterface;
 use Kata\Processor;
 use PHPUnit\Framework\TestCase;
 
-class MyClassTest extends TestCase
+class ProcessorTest extends TestCase
 {
     public function test_empty_string(): void
     {
