@@ -18,4 +18,13 @@ final class PopularityAnalyzerTest extends TestCase
 
         self::assertEmpty($result);
     }
+
+    public function test_three_different_words(): void
+    {
+        $popularityAnalyzer = new PopularityAnalyzer();
+
+        $result = $popularityAnalyzer->mostPopularWords('one two three');
+
+        self::assertCount(3, $result);
+    }
 }
