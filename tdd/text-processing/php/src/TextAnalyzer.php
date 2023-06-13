@@ -8,4 +8,15 @@ class TextAnalyzer
     {
         return str_word_count($text);
     }
+
+    public function getWordCountMap(string $string): array
+    {
+        if ($string === '') {
+            return [];
+        }
+
+        $wordList = explode(' ', $string);
+
+        return $wordList;
+    }
 }

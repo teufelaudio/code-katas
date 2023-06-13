@@ -35,4 +35,11 @@ class TextAnalyzerTest extends TestCase
 
         self::assertEquals(2, $result);
     }
+
+    public function test_word_map_is_empty_for_empty_string(): void
+    {
+        $result = $this->analyzer->getWordCountMap('');
+
+        self::assertEquals([], $result);
+    }
 }
