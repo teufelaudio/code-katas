@@ -17,6 +17,10 @@ class TextAnalyzer
 
         $wordList = explode(' ', $string);
 
-        return array_count_values($wordList);
+        $wordList = array_count_values($wordList);
+
+        arsort($wordList, SORT_NUMERIC);
+
+        return $wordList;
     }
 }

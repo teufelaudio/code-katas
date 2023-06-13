@@ -50,10 +50,41 @@ class TextAnalyzerTest extends TestCase
         self::assertEquals(['foo' => 1], $result);
     }
 
-    public function test_word_map_contains_one_entry_for_two_same_words_string(): void
+    public function test_word_map_contains_correct_entry_for_two_same_words_string(): void
     {
         $result = $this->analyzer->getWordCountMap('foo foo');
 
         self::assertEquals(['foo' => 2], $result);
+    }
+
+    public function test_word_map_contains_correct_entry_for_two_different_words_string(): void
+    {
+        $result = $this->analyzer->getWordCountMap('foo bar');
+
+        self::assertEquals([
+            'foo' => 1,
+            'bar' => 1,
+        ], $result);
+    }
+
+    public function test_word_map_contains_correct_entries_for_different_words_string_with_duplicates(): void
+    {
+        $result = $this->analyzer->getWordCountMap('bar foo foo');
+
+        self::assertSame([
+            'foo' => 2,
+            'bar' => 1,
+        ], $result);
+    }
+
+    public function test_word_map_contains_correct_entries_for_different_words_string_with_multiple_duplicates(): void
+    {
+        $result = $this->analyzer->getWordCountMap('baz bar baz foo baz foo');
+
+        self::assertSame([
+            'baz' => 3,
+            'foo' => 2,
+            'bar' => 1,
+        ], $result);
     }
 }
