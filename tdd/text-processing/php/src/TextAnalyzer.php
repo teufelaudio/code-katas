@@ -4,8 +4,8 @@ namespace Kata;
 
 class TextAnalyzer
 {
-    public function analyze(): bool
+    public function analyze(string $text): int
     {
-        return true;
+        return str_word_count($text);
     }
 }

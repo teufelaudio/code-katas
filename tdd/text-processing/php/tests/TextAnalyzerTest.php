@@ -15,10 +15,10 @@ class TextAnalyzerTest extends TestCase
     }
 
     /** @test */
-    public function give_me_a_good_name_please(): void
+    public function test_empty_string_returns_0(): void
     {
-        $result = $this->analyzer->analyze();
+        $result = $this->analyzer->analyze('');
 
-        self::assertEquals(true, $result);
+        self::assertEquals(0, $result);
     }
 }
