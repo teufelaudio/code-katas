@@ -4,6 +4,10 @@ namespace Kata;
 
 class Processor
 {
+    public function __construct(private PopularityAnalyzerInterface $popularityAnalyser)
+    {
+    }
+
     public function process(string $text): string
     {
         return <<<EOF
