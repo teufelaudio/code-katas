@@ -21,4 +21,18 @@ class TextAnalyzerTest extends TestCase
 
         self::assertEquals(0, $result);
     }
+
+    public function test_one_word_string_returns_1(): void
+    {
+        $result = $this->analyzer->analyze('foo');
+
+        self::assertEquals(1, $result);
+    }
+
+    public function test_two_word_string_returns_2(): void
+    {
+        $result = $this->analyzer->analyze('foo bar');
+
+        self::assertEquals(2, $result);
+    }
 }
