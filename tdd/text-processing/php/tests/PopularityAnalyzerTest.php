@@ -36,4 +36,20 @@ final class PopularityAnalyzerTest extends TestCase
 
         self::assertEquals(['one' => 3], $result);
     }
+
+    public function test_counts_popularity(): void
+    {
+        $popularityAnalyzer = new PopularityAnalyzer();
+
+        $result = $popularityAnalyzer->mostPopularWords('one One ONE Two TWO three');
+
+        self::assertEquals(
+            [
+                'one' => 3,
+                'two' => 2,
+                'three' => 1,
+            ],
+            $result
+        );
+    }
 }
