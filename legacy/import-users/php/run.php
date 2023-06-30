@@ -4,23 +4,119 @@ declare(strict_types=1);
 
 const USER_URL = 'https://randomuser.me/api/?inc=gender,name,email,location&results=5&seed=a9b25cd955e2037h';
 
+class User
+{
+    private int $id;
+    private string $gender = '';
+    private string $name = '';
+    private string $country = '';
+    private string $postcode = '';
+    private string $email = '';
+    private DateTimeImmutable $birthdate;
+
+    /**
+     * @param int $id
+     * @return User
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @param string $gender
+     * @return User
+     */
+    public function setGender(string $gender): self
+    {
+        $this->gender = $gender;
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @return User
+     */
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @param string $country
+     * @return User
+     */
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
+        return $this;
+    }
+
+    /**
+     * @param string $postcode
+     * @return User
+     */
+    public function setPostcode(string $postcode): self
+    {
+        $this->postcode = $postcode;
+        return $this;
+    }
+
+    /**
+     * @param string $email
+     * @return User
+     */
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * @param DateTimeImmutable $birthdate
+     * @return User
+     */
+    public function setBirthdate(DateTimeImmutable $birthdate): self
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    public static function fromArray(array $userArray): self
+    {
+        return (new self)
+            ->setId((int)$userArray['id'])
+            ->setGender($userArray['gender'])
+            ->setName($userArray['name'])
+            ->setCountry($userArray['country'])
+            ->setPostcode($userArray['postcode'])
+            ->setEmail($userArray['email'])
+            ->setBirthdate(new DateTimeImmutable($userArray['birthdate']));
+    }
+}
+
 // fields: ID, gender, Name ,country, postcode, email, Birthdate
 /**
  * @return list<list<string>>
  */
 function readUserFromCsv(): array
 {
-    $usersFromCsv = array_map('str_getcsv', file(__DIR__ . '/../users.csv'));
-    $csvProviders = [];
-    array_walk($csvProviders, function (&$a) use ($usersFromCsv) {
-        $a = array_combine($usersFromCsv[0], $a);
-    });
-    array_shift($usersFromCsv); # Remove header column
+    $csv = fopen(__DIR__ . '/../users.csv', 'r');  // Open the CSV file in read mode
+    $headers = fgetcsv($csv);  // Read the first line as headers
 
-var_dump($usersFromCsv[0]);
-die('');
+    $users = array();  // Initialize an empty array to store the data
 
-    return $usersFromCsv;
+    while (($row = fgetcsv($csv)) !== false) {
+//        $users[] = (new User())->fromArray((array)array_combine($headers, $row));  // Combine headers with row values and add to the data array
+        $users[] = array_combine($headers, $row);  // Combine headers with row values and add to the data array
+    }
+
+    fclose($csv);  // Close the file
+
+    return $users;
 }
 
 function readUserFromWebUrl(): array
