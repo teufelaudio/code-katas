@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 const USER_URL = 'https://randomuser.me/api/?inc=gender,name,email,location&results=5&seed=a9b25cd955e2037h';
 
-$usersFromCsv = readUserFromCsv();
-
 // fields: ID, gender, Name ,country, postcode, email, Birthdate
 function readUserFromCsv()
 {
@@ -14,44 +12,10 @@ function readUserFromCsv()
     array_walk($csvProviders, function (&$a) use ($usersFromCsv) {
         $a = array_combine($usersFromCsv[0], $a);
     });
+    array_shift($usersFromCsv); # Remove header column
 
-    return array_shift($usersFromCsv); # Remove header column
+    return $usersFromCsv;
 }
-
-# Parse URL content
-$url = USER_URL;
-$web_provider = json_decode(file_get_contents($url))->results;
-$pr = [];
-array_walk($pr, function (&$a) use ($web_provider) {
-    $a = array_combine($web_provider[0], $a);
-});
-
-$usersFromWeb = [];
-$i = 100000000000;
-foreach ($web_provider as $item) {
-    $i++;
-    if ($item instanceof stdClass) {
-        $usersFromWeb[] = [
-            $i, // id
-            $item->gender,
-            $item->name->first . ' ' . $item->name->last,
-            $item->location->country,
-            $item->location->postcode,
-            $item->email,
-            (new Datetime('now'))->format('Y') // birhtday
-        ];
-    }
-}
-
-/**
- * @param $providers [ id -> number,
- *                   email -> string
- *                   first_name -> string
- *                   last_name -> string ] array
- */
-$users = array_merge($usersFromCsv, $usersFromWeb); # merge arrays
-
-printUserList($users);
 
 function printUserList(array $users) {
     echo "*********************************************************************************" . PHP_EOL;
@@ -63,3 +27,49 @@ function printUserList(array $users) {
     echo "*********************************************************************************" . PHP_EOL;
     echo count($users) . ' users in total!' . PHP_EOL;
 }
+
+$usersFromCsv = readUserFromCsv();
+//var_dump($usersFromCsv);
+
+# Parse URL content
+$webProvider = json_decode(file_get_contents(USER_URL))->results;
+$pr = [];
+array_walk($pr, function (&$a) use ($webProvider) {
+    $a = array_combine($webProvider[0], $a);
+});
+
+function readUserFromWebUrl(array $webProvider)
+{
+    $usersFromWeb = [];
+
+    $i = 100000000000;
+    foreach ($webProvider as $item) {
+        $i++;
+        if ($item instanceof stdClass) {
+            $usersFromWeb[] = [
+                $i, // id
+                $item->gender,
+                $item->name->first . ' ' . $item->name->last,
+                $item->location->country,
+                $item->location->postcode,
+                $item->email,
+                (new Datetime('now'))->format('Y') // birthday
+            ];
+        }
+    }
+
+    return $usersFromWeb;
+}
+
+$usersFromWeb = readUserFromWebUrl($webProvider);
+//var_dump($usersFromWeb);
+/**
+ * @param $providers [ id -> number,
+ *                   email -> string
+ *                   first_name -> string
+ *                   last_name -> string ] array
+ */
+$users = array_merge($usersFromCsv, $usersFromWeb); # merge arrays
+
+printUserList($users);
+
