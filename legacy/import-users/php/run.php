@@ -4,16 +4,19 @@ declare(strict_types=1);
 
 const USER_URL = 'https://randomuser.me/api/?inc=gender,name,email,location&results=5&seed=a9b25cd955e2037h';
 
-# Parse CSV file
-$getcurrentworkingDirectory = __DIR__;
+$usersFromCsv = readUserFromCsv();
 
 // fields: ID, gender, Name ,country, postcode, email, Birthdate
-$usersFromCsv = array_map('str_getcsv', file($getcurrentworkingDirectory . '/../users.csv'));
-$csvProviders = [];
-array_walk($csvProviders, function (&$a) use ($usersFromCsv) {
-    $a = array_combine($usersFromCsv[0], $a);
-});
-array_shift($usersFromCsv); # Remove header column
+function readUserFromCsv()
+{
+    $usersFromCsv = array_map('str_getcsv', file(__DIR__ . '/../users.csv'));
+    $csvProviders = [];
+    array_walk($csvProviders, function (&$a) use ($usersFromCsv) {
+        $a = array_combine($usersFromCsv[0], $a);
+    });
+
+    return array_shift($usersFromCsv); # Remove header column
+}
 
 # Parse URL content
 $url = USER_URL;
