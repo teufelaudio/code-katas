@@ -46,14 +46,17 @@ foreach ($web_provider as $item) {
  *                   first_name -> string
  *                   last_name -> string ] array
  */
-$providers = array_merge($csv_provider, $b); # merge arrays
+$users = array_merge($csv_provider, $b); # merge arrays
 
-# Print users
-echo "*********************************************************************************" . PHP_EOL;
-echo "* ID\t\t* COUNTRY\t* NAME\t\t* EMAIL\t\t\t\t*" . PHP_EOL;
-echo "*********************************************************************************" . PHP_EOL;
-foreach ($providers as $item) {
-    echo sprintf("* %s\t* %s\t* %s\t* %s\t*", $item[0], $item[3], $item[2], $item[5]) . PHP_EOL;
+printUserList($users);
+
+function printUserList(array $users) {
+    echo "*********************************************************************************" . PHP_EOL;
+    echo "* ID\t\t* COUNTRY\t* NAME\t\t* EMAIL\t\t\t\t*" . PHP_EOL;
+    echo "*********************************************************************************" . PHP_EOL;
+    foreach ($users as $user) {
+        echo sprintf("* %s\t* %s\t* %s\t* %s\t*", $user[0], $user[3], $user[2], $user[5]) . PHP_EOL;
+    }
+    echo "*********************************************************************************" . PHP_EOL;
+    echo count($users) . ' users in total!' . PHP_EOL;
 }
-echo "*********************************************************************************" . PHP_EOL;
-echo count($providers) . ' users in total!' . PHP_EOL;
