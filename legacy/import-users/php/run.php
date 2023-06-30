@@ -8,12 +8,12 @@ const USER_URL = 'https://randomuser.me/api/?inc=gender,name,email,location&resu
 $getcurrentworkingDirectory = __DIR__;
 
 // fields: ID, gender, Name ,country, postcode, email, Birthdate
-$csv_provider = array_map('str_getcsv', file($getcurrentworkingDirectory . '/../users.csv'));
+$usersFromCsv = array_map('str_getcsv', file($getcurrentworkingDirectory . '/../users.csv'));
 $csvProviders = [];
-array_walk($csvProviders, function (&$a) use ($csv_provider) {
-    $a = array_combine($csv_provider[0], $a);
+array_walk($csvProviders, function (&$a) use ($usersFromCsv) {
+    $a = array_combine($usersFromCsv[0], $a);
 });
-array_shift($csv_provider); # Remove header column
+array_shift($usersFromCsv); # Remove header column
 
 # Parse URL content
 $url = USER_URL;
@@ -23,12 +23,12 @@ array_walk($pr, function (&$a) use ($web_provider) {
     $a = array_combine($web_provider[0], $a);
 });
 
-$b = [];
+$usersFromWeb = [];
 $i = 100000000000;
 foreach ($web_provider as $item) {
     $i++;
     if ($item instanceof stdClass) {
-        $b[] = [
+        $usersFromWeb[] = [
             $i, // id
             $item->gender,
             $item->name->first . ' ' . $item->name->last,
@@ -46,7 +46,7 @@ foreach ($web_provider as $item) {
  *                   first_name -> string
  *                   last_name -> string ] array
  */
-$users = array_merge($csv_provider, $b); # merge arrays
+$users = array_merge($usersFromCsv, $usersFromWeb); # merge arrays
 
 printUserList($users);
 
