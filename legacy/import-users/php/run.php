@@ -59,16 +59,10 @@ function printUserList(array $users): void
     echo count($users) . ' users in total!' . PHP_EOL;
 }
 
-$usersFromCsv = readUserFromCsv();
-
-$usersFromWeb = readUserFromWebUrl();
-/**
- * @param $providers [ id -> number,
- *                   email -> string
- *                   first_name -> string
- *                   last_name -> string ] array
- */
-$users = array_merge($usersFromCsv, $usersFromWeb); # merge arrays
+$users = array_merge(
+    readUserFromCsv(),
+    readUserFromWebUrl()
+);
 
 printUserList($users);
 
