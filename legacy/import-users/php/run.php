@@ -5,6 +5,9 @@ declare(strict_types=1);
 const USER_URL = 'https://randomuser.me/api/?inc=gender,name,email,location&results=5&seed=a9b25cd955e2037h';
 
 // fields: ID, gender, Name ,country, postcode, email, Birthdate
+/**
+ * @return list<list<string>>
+ */
 function readUserFromCsv(): array
 {
     $usersFromCsv = array_map('str_getcsv', file(__DIR__ . '/../users.csv'));
@@ -13,6 +16,9 @@ function readUserFromCsv(): array
         $a = array_combine($usersFromCsv[0], $a);
     });
     array_shift($usersFromCsv); # Remove header column
+
+var_dump($usersFromCsv[0]);
+die('');
 
     return $usersFromCsv;
 }
