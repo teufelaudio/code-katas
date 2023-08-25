@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kata;
 
@@ -11,11 +13,7 @@ final class Shuffle
 
     public function shuffleListItems(array $list): array
     {
-        $sortList = [];
-
-        foreach ($list as $listItem) {
-            $sortList[] = $this->randomizer->createRandomNumber();
-        }
+        $sortList = $this->randomizer->createRandomNumbers(count($list));
 
         return $this->sortListBySortList($list, $sortList);
     }
