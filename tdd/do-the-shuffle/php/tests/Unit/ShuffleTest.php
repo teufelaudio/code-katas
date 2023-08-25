@@ -7,10 +7,20 @@ use PHPUnit\Framework\TestCase;
 
 final class ShuffleTest extends TestCase
 {
+    private Shuffle $shuffle;
+
+    protected function setUp(): void
+    {
+        $this->shuffle = new Shuffle();
+    }
+
     public function test_shuffle_empty_list(): void
     {
-        $shuffle = new Shuffle();
+        self::assertEmpty($this->shuffle->shuffleListItems([]));
+    }
 
-        self::assertEmpty($shuffle->shuffleListItems([]));
+    public function test_shuffle_list_with_one_item(): void
+    {
+        self::assertEquals([1], $this->shuffle->shuffleListItems([1]));
     }
 }

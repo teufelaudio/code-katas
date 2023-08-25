@@ -6,6 +6,6 @@ final class Shuffle
 {
     public function shuffleListItems(array $list): array
     {
-        return [];
+        return $list;
     }
 }
