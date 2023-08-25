@@ -4,8 +4,11 @@ namespace Kata;
 
 final class Randomizer
 {
-    public function changeMe(): bool
+    private const MIN = 0;
+    private const MAX = 1000000;
+
+    public function createRandomNumber(): int
     {
-        return true;
+        return random_int(self::MIN, self::MAX);
     }
 }
