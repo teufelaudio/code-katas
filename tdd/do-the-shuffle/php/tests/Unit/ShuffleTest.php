@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace KataTests\Unit;
 
 use Kata\Randomizer;
+use Kata\RandomizerInterface;
 use Kata\Shuffle;
 use PHPUnit\Framework\TestCase;
 
@@ -14,7 +15,20 @@ final class ShuffleTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->shuffle = new Shuffle(new Randomizer());
+        $randomizer = $this->createMock(RandomizerInterface::class);
+        $randomizer
+            ->method('createRandomNumbers')
+            ->will(
+                $this->returnValueMap([
+                    [0, []],
+                    [1, [5]],
+                    [2, [5, 2]],
+                    [3, [5, 2, 9]],
+                    [4, [5, 2, 9, 1]],
+                    [5, [5, 2, 9, 1, 5]],
+                ])
+            );
+        $this->shuffle = new Shuffle($randomizer);
     }
 
     public function test_shuffle_empty_list(): void

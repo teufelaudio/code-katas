@@ -7,7 +7,7 @@ namespace Kata;
 final class Shuffle
 {
     public function __construct(
-        private Randomizer $randomizer
+        private RandomizerInterface $randomizer
     ) {
     }
 
