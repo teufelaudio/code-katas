@@ -2,7 +2,7 @@
 
 namespace Kata;
 
-final class TheClass
+final class Randomizer
 {
     public function changeMe(): bool
     {
