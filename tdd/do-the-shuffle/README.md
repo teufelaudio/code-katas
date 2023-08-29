@@ -25,12 +25,3 @@ We should use strict TDD for this, eg
 - do not refactor until you have a passing test
 
 Spoiler alert: You WILL need to use test doubles to handle random numbers ;-)
-
-## Business rules
-
-- The user starts playing, the game generates a random number that must not change until the game it's over.
-- If the user guesses the number the player wins.
-- If the user does not guess the number the system would have to notify the user if the number it's higher or lower.
-- If the user does not guess the number on three intents it will lose.
-
-> Original kata from https://www.codurance.com/katalyst/random-number-kata
