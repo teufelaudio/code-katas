@@ -1,8 +1,9 @@
 const wordWrapper = function(inputString:string): string {
 
-    const outputString = '';
+    const splittedWord = inputString.split(' ');
+    //outputString = splittedWord.join('\n');
 
-    return outputString;
+    return splittedWord.join('\n');
 };
 
 module.exports = {wordWrapper};

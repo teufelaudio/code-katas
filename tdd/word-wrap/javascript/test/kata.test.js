@@ -7,3 +7,12 @@ describe("When input string is empty", function () {
         expect(result).toBe("");
     });
 });
+
+describe("When we enter the string 'a cat'", function () {
+    it("The output should be wrapped correctly", function () {
+        const result = wordWrapper("a cat");
+
+        expect(result).toBe("a\ncat");
+    });
+});
+
