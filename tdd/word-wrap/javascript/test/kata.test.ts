@@ -10,4 +10,9 @@ describe("The word wrapper", function () {
     const result = format("Hello", 10);
     expect(result).toBe("Hello");
   });
+
+  it("doesn't wrap two words which are shorter than the column width", function () {
+    const result = format("Hello world", 20);
+    expect(result).toBe("Hello world");
+  });
 });
