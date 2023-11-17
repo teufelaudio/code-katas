@@ -8,10 +8,11 @@
   "scripts": {
     "tsc": "tsc",
     "tsc:watch": "tsc --watch",
-    "test": "jest",
-    "test:watch": "jest --watchAll"
+    "test": "jest test/kata.test.js",
+    "test:watch": "jest test/kata.test.js --watchAll"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.8",
     "jest": "^27.5",
     "typescript": "^5.2.2"
   }

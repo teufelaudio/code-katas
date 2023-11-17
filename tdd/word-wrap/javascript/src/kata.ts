@@ -1,5 +1,3 @@
-const changeMe = function(arg1): boolean {
-    return false;
+export const format = function (inputText: string, columnWidth: number): string {
+  return '';
 };
-
-module.exports = {changeMe};
