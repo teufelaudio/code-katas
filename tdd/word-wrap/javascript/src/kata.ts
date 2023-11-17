@@ -1,5 +1,8 @@
-const changeMe = function(arg1): boolean {
-    return false;
+const wordWrapper = function(inputString:string): string {
+
+    const outputString = '';
+
+    return outputString;
 };
 
-module.exports = {changeMe};
+module.exports = {wordWrapper};

@@ -1,4 +1,5 @@
-var changeMe = function (arg1) {
-    return false;
+var wordWrapper = function (inputString) {
+    var outputString = '';
+    return outputString;
 };
-module.exports = { changeMe: changeMe };
+module.exports = { wordWrapper: wordWrapper };
