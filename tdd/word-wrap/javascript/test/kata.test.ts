@@ -15,4 +15,11 @@ describe("The word wrapper", function () {
     const result = format("Hello world", 20);
     expect(result).toBe("Hello world");
   });
+
+  it("wraps two words if they're longer than the column width", function () {
+    const result = format("Hello world", 7);
+    expect(result).toBe(`\
+Hello
+world`);
+  });
 });

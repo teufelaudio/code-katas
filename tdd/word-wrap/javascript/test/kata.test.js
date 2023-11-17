@@ -14,4 +14,8 @@ describe("The word wrapper", function () {
         var result = (0, kata_1.format)("Hello world", 20);
         expect(result).toBe("Hello world");
     });
+    it("wraps two words if they're longer than the column width", function () {
+        var result = (0, kata_1.format)("Hello world", 7);
+        expect(result).toBe("Hello\nworld");
+    });
 });
