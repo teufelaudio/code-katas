@@ -16,3 +16,11 @@ describe("When we enter the string 'a cat'", function () {
     });
 });
 
+describe("When we enter the string 'The cat sat on the mat.'", function () {
+    it("The output should be wrapped correctly", function () {
+        const result = wordWrapper("The cat sat on the mat.", 8);
+
+        expect(result).toBe("The cat\nsat on\nthe mat.");
+    });
+});
+
