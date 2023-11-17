@@ -3,18 +3,25 @@ export const format = function (
   columnWidth: number
 ): string {
   const words = inputText.split(" ");
-  let output = "";
+  const lines = [];
+  let currentLine = '';
 
-  words.forEach((word, index) => {
-    if (index !== 0) {
-      if (output.length + word.length > columnWidth) {
-        output += "\n";
+  for (let word of words) {
+    if (currentLine.length !== 0) {
+      if (currentLine.length + 1 + word.length > columnWidth) {
+        lines.push(currentLine);
+        currentLine = word;
       } else {
-        output += " ";
+        currentLine += ' ' + word;
       }
+    } else {
+        currentLine = word;
     }
-    output += word;
-  });
+  };
 
-  return output;
+  if (currentLine.length !== 0) {
+    lines.push(currentLine);
+  }
+
+  return lines.join('\n');
 };

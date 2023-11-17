@@ -22,4 +22,20 @@ describe("The word wrapper", function () {
 Hello
 world`);
   });
+
+  it("wraps three words of the column width into three separate lines", function () {
+    const result = format("Hello super world", 5);
+    expect(result).toBe(`\
+Hello
+super
+world`);
+  });
+
+  it("wraps multiple words shorter than the column width correctly into separate lines", function () {
+    const result = format("The cat sat on the mat.", 8);
+    expect(result).toBe(`\
+The cat
+sat on
+the mat.`);
+  });
 });
