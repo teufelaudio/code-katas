@@ -1,0 +1,18 @@
+{
+  "description": "Guess the random number TDD kata (JS)",
+  "version": "1.0.0",
+  "directories": {
+    "src": "src",
+    "test": "test"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:watch": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watchAll"
+  },
+  "devDependencies": {
+    "jest": "^27.5",
+    "typescript": "^5.2.2"
+  }
+}
