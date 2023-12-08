@@ -5,6 +5,7 @@ vendor/
 out/
 build/
 cmake-build-debug/
+dist/
 
 *.cache
 *.env
