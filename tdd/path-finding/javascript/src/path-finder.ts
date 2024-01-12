@@ -1,4 +1,4 @@
-export default class RenameMe {
+export default class PathFinder {
     constructor() {
     }
 
