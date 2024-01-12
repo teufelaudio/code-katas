@@ -3,6 +3,16 @@ export default class RenameMe {
     }
 
     findNearestSafePlace(x: number, y: number ) {
-        return x == 0 ? '' : 'E';
+        let instruction: string = '';
+
+        if (x != 0) {
+            instruction = instruction + 'E';
+        }
+
+        if (y != 0) {
+            instruction = instruction + 'N';
+        }
+
+        return instruction;
     }
 }
