@@ -2,18 +2,23 @@
 
 namespace KataTests;
 
-use Kata\TheClass;
+use Kata\Processor;
 use PHPUnit\Framework\TestCase;
 
 class MyClassTest extends TestCase
 {
-    /** @test */
-    public function give_me_a_good_name_please(): void
+    public function test_empty_string(): void
     {
-        $xxx = new TheClass();
+        $processor = new Processor();
 
-        $result = $xxx->theMethod();
+        $result = $processor->process('');
 
-        self::assertEquals(true, $result);
+        self::assertEquals(
+            <<<EOF
+            These are the top 10 words used:
+
+            The text has in total 0 words
+            EOF, $result);
+
     }
 }
