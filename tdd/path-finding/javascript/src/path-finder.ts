@@ -2,7 +2,7 @@ export default class RenameMe {
     constructor() {
     }
 
-    findNearestSafePlace(coordinates: string) {
-        return '';
+    findNearestSafePlace(x: number, y: number ) {
+        return x == 0 ? '' : 'E';
     }
 }
