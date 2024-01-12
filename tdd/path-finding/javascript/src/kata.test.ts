@@ -1,11 +1,11 @@
-import RenameMe from './kata';
+import Pathfinder from './kata';
 
-describe('Topic name', () => {
-    describe('Rename to what we are describing', () => {
-        it('rename to the first behaviour we want to describe', () => {
-            const renameMe = new RenameMe();
+describe('Path finder', () => {
+    describe('Step 1: Compass directions', () => {
+        it('gives no directions if the destination matches the start point', () => {
+            const pathfinder = new Pathfinder();
 
-            expect(renameMe.doNothing()).toEqual(false)
+            expect(pathfinder.provideDirections(0,0,0,0)).toEqual("")
         });
 
         // Add more examples for other behaviours

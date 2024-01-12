@@ -1,8 +1,8 @@
-export default class RenameMe {
+export default class Pathfinder {
     constructor() {
     }
 
-    doNothing() {
-        return false;
+    provideDirections(startX: number, startY: number, finishX: number, finishY: number) {
+        return "";
     }
 }
