@@ -18,4 +18,22 @@ describe('The path finder ', () => {
 
         expect(pathFinder.findNearestSafePlace(1, 1)).toEqual('EN');
     });
+
+    it('returns "EENNNNN" if current location is (0,0) and nearest safe place is (2,5)', (): void => {
+        const pathFinder = new PathFinder();
+
+        expect(pathFinder.findNearestSafePlace(2, 5)).toEqual('EENNNNN');
+    });
+
+    it('returns "WSSS" if current location is (0,0) and nearest safe place is (-1,-3)', (): void => {
+        const pathFinder = new PathFinder();
+
+        expect(pathFinder.findNearestSafePlace(-1,-3)).toEqual('WSSS');
+    });
+
+    it('returns "WWSSSS" if current location is (0,0) and nearest safe place is (-2,-4)', (): void => {
+        const pathFinder = new PathFinder();
+
+        expect(pathFinder.findNearestSafePlace(-2,-4)).toEqual('WWSSSS');
+    });
 });
