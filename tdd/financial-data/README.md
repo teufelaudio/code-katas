@@ -1,4 +1,4 @@
-# Word wrap kata
+# Financial data code refactoring kata
 
 ## What do we want to build?
 
