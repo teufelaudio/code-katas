@@ -22,6 +22,13 @@ describe('FinancialDataProcessor', () => {
 
             expect(processedData.max).toEqual(4321);
         });
+
+        it('is the higher number if there are positive and negative numbers', () => {
+            const dataProcessor = new FinancialDataProcessor([-10, 1, 8]);
+            const processedData = dataProcessor.processData();
+
+            expect(processedData.max).toEqual(8);
+        });
     });
 
     describe('min number', () => {
@@ -44,6 +51,13 @@ describe('FinancialDataProcessor', () => {
             const processedData = dataProcessor.processData();
 
             expect(processedData.min).toEqual(42);
+        });
+
+        it('is the lower number if there are positive and negative numbers', () => {
+            const dataProcessor = new FinancialDataProcessor([-10, 1, 8]);
+            const processedData = dataProcessor.processData();
+
+            expect(processedData.min).toEqual(-10);
         });
     });
 
