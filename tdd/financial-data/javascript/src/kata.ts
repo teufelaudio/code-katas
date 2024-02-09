@@ -1,3 +1,9 @@
+interface DataMetrics {
+    average: number;
+    max: number;
+    min: number;
+}
+
 export default class FinancialDataProcessor {
     private data: number[] = [];
 
@@ -5,7 +11,7 @@ export default class FinancialDataProcessor {
         this.data = initialData;
     }
 
-    processData() {
+    processData(): DataMetrics {
         let sum = 0;
         for (let i = 0; i < this.data.length; i++) {
             sum += this.data[i];
@@ -24,9 +30,9 @@ export default class FinancialDataProcessor {
         }
 
         return {
-            average,
-            max,
-            min,
+            average: average,
+            max: max,
+            min: min
         };
     }
 }
