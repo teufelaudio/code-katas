@@ -12,24 +12,10 @@ export default class FinancialDataProcessor {
     }
 
     processData(): DataMetrics {
-        const average = this.getSum(this.data) / this.data.length;
-
-        let max = this.getMax(this.data);
-        let min = this.getMin(this.data);
-
-        for (let i = 1; i < this.data.length; i++) {
-            if (this.data[i] > max) {
-                max = this.data[i];
-            }
-            if (this.data[i] < min) {
-                min = this.data[i];
-            }
-        }
-
         return {
-            average: average,
-            max: max,
-            min: min
+            average: this.getSum(this.data) / this.data.length,
+            max: this.getMax(this.data),
+            min: this.getMin(this.data)
         };
     }
 
@@ -49,6 +35,6 @@ export default class FinancialDataProcessor {
     }
 
     private getFirstValueOrZero(numbers: number[]) {
-        return numbers.length > 0 ? numbers[0] : 0;
+        return numbers[0] ?? 0;
     }
 }
