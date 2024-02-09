@@ -2,11 +2,11 @@ import FinancialDataProcessor from './kata';
 
 describe('FinancialDataProcessor', () => {
     describe('max number', () => {
-        it('is undefined if there is no input', () => {
+        it('is 0 if there is no input', () => {
             const dataProcessor = new FinancialDataProcessor([]);
             const processedData = dataProcessor.processData();
 
-            expect(processedData.max).toEqual(undefined);
+            expect(processedData.max).toEqual(0);
         });
 
         it('is the input number if there is only one', () => {
@@ -25,11 +25,11 @@ describe('FinancialDataProcessor', () => {
     });
 
     describe('min number', () => {
-        it('is undefined if there is no input', () => {
+        it('is 0 if there is no input', () => {
             const dataProcessor = new FinancialDataProcessor([]);
             const processedData = dataProcessor.processData();
 
-            expect(processedData.min).toEqual(undefined);
+            expect(processedData.min).toEqual(0);
         });
 
         it('is the input number if there is only one', () => {
