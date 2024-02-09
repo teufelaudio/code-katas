@@ -46,4 +46,48 @@ describe('FinancialDataProcessor', () => {
             expect(processedData.min).toEqual(42);
         });
     });
+
+    describe('avg number', () => {
+        it('is undefined if there is no input', () => {
+            const dataProcessor = new FinancialDataProcessor([]);
+            const processedData = dataProcessor.processData();
+
+            expect(processedData.average).toEqual(NaN);
+        });
+
+        it('is the input number if there is only one', () => {
+            const dataProcessor = new FinancialDataProcessor([5]);
+            const processedData = dataProcessor.processData();
+
+            expect(processedData.average).toEqual(5);
+        });
+
+        it('is the input number if there are two times the same number', () => {
+            const dataProcessor = new FinancialDataProcessor([5,5]);
+            const processedData = dataProcessor.processData();
+
+            expect(processedData.average).toEqual(5);
+        });
+
+        it('is the average number if there are two different numbers', () => {
+            const dataProcessor = new FinancialDataProcessor([2,6]);
+            const processedData = dataProcessor.processData();
+
+            expect(processedData.average).toEqual(4);
+        });
+
+        it('is the average number if there are two different numbers', () => {
+            const dataProcessor = new FinancialDataProcessor([3,6]);
+            const processedData = dataProcessor.processData();
+
+            expect(processedData.average).toEqual(4.5);
+        });
+
+        it('is the average number if there are two different numbers including a negative number', () => {
+            const dataProcessor = new FinancialDataProcessor([-3,3]);
+            const processedData = dataProcessor.processData();
+
+            expect(processedData.average).toEqual(0);
+        });
+    });
 });
